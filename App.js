@@ -1,32 +1,14 @@
+// App.js
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-const App = () => {
+import StackNavigator from './src/navigation/StackNavigator';
+
+export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.container}>
-        <View style={styles.container}>
-          <Text>Hello</Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
   );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-export default App;
+}

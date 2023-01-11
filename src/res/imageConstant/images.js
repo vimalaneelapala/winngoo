@@ -1,0 +1,18 @@
+export default images={
+    LogoIcon:require("../images/logoicon.png"),
+    Check:require("../images/check.png"),
+    InvisibleIcon:require("../images/invisible.png"),
+    EyeIcon:require("../images/view.png"),
+    FacebookIcon:require("../images/facebook.png"),
+    YoutubeIcon:require("../images/youtube.png"),
+    InstagramIcon:require("../images/instagram.png"),
+    ProfileIcon:require("../images/profile.png"),
+    HamburgerIcon:require("../images/hamburger.png"),
+    CreditCardIcon:require("../images/creditcard.png"),
+    ProfileIconD:require("../images/profileDrawer.png"),
+    DollarIcon:require("../images/dollarsymbol.png"),
+    MemberCardIcon:require("../images/membercard.png"),
+    MultipleUserIcon:require("../images/multiple.png"),
+    TagIcon:require("../images/tag.png"),
+    NewsPaerIcon:require("../images/newspaper.png"),
+}
