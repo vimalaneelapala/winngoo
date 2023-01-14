@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Image,
   SafeAreaView,
@@ -10,63 +10,126 @@ import {
   View,
   TouchableOpacity,
   KeyboardAvoidingView,
-} from 'react-native';
+} from "react-native";
 // Library ======================================================================================
-import {Dropdown} from 'react-native-element-dropdown';
+import { Dropdown } from "react-native-element-dropdown";
 // Custom ======================================================================================
-import colors from '../../res/colors/colors';
-import images from '../../res/imageConstant/images';
+import colors from "../../res/colors/colors";
+import images from "../../res/imageConstant/images";
 import {
   responsiveScreenFontSize,
   responsiveScreenHeight,
   responsiveScreenWidth,
-} from '../../utils/Size';
-import strings from '../../res/strings/strings';
+} from "../../utils/Size";
+import strings from "../../res/strings/strings";
+import axios from "axios";
+import { BaseURL, EndPoint } from "../../api/ApiConstant";
 
 const genderList = [
-  {label: 'Female', value: 'Female'},
-  {label: 'Male', value: 'Male'},
+  { label: "Female", value: "Female" },
+  { label: "Male", value: "Male" },
 ];
-const MerchentSignUpScreen = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [confirmEmail, setConfirmEmail] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [gender, setGender] = useState('');
-  const [addressLine1, setAddressLine1] = useState('');
-  const [addressLine2, setAddressLine2] = useState('');
-  const [addressLine3, setAddressLine3] = useState('');
-  const [city, setCity] = useState('');
-  const [postCode, setPostCode] = useState('');
-  const [country, setCountry] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [refferalCode, setRefferalCode] = useState('');
-  const [birthMonth, setBirthMonth] = useState('');
+const MerchentSignUpScreen = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [gender, setGender] = useState("");
+  const [addressLine1, setAddressLine1] = useState("");
+  const [addressLine2, setAddressLine2] = useState("");
+  const [addressLine3, setAddressLine3] = useState("");
+  const [city, setCity] = useState("");
+  const [postCode, setPostCode] = useState("");
+  const [country, setCountry] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [refferalCode, setRefferalCode] = useState("");
+  const [birthMonth, setBirthMonth] = useState("");
   const [isRemember, setIsRemember] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
+  const [category, setCategory] = useState([]);
+  const [categoryValue, setCategoryValue] = useState('');
+  const [subCategory, setSubCategory] = useState([]);
+  const [subCategoryValue, setSubCategoryValue] = useState([]);
+  // ==========================================Api Call================
+  useEffect(() => {
+    getCategoryApi()
+  }, [getCategoryApi]);
+  // ==========================================Api Call================
+  // ============Category Api Call================
+  const getCategoryApi = async () => {
+    await axios
+      .get(BaseURL + EndPoint.CATEGORIES)
+      .then((res) => {
+         setCategory(res.data.result)
+      })
+      .catch((err) => console.log("err1", JSON.stringify(err)));
+  };
+  // ============Sub Category Api Call================
+  const getSubCategoryApi = async (id) => {
+    await axios
+      .get(BaseURL + EndPoint.SUBCATEGORIES+id)
+      .then((res) => {
+        setSubCategory(res.data.result)
+      })
+      .catch((err) => console.log("err2", JSON.stringify(err)));
+  };
+  // ============Register Api Call================
+  const registerApiCall = async () => {
+    var data = {
+      first_name: "Dhruvika",
+      last_name: "Chauhan",
+      phone_number: "+919998208121",
+      email: "dhruvikachauhan1110@gmail.com",
+      password: "Admin@123",
+      address_line_1: "Manek chowk",
+      latitude: "22.999880",
+      longitude: "72.660614",
+      city: "Ahmedabad",
+      country: "India",
+      post_code: "380001",
+      business_name: "Y.H.Print",
+      business_type: "Limited Company",
+      business_relationship: "Director",
+      business_description: "Textile Company",
+      trading_years: "25",
+      image: "",
+      category_id: "Fashion & Clothing",
+      sub_category_id: "Tops",
+      discountType: "DISCOUNT",
+      discount_percentage: "10%",
+      terms_and_conditions: "yes",
+    };
 
+    await axios
+      .post(BaseURL + EndPoint.REGISTERMERCHENT, data)
+      .then((res) => {
+        alert(res.data);
+      })
+      .catch((err) => console.log(JSON.stringify(err)));
+  };
+  // ==========================================Render Call================
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView style={styles.container}>
           <View style={styles.container}>
-          <Image
-          source={images.LogoWingo}
-          resizeMode="contain"
-          style={styles.imageicon}
-        />
+            <Image
+              source={images.LogoWingo}
+              resizeMode="contain"
+              style={styles.imageicon}
+            />
             <Text style={styles.loginText}>{strings.SignUp}</Text>
 
             <View style={styles.mainview}>
               <Text style={styles.titleText}>
                 {strings.FirstName}
-                <Text style={styles.starText}>{' *'}</Text>
+                <Text style={styles.starText}>{" *"}</Text>
               </Text>
               <TextInput
                 value={firstName}
-                onChangeText={firstName => {
+                onChangeText={(firstName) => {
                   setFirstName(firstName);
                 }}
                 placeholder={strings.EnterFname}
@@ -74,11 +137,11 @@ const MerchentSignUpScreen = ({navigation}) => {
               />
               <Text style={styles.titleText}>
                 {strings.LastName}
-                <Text style={styles.starText}>{' *'}</Text>
+                <Text style={styles.starText}>{" *"}</Text>
               </Text>
               <TextInput
                 value={lastName}
-                onChangeText={lastName => {
+                onChangeText={(lastName) => {
                   setLastName(lastName);
                 }}
                 placeholder={strings.EnterLname}
@@ -86,7 +149,7 @@ const MerchentSignUpScreen = ({navigation}) => {
               />
               <Text style={styles.titleText}>
                 {strings.Gender}
-                <Text style={styles.starText}>{' *'}</Text>
+                <Text style={styles.starText}>{" *"}</Text>
               </Text>
               <Dropdown
                 style={styles.dropdown}
@@ -99,19 +162,64 @@ const MerchentSignUpScreen = ({navigation}) => {
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
-                placeholder={'Select item'}
+                placeholder={"Select item"}
                 value={gender}
-                onChange={item => {
+                onChange={(item) => {
                   setGender(item.value);
                 }}
               />
               <Text style={styles.titleText}>
+                {strings.Category}
+                <Text style={styles.starText}>{" *"}</Text>
+              </Text>
+              <Dropdown
+                style={styles.dropdown}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                inputSearchStyle={styles.inputSearchStyle}
+                iconStyle={styles.iconStyle}
+                data={category}
+                search={false}
+                maxHeight={300}
+                labelField="name"
+                valueField="slug"
+                placeholder={"Select item"}
+                value={categoryValue}
+                onChange={(item) => {
+                  // alert(JSON.stringify(item))
+                  setCategoryValue(item.name);
+                  getSubCategoryApi(item.id)
+                }}
+              />
+              <Text style={styles.titleText}>
+                {strings.SubCategory}
+                <Text style={styles.starText}>{" *"}</Text>
+              </Text>
+              <Dropdown
+                style={styles.dropdown}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                inputSearchStyle={styles.inputSearchStyle}
+                iconStyle={styles.iconStyle}
+                data={subCategory}
+                search={false}
+                maxHeight={300}
+                labelField="name"
+                valueField="slug"
+                placeholder={"Select item"}
+                value={subCategoryValue}
+                onChange={(item) => {
+                  // alert(JSON.stringify(item))
+                  setSubCategoryValue(item.name);
+                }}
+              />
+              <Text style={styles.titleText}>
                 {strings.Email}
-                <Text style={styles.starText}>{' *'}</Text>
+                <Text style={styles.starText}>{" *"}</Text>
               </Text>
               <TextInput
                 value={email}
-                onChangeText={email => {
+                onChangeText={(email) => {
                   setEmail(email);
                 }}
                 placeholder={strings.EnterEmail}
@@ -119,11 +227,11 @@ const MerchentSignUpScreen = ({navigation}) => {
               />
               <Text style={styles.titleText}>
                 {strings.ConfirmEmail}
-                <Text style={styles.starText}>{' *'}</Text>
+                <Text style={styles.starText}>{" *"}</Text>
               </Text>
               <TextInput
                 value={confirmEmail}
-                onChangeText={confirmEmail => {
+                onChangeText={(confirmEmail) => {
                   setConfirmEmail(confirmEmail);
                 }}
                 placeholder={strings.EnterConfirmEmail}
@@ -131,11 +239,11 @@ const MerchentSignUpScreen = ({navigation}) => {
               />
               <Text style={styles.titleText}>
                 {strings.AddressLine1}
-                <Text style={styles.starText}>{' *'}</Text>
+                <Text style={styles.starText}>{" *"}</Text>
               </Text>
               <TextInput
                 value={addressLine1}
-                onChangeText={addressLine1 => {
+                onChangeText={(addressLine1) => {
                   setAddressLine1(addressLine1);
                 }}
                 placeholder={strings.EnterAddress1}
@@ -144,7 +252,7 @@ const MerchentSignUpScreen = ({navigation}) => {
               <Text style={styles.titleText}>{strings.AddressLine2}</Text>
               <TextInput
                 value={addressLine2}
-                onChangeText={addressLine2 => {
+                onChangeText={(addressLine2) => {
                   setAddressLine2(addressLine2);
                 }}
                 placeholder={strings.EnterAddress2}
@@ -153,7 +261,7 @@ const MerchentSignUpScreen = ({navigation}) => {
               <Text style={styles.titleText}>{strings.AddressLine3}</Text>
               <TextInput
                 value={addressLine3}
-                onChangeText={addressLine3 => {
+                onChangeText={(addressLine3) => {
                   setAddressLine3(addressLine3);
                 }}
                 placeholder={strings.EnterAddress3}
@@ -161,11 +269,11 @@ const MerchentSignUpScreen = ({navigation}) => {
               />
               <Text style={styles.titleText}>
                 {strings.City}
-                <Text style={styles.starText}>{' *'}</Text>
+                <Text style={styles.starText}>{" *"}</Text>
               </Text>
               <TextInput
                 value={city}
-                onChangeText={city => {
+                onChangeText={(city) => {
                   setCity(city);
                 }}
                 placeholder={strings.EnterCity}
@@ -173,11 +281,11 @@ const MerchentSignUpScreen = ({navigation}) => {
               />
               <Text style={styles.titleText}>
                 {strings.PostCode}
-                <Text style={styles.starText}>{' *'}</Text>
+                <Text style={styles.starText}>{" *"}</Text>
               </Text>
               <TextInput
                 value={postCode}
-                onChangeText={postCode => {
+                onChangeText={(postCode) => {
                   setPostCode(postCode);
                 }}
                 placeholder={strings.EnterPostCode}
@@ -185,15 +293,15 @@ const MerchentSignUpScreen = ({navigation}) => {
               />
               <Text style={styles.titleText}>
                 {strings.Country}
-                <Text style={styles.starText}>{' *'}</Text>
+                <Text style={styles.starText}>{" *"}</Text>
               </Text>
               <Text style={styles.titleText}>
                 {strings.PhoneNumber}
-                <Text style={styles.starText}>{' *'}</Text>
+                <Text style={styles.starText}>{" *"}</Text>
               </Text>
               <TextInput
                 value={phoneNumber}
-                onChangeText={phoneNumber => {
+                onChangeText={(phoneNumber) => {
                   setPhoneNumber(phoneNumber);
                 }}
                 placeholder={strings.EnterPhoneNumber}
@@ -202,7 +310,7 @@ const MerchentSignUpScreen = ({navigation}) => {
               <Text style={styles.titleText}>{strings.Reffereal}</Text>
               <TextInput
                 value={refferalCode}
-                onChangeText={refferalCode => {
+                onChangeText={(refferalCode) => {
                   setRefferalCode(refferalCode);
                 }}
                 placeholder={strings.EnterReferralCode}
@@ -210,11 +318,11 @@ const MerchentSignUpScreen = ({navigation}) => {
               />
               <Text style={styles.titleText}>
                 {strings.BirthMonth}
-                <Text style={styles.starText}>{' *'}</Text>
+                <Text style={styles.starText}>{" *"}</Text>
               </Text>
             </View>
 
-            <TouchableOpacity style={styles.loginBtn}>
+            <TouchableOpacity onPress={registerApiCall} style={styles.loginBtn}>
               <Text
                 style={[
                   styles.loginText,
@@ -223,7 +331,8 @@ const MerchentSignUpScreen = ({navigation}) => {
                     fontSize: responsiveScreenFontSize(2),
                     marginTop: 0,
                   },
-                ]}>
+                ]}
+              >
                 {strings.SignUpMerchent}
               </Text>
             </TouchableOpacity>
@@ -242,15 +351,15 @@ const styles = StyleSheet.create({
   loginText: {
     fontSize: responsiveScreenFontSize(3),
     color: colors.BLACK,
-    alignSelf: 'center',
-    fontWeight: 'bold',
+    alignSelf: "center",
+    fontWeight: "bold",
     marginTop: responsiveScreenWidth(5),
   },
   starText: {
     fontSize: responsiveScreenFontSize(1.8),
     color: colors.RED,
-    alignSelf: 'center',
-    fontWeight: 'bold',
+    alignSelf: "center",
+    fontWeight: "bold",
     paddingTop: responsiveScreenWidth(8),
   },
   textInputstyle: {
@@ -258,14 +367,14 @@ const styles = StyleSheet.create({
     borderColor: colors.BLACK,
     borderWidth: responsiveScreenWidth(0.1),
     fontSize: responsiveScreenFontSize(2),
-    width: '100%',
-    alignSelf: 'center',
+    width: "100%",
+    alignSelf: "center",
     margin: responsiveScreenWidth(3),
   },
   loginBtn: {
-    width: '75%',
-    alignSelf: 'center',
-    justifyContent: 'center',
+    width: "75%",
+    alignSelf: "center",
+    justifyContent: "center",
     borderRadius: responsiveScreenWidth(1),
     height: responsiveScreenWidth(12),
     backgroundColor: colors.BLUETEXT,
@@ -273,14 +382,14 @@ const styles = StyleSheet.create({
     marginBottom: responsiveScreenWidth(5),
   },
   mainview: {
-    width: '75%',
-    alignSelf: 'center',
-    justifyContent: 'center',
+    width: "75%",
+    alignSelf: "center",
+    justifyContent: "center",
   },
   titleText: {
     fontSize: responsiveScreenFontSize(1.6),
     color: colors.BLACK,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 
   dropdown: {
@@ -290,16 +399,16 @@ const styles = StyleSheet.create({
     borderWidth: responsiveScreenWidth(0.1),
     backgroundColor: colors.TEXTINPUTBACKGROUND,
     marginTop: responsiveScreenWidth(2),
-    width: '100%',
-    alignSelf: 'center',
+    width: "100%",
+    alignSelf: "center",
     paddingStart: responsiveScreenWidth(1),
   },
   icon: {
     marginRight: 5,
   },
   label: {
-    position: 'absolute',
-    backgroundColor: 'white',
+    position: "absolute",
+    backgroundColor: "white",
     left: 22,
     top: 8,
     zIndex: 999,
@@ -323,9 +432,9 @@ const styles = StyleSheet.create({
   imageicon: {
     height: responsiveScreenWidth(20),
     width: responsiveScreenWidth(50),
-    justifyContent: 'center',
-    alignSelf: 'center',
-    margin:responsiveScreenWidth(5)
+    justifyContent: "center",
+    alignSelf: "center",
+    margin: responsiveScreenWidth(5),
   },
 });
 

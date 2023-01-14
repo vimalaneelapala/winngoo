@@ -5,7 +5,7 @@ export const EndPoint={
     RESETPASSWORD:"/user/reset-password",
     LOGOUT:"/user/logout",
     CATEGORIES:"/categories",
-    SUBCATEGORIES:"/sub-categories",
+    SUBCATEGORIES:"/sub-categories/",
     REGISTERMERCHENT:"/user/register-merchent",
     USER:"/user",
     CHANGEPASSWORD:"/user/change-password",

@@ -20,6 +20,8 @@ export default strings = {
   Password:"Password",
   ConfirmPassword:"Confirm Password",
   Gender:"Gender",
+  Category:"Category",
+  SubCategory:"Sub Category",
   AddressLine1:"Address Line 1",
   AddressLine2:"Address Line 2",
   AddressLine3:"Address Line 3",
@@ -33,6 +35,9 @@ export default strings = {
   AcceptText2:" of Winngoo.",
   PrivacyPolicy:" Privacy Policy ",
   TermsCondition:"Terms and Conditions ",
+  //Profile ============================
+ EditProfile: "Edit Profile Picture",
+  EditAddress:"Edit Address",
   //Place holder ============================
   EnterEmail: 'Enter email here',
   EnterConfirmEmail: 'Enter confirm email here',
@@ -49,4 +54,7 @@ export default strings = {
   EnterReferralCode: 'Enter refferal code here',
   EnterPhoneNumber: 'Enter phone number here',
   EnterPostCode: 'Enter post code here',
+    //Error =================================
+    EnterEmailErr: 'Please enter valid email',
+    EnterPasswordErr: 'Please enter valid password',
 };

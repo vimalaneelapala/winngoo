@@ -10,6 +10,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import { DrawerActions } from "@react-navigation/native";
 // Custom ======================================================================================
 import colors from '../../res/colors/colors';
 import images from '../../res/imageConstant/images';
@@ -18,41 +19,13 @@ import {
   responsiveScreenHeight,
   responsiveScreenWidth,
 } from '../../utils/Size';
-import {DrawerActions} from '@react-navigation/native';
+import TopHeaderView from '../../component/Header'
 
 const DashboardScreen = ({navigation}) => {
   const [isModal, setIsModal] = useState(false);
   // UseEffect=================================================================================
 
   // Function=================================================================================
-  const TopHeaderView = () => {
-    return (
-      <View style={styles.headerstyle}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.dispatch(DrawerActions.openDrawer());
-          }}
-          style={{marginTop: responsiveScreenWidth(1)}}>
-          <Image
-            source={images.HamburgerIcon}
-            resizeMode="contain"
-            style={styles.HamburgerIcon}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            setIsModal(true);
-          }}
-          style={{marginTop: responsiveScreenWidth(1)}}>
-          <Image
-            source={images.ProfileIcon}
-            resizeMode="contain"
-            style={styles.ProfileIcon}
-          />
-        </TouchableOpacity>
-      </View>
-    );
-  };
   const cardView = (title, answer, textcolor, image) => {
     return (
       <View style={styles.shadowcard}>
@@ -72,7 +45,7 @@ const DashboardScreen = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.container}>
-          <TopHeaderView />
+          <TopHeaderView onPress={()=>{navigation.dispatch(DrawerActions.openDrawer());}} />
           {cardView(
             'Total Savings',
             '5000',
