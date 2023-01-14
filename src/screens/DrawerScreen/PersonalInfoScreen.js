@@ -132,16 +132,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.TEXTINPUTBACKGROUND,
   },
-  textInputstyle: {
-    backgroundColor: colors.TEXTINPUTBACKGROUND,
-    borderColor: colors.BLACK,
-    borderWidth: responsiveScreenWidth(0.1),
-    fontSize: responsiveScreenFontSize(2),
-    width: "75%",
-    alignSelf: "center",
-    margin: responsiveScreenWidth(3),
-    color: colors.BLACK,
-  },
   rowView: {
     flexDirection: "row",
     margin: responsiveScreenWidth(1),
@@ -155,14 +145,6 @@ const styles = StyleSheet.create({
     color: colors.blue,
     fontSize: responsiveScreenFontSize(1.8),
     fontWeight: "400",
-  },
-  rememberText: {
-    color: colors.BLACK,
-    fontSize: responsiveScreenFontSize(1.8),
-    fontWeight: "600",
-    marginTop: responsiveScreenWidth(0),
-    width: "100%",
-    alignSelf: "center",
   },
   loginBtn: {
     width: "82%",
@@ -180,52 +162,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     width: "80%",
   },
-  imageicon: {
-    height: responsiveScreenWidth(20),
-    width: responsiveScreenWidth(20),
-    justifyContent: "center",
-    alignSelf: "center",
-  },
-  socialIcon: {
-    height: responsiveScreenWidth(10),
-    width: responsiveScreenWidth(10),
-    justifyContent: "center",
-    alignSelf: "center",
-    margin: responsiveScreenWidth(4),
-  },
-  boxView: {
-    height: responsiveScreenWidth(5),
-    width: responsiveScreenWidth(5),
-    justifyContent: "center",
-    alignSelf: "center",
-    borderColor: colors.BLACK,
-    borderWidth: responsiveScreenWidth(0.2),
-  },
-  checkImage: {
-    height: responsiveScreenWidth(3),
-    width: responsiveScreenWidth(3),
-    justifyContent: "center",
-    alignSelf: "center",
-  },
-  signupView: {
-    alignSelf: "flex-end",
-    marginEnd: responsiveScreenWidth(13),
-    marginTop: responsiveScreenWidth(4),
-  },
-  partnerUsstyle: {
-    color: colors.BLUETEXT,
-    fontSize: responsiveScreenFontSize(1.8),
-    fontWeight: "bold",
-    alignSelf: "center",
-    position: "absolute",
-    bottom: responsiveScreenWidth(18),
-  },
-  bottomView: {
-    flexDirection: "row",
-    alignSelf: "center",
-    position: "absolute",
-    bottom: 0,
-  },
   personalView: {
     shadowColor: "#000",
     shadowOffset: {
@@ -234,7 +170,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.3,
     shadowRadius: 4.65,
-
     elevation: 8,
     backgroundColor: colors.white,
     width: "80%",

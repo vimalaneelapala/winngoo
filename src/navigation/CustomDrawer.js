@@ -80,6 +80,7 @@ const CustomDrawer = ({ navigation }) => {
             <Text
               onPress={() => {
                 setIsVisible(false);
+                navigation.navigate("ChangePasswordScreen")
               }}
               style={styles.modaltextStyle}
             >
@@ -88,6 +89,7 @@ const CustomDrawer = ({ navigation }) => {
             <View style={styles.modalline} />
             <Text
               onPress={() => {
+                navigation.navigate("CardDetailScreen")
                 setIsVisible(false);
               }}
               style={styles.modaltextStyle}

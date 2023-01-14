@@ -8,6 +8,8 @@ import colors from '../res/colors/colors';
 import {responsiveScreenWidth} from '../utils/Size';
 import DashboardScreen from '../screens/DrawerScreen/DashboardScreen';
 import PersonalInfoScreen from '../screens/DrawerScreen/PersonalInfoScreen';
+import ChangePasswordScreen from '../screens/DrawerScreen/ChangePasswordScreen';
+import CardDetailScreen from '../screens/DrawerScreen/CardDetailScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -31,6 +33,16 @@ const DrawerNavigator = () => {
       <Drawer.Screen
         name={'PersonalInfoScreen'}
         component={PersonalInfoScreen}
+        options={{headerShown: false}}
+      />
+      <Drawer.Screen
+        name={'ChangePasswordScreen'}
+        component={ChangePasswordScreen}
+        options={{headerShown: false}}
+      />
+      <Drawer.Screen
+        name={'CardDetailScreen'}
+        component={CardDetailScreen}
         options={{headerShown: false}}
       />
     </Drawer.Navigator>
