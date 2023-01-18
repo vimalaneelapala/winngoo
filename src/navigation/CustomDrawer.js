@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -15,9 +15,13 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import colors from "../res/colors/colors";
 import { responsiveScreenFontSize, responsiveScreenWidth } from "../utils/Size";
 import images from "../res/imageConstant/images";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CustomDrawer = ({ navigation }) => {
-  const [isVisible, setIsVisible] = useState(false);
+
+  const [isMerchent, setIsMerchent] = useState(true);
+  const [profileModal, setProfileModal] = useState(false);
+  const [businessModal, setBusinessModal] = useState(false);
 
   return (
     <SafeAreaView>
@@ -31,24 +35,47 @@ const CustomDrawer = ({ navigation }) => {
           <Image source={images.ProfileIconD} style={styles.blueIcon} />
           <Text
             onPress={() => {
-              setIsVisible(true);
+              setProfileModal(true);
             }}
             style={styles.titletextStyle}
           >
             Profile Detail
           </Text>
+          {isMerchent ? (
+            <TouchableOpacity
+              onPress={() => {
+                setBusinessModal(true);
+              }}
+            >
+              <Image source={images.ProfileIconD} style={styles.blueIcon} />
+              <Text style={styles.titletextStyle}>Business Detail</Text>
+            </TouchableOpacity>
+          ) : null}
           <View style={styles.line} />
           <Text style={styles.textStyle}>Summary</Text>
           <Image source={images.ProfileIconD} style={styles.blueIcon} />
           <Text style={styles.titletextStyle}>Profile Detail</Text>
+        
+
           <Image source={images.MultipleUserIcon} style={styles.blueIcon} />
           <Text style={styles.titletextStyle}>Refer Friends</Text>
           <Image source={images.DollarIcon} style={styles.blueIcon} />
           <Text style={styles.titletextStyle}>Reward Summary</Text>
-          <Image source={images.CreditCardIcon} style={styles.blueIcon} />
+         
+          {isMerchent ? (
+            <View>
+              <Image source={images.ProfileIconD} style={styles.blueIcon} />
+              <Text style={styles.titletextStyle}>Transaction Interface</Text>
+            </View>
+          ) : null}
+           <Image source={images.CreditCardIcon} style={styles.blueIcon} />
           <Text style={styles.titletextStyle}>Transaction History</Text>
-          <Image source={images.ProfileIconD} style={styles.blueIcon} />
-          <Text style={styles.titletextStyle}>Cashback History</Text>
+          {isMerchent ? (
+            <View>
+              <Image source={images.ProfileIconD} style={styles.blueIcon} />
+              <Text style={styles.titletextStyle}>Cashback History</Text>
+            </View>
+          ) : null}
           <Image source={images.MemberCardIcon} style={styles.blueIcon} />
           <Text style={styles.titletextStyle}>Member News</Text>
           <Image source={images.TagIcon} style={styles.blueIcon} />
@@ -56,12 +83,12 @@ const CustomDrawer = ({ navigation }) => {
           <Image source={images.NewsPaerIcon} style={styles.blueIcon} />
           <Text style={styles.titletextStyle}>News</Text>
         </ScrollView>
-        <Modal transparent={true} visible={isVisible} animationType="slide">
+        <Modal transparent={true} visible={profileModal} animationType="slide">
           <View style={styles.modalView}>
             <Text
               onPress={() => {
-                setIsVisible(false);
-                navigation.navigate("PersonalInfoScreen")
+                setProfileModal(false);
+                navigation.navigate("PersonalInfoScreen");
               }}
               style={styles.modaltextStyle}
             >
@@ -79,8 +106,8 @@ const CustomDrawer = ({ navigation }) => {
             <View style={styles.modalline} />
             <Text
               onPress={() => {
-                setIsVisible(false);
-                navigation.navigate("ChangePasswordScreen")
+                setProfileModal(false);
+                navigation.navigate("ChangePasswordScreen");
               }}
               style={styles.modaltextStyle}
             >
@@ -89,12 +116,43 @@ const CustomDrawer = ({ navigation }) => {
             <View style={styles.modalline} />
             <Text
               onPress={() => {
-                navigation.navigate("CardDetailScreen")
-                setIsVisible(false);
+                navigation.navigate("CardDetailScreen");
+                setProfileModal(false);
               }}
               style={styles.modaltextStyle}
             >
               Bank Detail
+            </Text>
+          </View>
+        </Modal>
+        <Modal transparent={true} visible={businessModal} animationType="slide">
+          <View style={styles.modalView}>
+            <Text
+              onPress={() => {
+                setBusinessModal(false);
+                // navigation.navigate("PersonalInfoScreen");
+              }}
+              style={styles.modaltextStyle}
+            >
+              Business Information
+            </Text>
+            <View style={styles.modalline} />
+            <Text
+              onPress={() => {
+                setBusinessModal(false);
+              }}
+              style={styles.modaltextStyle}
+            >
+              Business Detail
+            </Text>
+            <View style={styles.modalline} />
+            <Text
+              onPress={() => {
+                setBusinessModal(false);
+              }}
+              style={styles.modaltextStyle}
+            >
+              Business Tagline
             </Text>
           </View>
         </Modal>

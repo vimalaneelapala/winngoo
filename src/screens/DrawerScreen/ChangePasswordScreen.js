@@ -20,16 +20,41 @@ import {
 } from "../../utils/Size";
 import strings from "../../res/strings/strings";
 import TopHeaderView from "../../component/Header";
+import Spinner from "react-native-loading-spinner-overlay";
+import { BaseURL, EndPoint } from "../../api/ApiConstant";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 const ChangePasswordScreen = ({ navigation }) => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState("");
   const [isShowPasswordOld, setIsShowPasswordOld] = useState(false);
   const [isShowPasswordNew, setIsShowPasswordNew] = useState(false);
   const [isShowPasswordConfirm, setIsShowPasswordConfirm] = useState(false);
+
+  // ==========================================Api Call================
+  const changePasswordCall = async () => {
+    setIsLoading(true);
+    var data = {
+      old_password: oldPassword,
+      password: newPassword,
+      password_confirmation: confirmPassword,
+    };
+    await axios
+      .post(BaseURL + EndPoint.CHANGEPASSWORD, data)
+      .then(async (res) => {
+        setIsLoading(false);
+       alert("Password Updated Successfully.")
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(JSON.stringify(err));
+      });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -38,6 +63,7 @@ const ChangePasswordScreen = ({ navigation }) => {
           navigation.dispatch(DrawerActions.openDrawer());
         }}
       />
+      <Spinner visible={isLoading} />
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.headerText}>{strings.changepassowrd}</Text>
@@ -141,14 +167,38 @@ const ChangePasswordScreen = ({ navigation }) => {
           ) : null}
 
           <View style={styles.rowView}>
-          <TouchableOpacity style={styles.btnBlue}>
-            <Text style={styles.btnText}>{strings.Update}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.btnBlue,{backgroundColor:colors.TEXTINPUTBACKGROUND}]}>
-            <Text style={[styles.btnText,{color:colors.BLACK}]}>{strings.Reset}</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (
+                  oldPassword !== "" &&
+                  newPassword !== "" &&
+                  confirmPassword !== ""
+                ) {
+                  changePasswordCall();
+                } else {
+                  alert("please enter all detail");
+                }
+              }}
+              style={styles.btnBlue}
+            >
+              <Text style={styles.btnText}>{strings.Update}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                setOldPassword("");
+                setNewPassword("");
+                setConfirmPassword("");
+              }}
+              style={[
+                styles.btnBlue,
+                { backgroundColor: colors.TEXTINPUTBACKGROUND },
+              ]}
+            >
+              <Text style={[styles.btnText, { color: colors.BLACK }]}>
+                {strings.Reset}
+              </Text>
+            </TouchableOpacity>
           </View>
-        
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -182,7 +232,7 @@ const styles = StyleSheet.create({
     width: "65%",
     alignSelf: "center",
     margin: responsiveScreenWidth(3),
-    marginStart:0,
+    marginStart: 0,
     color: colors.BLACK,
   },
   errMsg: {
@@ -223,18 +273,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "75%",
     justifyContent: "space-between",
-    alignItems:"center",
-    alignContent:"center",
-    alignSelf:"center",
-    marginTop:responsiveScreenWidth(10)
+    alignItems: "center",
+    alignContent: "center",
+    alignSelf: "center",
+    marginTop: responsiveScreenWidth(10),
   },
   btnBlue: {
     backgroundColor: colors.blue,
     height: responsiveScreenWidth(10),
     width: responsiveScreenWidth(30),
-    borderRadius:responsiveScreenWidth(2),
-    justifyContent:"center",
-    alignSelf:"center"
+    borderRadius: responsiveScreenWidth(2),
+    justifyContent: "center",
+    alignSelf: "center",
   },
   btnText: {
     alignSelf: "center",

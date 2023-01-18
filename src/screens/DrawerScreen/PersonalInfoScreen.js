@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Image,
   SafeAreaView,
@@ -20,12 +20,35 @@ import {
 } from "../../utils/Size";
 import strings from "../../res/strings/strings";
 import TopHeaderView from "../../component/Header";
+import { BaseURL, EndPoint } from "../../api/ApiConstant";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const PersonalInfoScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRemember, setIsRemember] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
+
+  // ==========================================Api Call================
+useEffect(async()=>{
+let token =await AsyncStorage.getItem("token")
+console.log(token)
+})
+  // ==========================================Api Call================
+  // const profileInfoCall = async () => {
+  //   setIsLoading(true);
+   
+  //   await axios
+  //     .post(BaseURL + EndPoint.CHANGEPASSWORD, data)
+  //     .then(async (res) => {
+  //       setIsLoading(false);
+  //      alert("Password Updated Successfully.")
+  //     })
+  //     .catch((err) => {
+  //       setIsLoading(false);
+  //       console.log(JSON.stringify(err));
+  //     });
+  // };
 
   return (
     <SafeAreaView style={styles.container}>

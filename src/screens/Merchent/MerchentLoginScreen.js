@@ -22,10 +22,11 @@ import {
 import Validation from "../../utils/Validation";
 import strings from "../../res/strings/strings";
 import { BaseURL, EndPoint } from "../../api/ApiConstant";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const MerchentLoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("dhruvikachauhan1110@gmail.com");
+  const [password, setPassword] = useState("admin@123");
   const [isRemember, setIsRemember] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isPasswordError, setIsPasswordError] = useState(false);
@@ -33,6 +34,7 @@ const MerchentLoginScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   // ==========================================Api Call================
   const loginApiCall = async () => {
+    setIsLoading(true);
     var data = {
       email: email,
       password: password,
@@ -40,10 +42,17 @@ const MerchentLoginScreen = ({ navigation }) => {
 
     await axios
       .post(BaseURL + EndPoint.LOGIN, data)
-      .then((res) => {
-        alert(res.data);
+      .then(async (res) => {
+        setIsLoading(false);
+        await AsyncStorage.setItem("isLogin", "true");
+        await AsyncStorage.setItem("loginType", "merchent");
+        await AsyncStorage.setItem("token", JSON.parse(res.data.result.token));
+        navigation.navigate("DrawerNavigator");
       })
-      .catch((err) => console.log(JSON.stringify(err)));
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(JSON.stringify(err));
+      });
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -111,7 +120,7 @@ const MerchentLoginScreen = ({ navigation }) => {
         <TouchableOpacity
           onPress={() => {
             if (email != "" || password != "") {
-              loginApiCall;
+              loginApiCall();
             } else {
               var regexEmail = "/^[w-.]+@([w-]+.)+[w-]{2,4}$/";
               var regexPassword =

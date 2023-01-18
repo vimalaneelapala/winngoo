@@ -36,8 +36,8 @@ const MerchentForgotPasswordScreen = ({ navigation }) => {
     await axios
       .post(BaseURL + EndPoint.RESETPASSWORD, data)
       .then((res) => {
-        console.log(">>>>>>>>>>>>>>>>>>>>4", res);
         setIsLoading(false);
+        alert("Reset password link sent to your register email id.")
       })
       .catch((err) => {
         setIsLoading(false);

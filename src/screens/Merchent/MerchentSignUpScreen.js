@@ -62,6 +62,7 @@ const MerchentSignUpScreen = ({ navigation }) => {
     await axios
       .get(BaseURL + EndPoint.CATEGORIES)
       .then((res) => {
+        console.log(BaseURL+EndPoint.CATEGORIES)
          setCategory(res.data.result)
       })
       .catch((err) => console.log("err1", JSON.stringify(err)));
@@ -95,8 +96,8 @@ const MerchentSignUpScreen = ({ navigation }) => {
       business_description: "Textile Company",
       trading_years: "25",
       image: "",
-      category_id: "Fashion & Clothing",
-      sub_category_id: "Tops",
+      category_id: [6],
+      sub_category_id: [46],
       discountType: "DISCOUNT",
       discount_percentage: "10%",
       terms_and_conditions: "yes",

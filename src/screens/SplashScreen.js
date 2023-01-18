@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -8,18 +8,22 @@ import {
   useColorScheme,
   View,
   Image,
-} from 'react-native';
+} from "react-native";
 // Custom ======================================================================================
-import colors from '../res/colors/colors';
-import images from '../res/imageConstant/images';
-import {responsiveScreenHeight, responsiveScreenWidth} from '../utils/Size';
+import colors from "../res/colors/colors";
+import images from "../res/imageConstant/images";
+import { responsiveScreenHeight, responsiveScreenWidth } from "../utils/Size";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const SplashScreen = ({navigation}) => {
+const SplashScreen = ({ navigation }) => {
   // UseEffect ======================================================================================
-  useEffect(() => {
-    setTimeout(()=>{
-      navigation.navigate("MemberLoginScreen")
-    }, 3000); 
+  useEffect(async () => {
+    setTimeout(async () => {
+      let isLogin = await AsyncStorage.getItem("isLogin");
+      isLogin === "true"
+        ? navigation.navigate("DrawerNavigator")
+        : navigation.navigate("MemberLoginScreen");
+    }, 3000);
   });
 
   // Render ======================================================================================
@@ -40,15 +44,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.BLACK,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
-  imageicon:{
+  imageicon: {
     height: responsiveScreenWidth(30),
     width: responsiveScreenWidth(50),
-    justifyContent: 'center',
-    alignSelf: 'center',
-  }
+    justifyContent: "center",
+    alignSelf: "center",
+  },
 });
 
 export default SplashScreen;

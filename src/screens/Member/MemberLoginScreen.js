@@ -81,7 +81,7 @@ const MemberLoginScreen = ({navigation}) => {
         </View>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('DrawerNavigator');
+            // navigation.navigate('DrawerNavigator');
           }}
           style={styles.loginBtn}>
           <Text

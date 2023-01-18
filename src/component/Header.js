@@ -38,7 +38,7 @@ const Header = (props) => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            // setIsModal(true);
+            props.onPress1();
           }}
           style={{ marginTop: responsiveScreenWidth(1) }}
         >
