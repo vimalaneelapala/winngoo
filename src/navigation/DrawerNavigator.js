@@ -10,6 +10,7 @@ import DashboardScreen from '../screens/DrawerScreen/DashboardScreen';
 import PersonalInfoScreen from '../screens/DrawerScreen/PersonalInfoScreen';
 import ChangePasswordScreen from '../screens/DrawerScreen/ChangePasswordScreen';
 import CardDetailScreen from '../screens/DrawerScreen/CardDetailScreen';
+import ProfileEditScreen from '../screens/DrawerScreen/ProfileEditScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -43,6 +44,11 @@ const DrawerNavigator = () => {
       <Drawer.Screen
         name={'CardDetailScreen'}
         component={CardDetailScreen}
+        options={{headerShown: false}}
+      />
+      <Drawer.Screen
+        name={'ProfileEditScreen'}
+        component={ProfileEditScreen}
         options={{headerShown: false}}
       />
     </Drawer.Navigator>

@@ -10,6 +10,7 @@ export const EndPoint={
     USER:"/user",
     CHANGEPASSWORD:"/user/change-password",
     ADDRESS:"/user/profile/address",
+    PROFILEIMAGE:"/user/profile/image",
     BANKDETAIL:"/user/bank-detail",
     BUSINESSDETAIL:"/user/merchent/business-detail",
 }

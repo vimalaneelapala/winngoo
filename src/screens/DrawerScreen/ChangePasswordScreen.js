@@ -38,20 +38,35 @@ const ChangePasswordScreen = ({ navigation }) => {
 
   // ==========================================Api Call================
   const changePasswordCall = async () => {
+    let token = await AsyncStorage.getItem("token");
     setIsLoading(true);
     var data = {
       old_password: oldPassword,
       password: newPassword,
       password_confirmation: confirmPassword,
     };
+    var header = {
+      headers: {
+        "x-access-token": token,
+        "Content-Type":"multipart/form-data",
+        "Accept":"multipart/form-data"
+      },
+    };
     await axios
-      .post(BaseURL + EndPoint.CHANGEPASSWORD, data)
+      .put(BaseURL + EndPoint.CHANGEPASSWORD, data, header)
       .then(async (res) => {
+        console.log(JSON.stringify(res));
         setIsLoading(false);
-       alert("Password Updated Successfully.")
+        setOldPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
+        alert("Password Updated Successfully.");
       })
       .catch((err) => {
         setIsLoading(false);
+        setOldPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
         console.log(JSON.stringify(err));
       });
   };

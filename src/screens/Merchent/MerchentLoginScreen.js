@@ -43,16 +43,25 @@ const MerchentLoginScreen = ({ navigation }) => {
     await axios
       .post(BaseURL + EndPoint.LOGIN, data)
       .then(async (res) => {
+        console.log(JSON.stringify(res.data));
         setIsLoading(false);
-        await AsyncStorage.setItem("isLogin", "true");
-        await AsyncStorage.setItem("loginType", "merchent");
-        await AsyncStorage.setItem("token", JSON.parse(res.data.result.token));
-        navigation.navigate("DrawerNavigator");
+        storeData(res.data.result.token);
       })
       .catch((err) => {
         setIsLoading(false);
         console.log(JSON.stringify(err));
       });
+  };
+
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem("isLogin", "true");
+      await AsyncStorage.setItem("loginType", "merchent");
+      await AsyncStorage.setItem("token", value);
+      navigation.navigate("DrawerNavigator");
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <SafeAreaView style={styles.container}>

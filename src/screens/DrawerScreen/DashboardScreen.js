@@ -34,13 +34,15 @@ const DashboardScreen = ({ navigation }) => {
     let token = await AsyncStorage.getItem("token");
     setIsModal(false);
     setIsLoading(true);
-    await axios
-      .post(BaseURL + EndPoint.LOGOUT, {
-        header: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then(async (res) => {
+    var config = {
+      method: "post",
+      url: BaseURL+EndPoint.LOGOUT,
+      headers: {
+        "x-access-token": token,
+      },
+    };
+    await axios(config)
+      .then(async () => {
         setIsLoading(false);
         await AsyncStorage.clear();
         alert("You have logout successfully.");
@@ -114,7 +116,7 @@ const DashboardScreen = ({ navigation }) => {
               <View style={styles.modalline} />
               <Text
                 onPress={() => {
-                  navigation.navigate("ProfileInfoScreen");
+                  navigation.navigate("PersonalInfoScreen");
                 }}
                 style={styles.modaltextStyle}
               >
