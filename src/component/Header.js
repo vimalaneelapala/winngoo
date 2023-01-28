@@ -36,6 +36,9 @@ const Header = (props) => {
             style={styles.HamburgerIcon}
           />
         </TouchableOpacity>
+        <View>
+          <Text style={styles.headerText}> {props.headerText}</Text>
+        </View>
         <TouchableOpacity
           onPress={() => {
             props.onPress1();
@@ -84,6 +87,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.WHITE,
     paddingStart: responsiveScreenWidth(6),
     paddingEnd: responsiveScreenWidth(6),
+  },
+  headerText: {
+    fontSize: responsiveScreenFontSize(2.5),
+    color: colors.BLACK,
+    fontWeight: "600",
   },
 });
 

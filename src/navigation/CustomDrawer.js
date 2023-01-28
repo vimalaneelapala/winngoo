@@ -18,7 +18,6 @@ import images from "../res/imageConstant/images";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CustomDrawer = ({ navigation }) => {
-
   const [isMerchent, setIsMerchent] = useState(true);
   const [profileModal, setProfileModal] = useState(false);
   const [businessModal, setBusinessModal] = useState(false);
@@ -53,23 +52,48 @@ const CustomDrawer = ({ navigation }) => {
           ) : null}
           <View style={styles.line} />
           <Text style={styles.textStyle}>Summary</Text>
-          <Image source={images.ProfileIconD} style={styles.blueIcon} />
-          <Text style={styles.titletextStyle}>Profile Detail</Text>
-        
 
           <Image source={images.MultipleUserIcon} style={styles.blueIcon} />
-          <Text style={styles.titletextStyle}>Refer Friends</Text>
+          <Text
+            onPress={() => {
+              navigation.navigate("ReferFreindScreen");
+            }}
+            style={styles.titletextStyle}
+          >
+            Refer Friends
+          </Text>
           <Image source={images.DollarIcon} style={styles.blueIcon} />
-          <Text style={styles.titletextStyle}>Reward Summary</Text>
-         
+          <Text
+            onPress={() => {
+              navigation.navigate("RewardSummaryScreen");
+            }}
+            style={styles.titletextStyle}
+          >
+            Reward Summary
+          </Text>
+
           {isMerchent ? (
             <View>
               <Image source={images.ProfileIconD} style={styles.blueIcon} />
-              <Text style={styles.titletextStyle}>Transaction Interface</Text>
+              <Text
+                onPress={() => {
+                  navigation.navigate("RewardSummaryScreen");
+                }}
+                style={styles.titletextStyle}
+              >
+                Transaction Interface
+              </Text>
             </View>
           ) : null}
-           <Image source={images.CreditCardIcon} style={styles.blueIcon} />
-          <Text style={styles.titletextStyle}>Transaction History</Text>
+          <Image source={images.CreditCardIcon} style={styles.blueIcon} />
+          <Text
+            onPress={() => {
+              navigation.navigate("TransactionHistoryScreen");
+            }}
+            style={styles.titletextStyle}
+          >
+            Transaction History
+          </Text>
           {isMerchent ? (
             <View>
               <Image source={images.ProfileIconD} style={styles.blueIcon} />
@@ -77,11 +101,32 @@ const CustomDrawer = ({ navigation }) => {
             </View>
           ) : null}
           <Image source={images.MemberCardIcon} style={styles.blueIcon} />
-          <Text style={styles.titletextStyle}>Member News</Text>
+          <Text
+            onPress={() => {
+              navigation.navigate("MemberNewsScreen");
+            }}
+            style={styles.titletextStyle}
+          >
+            Member News
+          </Text>
           <Image source={images.TagIcon} style={styles.blueIcon} />
-          <Text style={styles.titletextStyle}>Newsletter</Text>
+          <Text
+            onPress={() => {
+              navigation.navigate("NewsletterScreen");
+            }}
+            style={styles.titletextStyle}
+          >
+            Newsletter
+          </Text>
           <Image source={images.NewsPaerIcon} style={styles.blueIcon} />
-          <Text style={styles.titletextStyle}>News</Text>
+          <Text
+            onPress={() => {
+              navigation.navigate("NewsScreen");
+            }}
+            style={styles.titletextStyle}
+          >
+            News
+          </Text>
         </ScrollView>
         <Modal transparent={true} visible={profileModal} animationType="slide">
           <View style={styles.modalView}>
@@ -130,7 +175,7 @@ const CustomDrawer = ({ navigation }) => {
             <Text
               onPress={() => {
                 setBusinessModal(false);
-                // navigation.navigate("PersonalInfoScreen");
+                navigation.navigate("BusinessDetailScreen");
               }}
               style={styles.modaltextStyle}
             >
@@ -140,6 +185,7 @@ const CustomDrawer = ({ navigation }) => {
             <Text
               onPress={() => {
                 setBusinessModal(false);
+                navigation.navigate("BusinessDetailScreen");
               }}
               style={styles.modaltextStyle}
             >
@@ -149,6 +195,7 @@ const CustomDrawer = ({ navigation }) => {
             <Text
               onPress={() => {
                 setBusinessModal(false);
+                navigation.navigate("BusinessTaglineScreen");
               }}
               style={styles.modaltextStyle}
             >

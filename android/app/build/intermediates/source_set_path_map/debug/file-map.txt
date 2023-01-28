@@ -30,7 +30,8 @@ com.winngooapp-mergeDebugResources-28 /Volumes/Samsung_T5/Demo/WinngooApp/Winngo
 com.winngooapp-merged_res-29 /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/build/intermediates/merged_res/debug
 com.winngooapp-debug-30 /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/res
 com.winngooapp-main-31 /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/res
-com.winngooapp-packaged_res-32 /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/@react-native-community/masked-view/android/build/intermediates/packaged_res/debug
-com.winngooapp-packaged_res-33 /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-gesture-handler/android/build/intermediates/packaged_res/debug
-com.winngooapp-packaged_res-34 /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-safe-area-context/android/build/intermediates/packaged_res/debug
-com.winngooapp-packaged_res-35 /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-screens/android/build/intermediates/packaged_res/debug
+com.winngooapp-packaged_res-32 /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/packaged_res/debug
+com.winngooapp-packaged_res-33 /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/@react-native-community/masked-view/android/build/intermediates/packaged_res/debug
+com.winngooapp-packaged_res-34 /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-gesture-handler/android/build/intermediates/packaged_res/debug
+com.winngooapp-packaged_res-35 /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-safe-area-context/android/build/intermediates/packaged_res/debug
+com.winngooapp-packaged_res-36 /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-screens/android/build/intermediates/packaged_res/debug

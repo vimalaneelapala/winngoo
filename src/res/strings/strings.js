@@ -36,7 +36,14 @@ export default strings = {
   PrivacyPolicy: " Privacy Policy ",
   TermsCondition: "Terms and Conditions ",
   //Wingo Card Detail ============================
-  CardDetail: "Winngoo Card Detail",
+  CardDetail: "Winngoo Bank Detail",
+  //Add Card Detail ============================
+  AddCardDetail: "Add Bank Detail",
+  CardNumber: "Enter Account Number",
+  CardName: "Enter Account Holder Name",
+  BankName: "Enter Bank Name",
+  SortNumber: "Enter Sort Number",
+  RollNumber: "Building Society Roll Number",
   //change passowrd ============================
   changepassowrd: "Change Passoword",
   OldPassword: "Old Password",
@@ -44,6 +51,7 @@ export default strings = {
   ConfirmPassword: "Confirm Password",
   Update: "Update",
   Reset: "Reset",
+  Create: "Create",
   //Profile ============================
   EditProfile: "Edit Profile",
   EditProfilePicture: "Edit Profile Picture",
