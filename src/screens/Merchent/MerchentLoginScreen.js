@@ -161,7 +161,7 @@ const MerchentLoginScreen = ({ navigation }) => {
             style={styles.rememberText}
           >
             {strings.DontAccount}
-            <Text style={styles.forgotText}>{strings.SignUp}</Text>
+            <Text style={styles.forgotText}>{strings.SignUpMerchent}</Text>
           </Text>
         </TouchableOpacity>
       </View>

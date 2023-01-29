@@ -37,78 +37,61 @@ const MerchentSignUpScreen = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [gender, setGender] = useState("");
-  const [addressLine1, setAddressLine1] = useState("");
-  const [addressLine2, setAddressLine2] = useState("");
-  const [addressLine3, setAddressLine3] = useState("");
-  const [city, setCity] = useState("");
-  const [postCode, setPostCode] = useState("");
-  const [country, setCountry] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [refferalCode, setRefferalCode] = useState("");
-  const [birthMonth, setBirthMonth] = useState("");
-  const [isRemember, setIsRemember] = useState(false);
-  const [isFocus, setIsFocus] = useState(false);
-  const [category, setCategory] = useState([]);
-  const [categoryValue, setCategoryValue] = useState('');
-  const [subCategory, setSubCategory] = useState([]);
-  const [subCategoryValue, setSubCategoryValue] = useState([]);
-  // ==========================================Api Call================
-  useEffect(() => {
-    getCategoryApi()
-  }, [getCategoryApi]);
-  // ==========================================Api Call================
-  // ============Category Api Call================
-  const getCategoryApi = async () => {
-    await axios
-      .get(BaseURL + EndPoint.CATEGORIES)
-      .then((res) => {
-        console.log(BaseURL+EndPoint.CATEGORIES)
-         setCategory(res.data.result)
-      })
-      .catch((err) => console.log("err1", JSON.stringify(err)));
-  };
-  // ============Sub Category Api Call================
-  const getSubCategoryApi = async (id) => {
-    await axios
-      .get(BaseURL + EndPoint.SUBCATEGORIES+id)
-      .then((res) => {
-        setSubCategory(res.data.result)
-      })
-      .catch((err) => console.log("err2", JSON.stringify(err)));
-  };
-  // ============Register Api Call================
-  const registerApiCall = async () => {
-    var data = {
-      first_name: "Dhruvika",
-      last_name: "Chauhan",
-      phone_number: "+919998208121",
-      email: "dhruvikachauhan1110@gmail.com",
-      password: "Admin@123",
-      address_line_1: "Manek chowk",
-      latitude: "22.999880",
-      longitude: "72.660614",
-      city: "Ahmedabad",
-      country: "India",
-      post_code: "380001",
-      business_name: "Y.H.Print",
-      business_type: "Limited Company",
-      business_relationship: "Director",
-      business_description: "Textile Company",
-      trading_years: "25",
-      image: "",
-      category_id: [6],
-      sub_category_id: [46],
-      discountType: "DISCOUNT",
-      discount_percentage: "10%",
-      terms_and_conditions: "yes",
-    };
 
-    await axios
-      .post(BaseURL + EndPoint.REGISTERMERCHENT, data)
-      .then((res) => {
-        alert(res.data);
-      })
-      .catch((err) => console.log(JSON.stringify(err)));
+  const [emailErr, setEmailErr] = useState(false);
+  const [confirmEmailErr, setConfirmEmailErr] = useState(false);
+  const [confirmPasswordErr, setConfirmPasswordErr] = useState(false);
+  const [passwordErr, setPasswordErr] = useState(false);
+  const [firstNameErr, setFirstNameErr] = useState(false);
+  const [lastNameErr, setLastNameErr] = useState(false);
+  const [genderErr, setGenderErr] = useState(false);
+  const [phoneNumberErr, setPhoneNumberErr] = useState(false);
+  const [matchPasswordErr, setMatchPasswordErr] = useState(false);
+  const [matchEmailErr, setMatchEmailErr] = useState(false);
+
+  // ==========================================Api Call================
+  const validationForm = () => {
+    var regexEmail = "/^[w-.]+@([w-]+.)+[w-]{2,4}$/";
+    var regexPassword =
+      "/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/";
+    if (firstName === "") {
+      setFirstNameErr(true);
+    } else if (lastName === "") {
+      setLastNameErr(true);
+    } else if (gender === "") {
+      setGenderErr(true);
+    } else if (email === "" || !regexEmail.test(email)) {
+      setEmailErr(true);
+    } else if (confirmEmail === "" || !regexEmail.test(confirmEmail)) {
+      setConfirmEmailErr(true);
+    } else if (confirmEmail !== email) {
+      setMatchEmailErr(true);
+    } else if (password === "" || !regexPassword.test(password)) {
+      setPasswordErr(true);
+    } else if (confirmPassword === "" || !regexPassword.test(confirmPassword)) {
+      setConfirmPasswordErr(true);
+    } else if (confirmPassword !== password) {
+      setMatchPasswordErr(true);
+    } else if (phoneNumber === "") {
+      setPhoneNumberErr(true);
+    } else {
+      setUserDetail();
+    }
+  };
+  const setUserDetail = async () => {
+    try {
+      var data = {
+        firstName: firstName,
+        lastName: lastName,
+        gender: gender,
+        email: email,
+        password: password,
+      };
+      navigation.navigate("MerchentSignUpAddressScreen", { details: data });
+    } catch (e) {
+      console.log(e);
+    }
   };
   // ==========================================Render Call================
   return (
@@ -116,42 +99,32 @@ const MerchentSignUpScreen = ({ navigation }) => {
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView style={styles.container}>
           <View style={styles.container}>
-            <Image
-              source={images.LogoWingo}
-              resizeMode="contain"
-              style={styles.imageicon}
-            />
-            <Text style={styles.loginText}>{strings.SignUp}</Text>
-
+            <Text style={styles.loginText}>{strings.PersonalDetail}</Text>
             <View style={styles.mainview}>
-              <Text style={styles.titleText}>
-                {strings.FirstName}
-                <Text style={styles.starText}>{" *"}</Text>
-              </Text>
               <TextInput
                 value={firstName}
                 onChangeText={(firstName) => {
                   setFirstName(firstName);
+                  setFirstNameErr(false);
                 }}
                 placeholder={strings.EnterFname}
                 style={styles.textInputstyle}
               />
-              <Text style={styles.titleText}>
-                {strings.LastName}
-                <Text style={styles.starText}>{" *"}</Text>
-              </Text>
+              {firstNameErr ? (
+                <Text style={styles.starText}>{strings.EnterFnameErr}</Text>
+              ) : null}
               <TextInput
                 value={lastName}
                 onChangeText={(lastName) => {
                   setLastName(lastName);
+                  setLastNameErr(false);
                 }}
                 placeholder={strings.EnterLname}
                 style={styles.textInputstyle}
               />
-              <Text style={styles.titleText}>
-                {strings.Gender}
-                <Text style={styles.starText}>{" *"}</Text>
-              </Text>
+              {lastNameErr ? (
+                <Text style={styles.starText}>{strings.EnterLnameErr}</Text>
+              ) : null}
               <Dropdown
                 style={styles.dropdown}
                 placeholderStyle={styles.placeholderStyle}
@@ -163,167 +136,103 @@ const MerchentSignUpScreen = ({ navigation }) => {
                 maxHeight={300}
                 labelField="label"
                 valueField="value"
-                placeholder={"Select item"}
+                placeholder={"Select gender here"}
                 value={gender}
                 onChange={(item) => {
                   setGender(item.value);
+                  setGenderErr(false);
                 }}
               />
-              <Text style={styles.titleText}>
-                {strings.Category}
-                <Text style={styles.starText}>{" *"}</Text>
-              </Text>
-              <Dropdown
-                style={styles.dropdown}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
-                inputSearchStyle={styles.inputSearchStyle}
-                iconStyle={styles.iconStyle}
-                data={category}
-                search={false}
-                maxHeight={300}
-                labelField="name"
-                valueField="slug"
-                placeholder={"Select item"}
-                value={categoryValue}
-                onChange={(item) => {
-                  // alert(JSON.stringify(item))
-                  setCategoryValue(item.name);
-                  getSubCategoryApi(item.id)
-                }}
-              />
-              <Text style={styles.titleText}>
-                {strings.SubCategory}
-                <Text style={styles.starText}>{" *"}</Text>
-              </Text>
-              <Dropdown
-                style={styles.dropdown}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
-                inputSearchStyle={styles.inputSearchStyle}
-                iconStyle={styles.iconStyle}
-                data={subCategory}
-                search={false}
-                maxHeight={300}
-                labelField="name"
-                valueField="slug"
-                placeholder={"Select item"}
-                value={subCategoryValue}
-                onChange={(item) => {
-                  // alert(JSON.stringify(item))
-                  setSubCategoryValue(item.name);
-                }}
-              />
-              <Text style={styles.titleText}>
-                {strings.Email}
-                <Text style={styles.starText}>{" *"}</Text>
-              </Text>
+              {genderErr ? (
+                <Text style={styles.starText}>{strings.EnterGenderErr}</Text>
+              ) : null}
               <TextInput
                 value={email}
                 onChangeText={(email) => {
                   setEmail(email);
+                  setEmailErr(false);
                 }}
+                keyboardType="email-address"
                 placeholder={strings.EnterEmail}
                 style={styles.textInputstyle}
               />
-              <Text style={styles.titleText}>
-                {strings.ConfirmEmail}
-                <Text style={styles.starText}>{" *"}</Text>
-              </Text>
+              {emailErr ? (
+                <Text style={styles.starText}>{strings.EnterEmailErr}</Text>
+              ) : null}
               <TextInput
                 value={confirmEmail}
                 onChangeText={(confirmEmail) => {
                   setConfirmEmail(confirmEmail);
+                  setConfirmEmailErr(false);
                 }}
+                keyboardType="email-address"
                 placeholder={strings.EnterConfirmEmail}
                 style={styles.textInputstyle}
               />
-              <Text style={styles.titleText}>
-                {strings.AddressLine1}
-                <Text style={styles.starText}>{" *"}</Text>
-              </Text>
+              {confirmEmailErr ? (
+                <Text style={styles.starText}>
+                  {strings.EnterConfirmEmailErr}
+                </Text>
+              ) : null}
+              {!confirmEmailErr & matchEmailErr ? (
+                <Text style={styles.starText}>
+                  {strings.EnterMatchEmailErr}
+                </Text>
+              ) : null}
               <TextInput
-                value={addressLine1}
-                onChangeText={(addressLine1) => {
-                  setAddressLine1(addressLine1);
+                value={password}
+                onChangeText={(password) => {
+                  setPassword(password);
+                  setPasswordErr(false);
                 }}
-                placeholder={strings.EnterAddress1}
+                placeholder={strings.EnterPassword}
                 style={styles.textInputstyle}
               />
-              <Text style={styles.titleText}>{strings.AddressLine2}</Text>
+              {passwordErr ? (
+                <Text style={styles.starText}>{strings.EnterPasswordErr}</Text>
+              ) : null}
               <TextInput
-                value={addressLine2}
-                onChangeText={(addressLine2) => {
-                  setAddressLine2(addressLine2);
+                value={confirmPassword}
+                onChangeText={(confirmPassword) => {
+                  setConfirmPassword(confirmPassword);
+                  setConfirmPasswordErr(false);
                 }}
-                placeholder={strings.EnterAddress2}
+                placeholder={strings.EnterConfirmPassword}
                 style={styles.textInputstyle}
               />
-              <Text style={styles.titleText}>{strings.AddressLine3}</Text>
-              <TextInput
-                value={addressLine3}
-                onChangeText={(addressLine3) => {
-                  setAddressLine3(addressLine3);
-                }}
-                placeholder={strings.EnterAddress3}
-                style={styles.textInputstyle}
-              />
-              <Text style={styles.titleText}>
-                {strings.City}
-                <Text style={styles.starText}>{" *"}</Text>
-              </Text>
-              <TextInput
-                value={city}
-                onChangeText={(city) => {
-                  setCity(city);
-                }}
-                placeholder={strings.EnterCity}
-                style={styles.textInputstyle}
-              />
-              <Text style={styles.titleText}>
-                {strings.PostCode}
-                <Text style={styles.starText}>{" *"}</Text>
-              </Text>
-              <TextInput
-                value={postCode}
-                onChangeText={(postCode) => {
-                  setPostCode(postCode);
-                }}
-                placeholder={strings.EnterPostCode}
-                style={styles.textInputstyle}
-              />
-              <Text style={styles.titleText}>
-                {strings.Country}
-                <Text style={styles.starText}>{" *"}</Text>
-              </Text>
-              <Text style={styles.titleText}>
-                {strings.PhoneNumber}
-                <Text style={styles.starText}>{" *"}</Text>
-              </Text>
+              {confirmPasswordErr ? (
+                <Text style={styles.starText}>
+                  {strings.EnterConfirmPasswordErr}
+                </Text>
+              ) : null}
+              {!confirmPasswordErr & matchPasswordErr ? (
+                <Text style={styles.starText}>
+                  {strings.EnterMatchPasswordErr}
+                </Text>
+              ) : null}
               <TextInput
                 value={phoneNumber}
                 onChangeText={(phoneNumber) => {
                   setPhoneNumber(phoneNumber);
+                  setPasswordErr(false);
                 }}
+                keyboardType="number-pad"
                 placeholder={strings.EnterPhoneNumber}
                 style={styles.textInputstyle}
               />
-              <Text style={styles.titleText}>{strings.Reffereal}</Text>
-              <TextInput
-                value={refferalCode}
-                onChangeText={(refferalCode) => {
-                  setRefferalCode(refferalCode);
-                }}
-                placeholder={strings.EnterReferralCode}
-                style={styles.textInputstyle}
-              />
-              <Text style={styles.titleText}>
-                {strings.BirthMonth}
-                <Text style={styles.starText}>{" *"}</Text>
-              </Text>
+              {phoneNumberErr ? (
+                <Text style={styles.starText}>
+                  {strings.EnterPhoneNumberErr}
+                </Text>
+              ) : null}
             </View>
-
-            <TouchableOpacity onPress={registerApiCall} style={styles.loginBtn}>
+            <TouchableOpacity
+              onPress={() => {
+                // validationForm();
+                navigation.navigate("MerchentSignUpAddressScreen")
+              }}
+              style={styles.loginBtn}
+            >
               <Text
                 style={[
                   styles.loginText,
@@ -334,7 +243,7 @@ const MerchentSignUpScreen = ({ navigation }) => {
                   },
                 ]}
               >
-                {strings.SignUpMerchent}
+                {strings.Continue}
               </Text>
             </TouchableOpacity>
           </View>
@@ -359,18 +268,17 @@ const styles = StyleSheet.create({
   starText: {
     fontSize: responsiveScreenFontSize(1.8),
     color: colors.RED,
-    alignSelf: "center",
-    fontWeight: "bold",
-    paddingTop: responsiveScreenWidth(8),
+    fontWeight: "400",
   },
   textInputstyle: {
-    backgroundColor: colors.TEXTINPUTBACKGROUND,
+    backgroundColor: colors.white,
     borderColor: colors.BLACK,
-    borderWidth: responsiveScreenWidth(0.1),
+    borderWidth: responsiveScreenWidth(0.2),
     fontSize: responsiveScreenFontSize(2),
     width: "100%",
     alignSelf: "center",
     margin: responsiveScreenWidth(3),
+    marginTop: responsiveScreenWidth(4),
   },
   loginBtn: {
     width: "75%",
@@ -398,8 +306,8 @@ const styles = StyleSheet.create({
     borderRadius: responsiveScreenWidth(1),
     borderColor: colors.BLACK,
     borderWidth: responsiveScreenWidth(0.1),
-    backgroundColor: colors.TEXTINPUTBACKGROUND,
-    marginTop: responsiveScreenWidth(2),
+    backgroundColor: colors.white,
+    marginTop: responsiveScreenWidth(4),
     width: "100%",
     alignSelf: "center",
     paddingStart: responsiveScreenWidth(1),

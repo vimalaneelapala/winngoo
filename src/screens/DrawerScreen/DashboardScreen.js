@@ -36,7 +36,7 @@ const DashboardScreen = ({ navigation }) => {
     setIsLoading(true);
     var config = {
       method: "post",
-      url: BaseURL+EndPoint.LOGOUT,
+      url: BaseURL + EndPoint.LOGOUT,
       headers: {
         "x-access-token": token,
       },
@@ -107,20 +107,20 @@ const DashboardScreen = ({ navigation }) => {
             <View style={styles.modalView}>
               <Text
                 onPress={() => {
-                  callLogOutApi();
-                }}
-                style={styles.modaltextStyle}
-              >
-                Logout
-              </Text>
-              <View style={styles.modalline} />
-              <Text
-                onPress={() => {
                   navigation.navigate("PersonalInfoScreen");
                 }}
                 style={styles.modaltextStyle}
               >
                 Profile Information
+              </Text>
+              <View style={styles.modalline} />
+              <Text
+                onPress={() => {
+                  callLogOutApi();
+                }}
+                style={styles.modaltextStyle}
+              >
+                Logout
               </Text>
             </View>
           </Modal>

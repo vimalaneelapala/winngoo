@@ -16,6 +16,8 @@ import MemberSignUpScreen from '../screens/Member/MemberSignUpScreen';
 import MerchentForgotPasswordScreen from '../screens/Merchent/MerchentForgotPasswordScreen';
 import MerchentLoginScreen from '../screens/Merchent/MerchentLoginScreen';
 import MerchentSignUpScreen from '../screens/Merchent/MerchentSignUpScreen';
+import MerchentSignUpAddressScreen from '../screens/Merchent/MerchentSignUpAddressScreen';
+import MerchentSignUpBusinessScreen from '../screens/Merchent/MerchentSignUpBusinessScreen';
 
 
 const StackNavigator = () => {
@@ -57,6 +59,16 @@ const StackNavigator = () => {
         options={{headerShown: false}}
         name={'MerchentSignUpScreen'}
         component={MerchentSignUpScreen}
+      />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name={'MerchentSignUpBusinessScreen'}
+        component={MerchentSignUpBusinessScreen}
+      />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name={'MerchentSignUpAddressScreen'}
+        component={MerchentSignUpAddressScreen}
       />
       <Stack.Screen
         options={{headerShown: false}}

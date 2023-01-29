@@ -99,7 +99,7 @@ const MemberLoginScreen = ({navigation}) => {
           style={styles.signupView}>
           <Text style={styles.rememberText}>
             {strings.DontAccount}
-            <Text style={styles.forgotText}>{strings.SignUp}</Text>
+            <Text style={styles.forgotText}>{strings.SignUpMember}</Text>
           </Text>
         </TouchableOpacity>
         <Text
