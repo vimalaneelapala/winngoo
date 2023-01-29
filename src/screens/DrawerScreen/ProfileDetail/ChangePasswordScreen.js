@@ -11,17 +11,19 @@ import {
 } from "react-native";
 import { DrawerActions } from "@react-navigation/native";
 // Custom ======================================================================================
-import colors from "../../res/colors/colors";
-import images from "../../res/imageConstant/images";
+import colors from "../../../res/colors/colors";
+import images from "../../../res/imageConstant/images";
 import {
   responsiveScreenFontSize,
   responsiveScreenHeight,
   responsiveScreenWidth,
-} from "../../utils/Size";
-import strings from "../../res/strings/strings";
-import TopHeaderView from "../../component/Header";
+} from "../../../utils/Size";
+import strings from "../../../res/strings/strings";
+import TopHeaderView from "../../../component/Header";
+import ButtonText from "../../../component/ButtonText";
+import ButtonImage from "../../../component/ButtonImage";
 import Spinner from "react-native-loading-spinner-overlay";
-import { BaseURL, EndPoint } from "../../api/ApiConstant";
+import { BaseURL, EndPoint } from "../../../api/ApiConstant";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 

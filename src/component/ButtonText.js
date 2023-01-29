@@ -31,7 +31,7 @@ const ButtonText = (props) => {
       >
         <Text
           style={[
-            styles.loginText,
+            styles.loginText, props.loginText,
             {
               color: colors.WHITE,
               fontSize: responsiveScreenFontSize(2),

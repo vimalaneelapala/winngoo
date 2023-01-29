@@ -1,4 +1,5 @@
 export default strings = {
+  //Login Up ============================
   LOGIN: "Login",
   LOGINMember: "Login As Member",
   LOGINMerchent: "Login As Merchent",
@@ -35,15 +36,6 @@ export default strings = {
   AcceptText2: " of Winngoo.",
   PrivacyPolicy: " Privacy Policy ",
   TermsCondition: "Terms and Conditions ",
-  //Wingo Card Detail ============================
-  CardDetail: "Winngoo Bank Detail",
-  //Add Card Detail ============================
-  AddCardDetail: "Add Bank Detail",
-  CardNumber: "Enter Account Number",
-  CardName: "Enter Account Holder Name",
-  BankName: "Enter Bank Name",
-  SortNumber: "Enter Sort Number",
-  RollNumber: "Building Society Roll Number",
   //change passowrd ============================
   changepassowrd: "Change Passoword",
   OldPassword: "Old Password",
@@ -63,6 +55,66 @@ export default strings = {
   PhoneNumber: "Phone Number: ",
   DateOfBirth: "Date Of Birth: ",
   Address: "Address: ",
+  //Add Card Detail ============================
+  AddCardDetail: "Add Bank Detail",
+  CardNumber: "Enter Account Number",
+  CardName: "Enter Account Holder Name",
+  BankName: "Enter Bank Name",
+  SortNumber: "Enter Sort Number",
+  RollNumber: "Building Society Roll Number",
+  //Business  Information Detail ============================
+  BusinessInformation: "Business Information",
+  BusinessType: "Business Type: ",
+  TradingName:"Trading Name: ",
+  BusinessRelationship:"Business Relationship: ",
+  BusinessDescription:"Business Description: ",
+  YearsTrading:"Years of Trading: ",
+  OwnerName:"Owner/Manager Name: ",
+  RegistrationNumber:"Registration Number: ",
+  Franchise:"Franchise: ",
+  StartDate:"Start Date: ",
+  ExpireDate:"Expire Date: ",
+  //Wingo Card Detail ============================
+  CardDetail: "Winngoo Bank Detail",
+  //Business  Details ============================
+  BusinessDetails: "Business Details",
+  Category:"Category: ",
+  SubCategory:"Sub Category: ",
+  RewardValue:"Reward Value: ",
+  RewardDetail:"Reward Detail: ",
+  TermsConditions:"Terms and Conditions: ",
+  Timing:"Timing",
+  Monday:"Monday: ",
+  Tuesday:"Tuesday: ",
+  Wednesday:"Wednesday: ",
+  Thursday:"Thursday: ",
+  Friday:"Friday: ",
+  Saturday:"Saturday: ",
+  Sunday:"Sunday: ",
+  //Refer a Freind ============================
+  ReferFriends: "Refer Friends",
+  text1: "It pays to have friends!",
+  text2: "Refer Now!",
+  text3: "Get 25% of Your Friends registration amount as referral bonus.",
+  text4: "There is no upper limit on the number of friends you can refer and also no cap on the amount of referral bonus you can earn.",
+  inviteGmail:"Invite By Gmail",
+  OR:"OR",
+  CopyLink:"Copy Link",
+  //Referal Summary============================
+  ReferSummary: "Manage Referral Summary",
+  //News ============================
+  News: "News",
+  //Transaction Interface ============================
+  TransactionInterface: "Transaction Interface",
+  submit: "Submit",
+  //Member News ============================
+  MemberNews: "Member News",
+  //Newsletter ============================
+  Newsletter: "Newsletter",
+  Note: "Note",
+  Note2: "Get our weekly newsletter to receive news and updates about our discounts, vouchers, cashback, merchants, and more.",
+  Note1: "Be the first one to get the best deals from your favourite merchants!",
+  NoteText:"1.By subscribing, you are agreeing to our terms and conditions.\n2.You can unsubscribe at any time.\n3.For information about our privacy practices, please click here.",
   //Place holder ============================
   EnterEmail: "Enter email here",
   EnterConfirmEmail: "Enter confirm email here",

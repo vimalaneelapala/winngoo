@@ -77,7 +77,7 @@ const CustomDrawer = ({ navigation }) => {
               <Image source={images.ProfileIconD} style={styles.blueIcon} />
               <Text
                 onPress={() => {
-                  navigation.navigate("RewardSummaryScreen");
+                  navigation.navigate("TransactionInterfaceScreen");
                 }}
                 style={styles.titletextStyle}
               >
@@ -94,12 +94,12 @@ const CustomDrawer = ({ navigation }) => {
           >
             Transaction History
           </Text>
-          {isMerchent ? (
+          {/* {isMerchent ? (
             <View>
               <Image source={images.ProfileIconD} style={styles.blueIcon} />
               <Text style={styles.titletextStyle}>Cashback History</Text>
             </View>
-          ) : null}
+          ) : null} */}
           <Image source={images.MemberCardIcon} style={styles.blueIcon} />
           <Text
             onPress={() => {
@@ -112,7 +112,7 @@ const CustomDrawer = ({ navigation }) => {
           <Image source={images.TagIcon} style={styles.blueIcon} />
           <Text
             onPress={() => {
-              navigation.navigate("NewsletterScreen");
+              navigation.navigate("NewsLetterScreen");
             }}
             style={styles.titletextStyle}
           >
@@ -142,15 +142,6 @@ const CustomDrawer = ({ navigation }) => {
             <View style={styles.modalline} />
             <Text
               onPress={() => {
-                setIsVisible(false);
-              }}
-              style={styles.modaltextStyle}
-            >
-              Winngoo Card Detail
-            </Text>
-            <View style={styles.modalline} />
-            <Text
-              onPress={() => {
                 setProfileModal(false);
                 navigation.navigate("ChangePasswordScreen");
               }}
@@ -175,7 +166,7 @@ const CustomDrawer = ({ navigation }) => {
             <Text
               onPress={() => {
                 setBusinessModal(false);
-                navigation.navigate("BusinessDetailScreen");
+                navigation.navigate("BusinessInformationScreen");
               }}
               style={styles.modaltextStyle}
             >

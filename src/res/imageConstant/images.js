@@ -15,4 +15,7 @@ export default images={
     MultipleUserIcon:require("../images/multiple.png"),
     TagIcon:require("../images/tag.png"),
     NewsPaerIcon:require("../images/newspaper.png"),
+    GmailIcon:require("../images/gmail.png"),
+    WhatsAppIcon:require("../images/whatsapp.png"),
+    TwitterIcon:require("../images/twitter.png"),
 }

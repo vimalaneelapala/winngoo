@@ -19,7 +19,7 @@ import {
   responsiveScreenFontSize,
   responsiveScreenHeight,
   responsiveScreenWidth,
-} from "../../utils/Size";
+} from "../../../utils/Size";
 import TopHeaderView from "../../../component/Header";
 import strings from "../../../res/strings/strings";
 import { BaseURL, EndPoint } from "../../../api/ApiConstant";

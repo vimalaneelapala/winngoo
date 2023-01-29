@@ -14,8 +14,9 @@ import TopHeaderView from "../../../component/Header";
 import colors from "../../../res/colors/colors";
 import images from "../../../res/imageConstant/images";
 import strings from "../../../res/strings/strings";
-import { responsiveScreenHeight, responsiveScreenWidth } from "../utils/Size";
+import { responsiveScreenHeight, responsiveScreenWidth } from "../../../utils/Size";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { DrawerActions } from "@react-navigation/native";
 
 const TransactionSummaryScreen = ({ navigation }) => {
   // UseEffect ======================================================================================
@@ -38,9 +39,7 @@ const TransactionSummaryScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.BLACK,
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: colors.WHITE
   },
 });
 

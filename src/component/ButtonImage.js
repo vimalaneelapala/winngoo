@@ -29,7 +29,7 @@ const ButtonImage = (props) => {
         }}
         style={[styles.loginBtn, props.loginBtn]}
       >
-        <Image source={images.Check} style={styles.imageStyle} />
+        <Image source={props.images} style={styles.imageStyle} />
         <Text
           style={[
             styles.loginText,

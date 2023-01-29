@@ -11,17 +11,17 @@ import {
 } from "react-native";
 import { DrawerActions } from "@react-navigation/native";
 // Custom ======================================================================================
-import colors from "../../res/colors/colors";
-import images from "../../res/imageConstant/images";
+import colors from "../../../res/colors/colors";
+import images from "../../../res/imageConstant/images";
 import {
   responsiveScreenFontSize,
   responsiveScreenHeight,
   responsiveScreenWidth,
-} from "../../utils/Size";
-import strings from "../../res/strings/strings";
-import TopHeaderView from "../../component/Header";
-import ButtonText from "../../component/ButtonText";
-import ButtonImage from "../../component/ButtonImage";
+} from "../../../utils/Size";
+import strings from "../../../res/strings/strings";
+import TopHeaderView from "../../../component/Header";
+import ButtonText from "../../../component/ButtonText";
+import ButtonImage from "../../../component/ButtonImage";
 
 const CardDetailScreen = ({ navigation }) => {
   const [isVisible, setIsVisible] = useState(false);
