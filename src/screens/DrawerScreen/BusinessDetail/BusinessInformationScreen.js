@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -22,10 +22,41 @@ import TopHeaderView from "../../../component/Header";
 import ButtonText from "../../../component/ButtonText";
 import ButtonImage from "../../../component/ButtonImage";
 import { DrawerActions } from "@react-navigation/native";
+import { BaseURL, EndPoint } from "../../../api/ApiConstant";
+import Spinner from "react-native-loading-spinner-overlay";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 const BusinessInformationScreen = ({ navigation }) => {
-  // UseEffect ======================================================================================
-
+  const [isVisible, setIsVisible] = useState(false);
+  const [isDetail, setIsDetail] = useState(false);
+  const [data, setData] = useState([]);
+  // ==========================================useEffect Call================
+  useEffect(async () => {
+    getBusinessDetail();
+  }, [getBusinessDetail]);
+  // ==========================================Api Call================
+  const getBusinessDetail = async () => {
+    let token = await AsyncStorage.getItem("token");
+    setIsVisible(true);
+    var config = {
+      method: "get",
+      url: BaseURL + EndPoint.MERCHENTBUSINESSDETAIL,
+      headers: {
+        "x-access-token": token,
+      },
+    };
+    await axios(config)
+      .then(async (res) => {
+        setIsVisible(false);
+        console.log(JSON.stringify(res.data.result));
+        setData(res.data.result)
+      })
+      .catch((err) => {
+        setIsVisible(false);
+        console.log(JSON.stringify(err));
+      });
+  };
   // Render ======================================================================================
   return (
     <SafeAreaView style={styles.container}>
@@ -35,6 +66,7 @@ const BusinessInformationScreen = ({ navigation }) => {
         }}
         headerText={strings.BusinessInformation}
       />
+       <Spinner visible={isVisible} />
       <View style={styles.container}>
         <View style={styles.shadowView}>
           <View style={styles.rowView}>

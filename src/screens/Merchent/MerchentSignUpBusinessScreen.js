@@ -10,6 +10,7 @@ import {
   View,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 // Library ======================================================================================
 import { Dropdown } from "react-native-element-dropdown";
@@ -42,7 +43,7 @@ const discount = [
   { label: "Discount", value: "Discount" },
   { label: "Reward", value: "Reward" },
 ];
-const MerchentSignUpBusinessScreen = ({ navigation }) => {
+const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
   const [registrationNumber, setRegistrationNumber] = useState("");
   const [category, setCategory] = useState([]);
   const [categoryValue, setCategoryValue] = useState("");
@@ -54,6 +55,7 @@ const MerchentSignUpBusinessScreen = ({ navigation }) => {
   const [discountValue, setdiscountValue] = useState("");
   const [tradingYear, settradingYear] = useState("");
   const [detail, setdetail] = useState("");
+  const [businessName, setbusinessName] = useState("");
   const [discountTerm, setdiscountTerm] = useState("");
   const [websiteLink, setwebsiteLink] = useState("");
   const [refferalCode, setrefferalCode] = useState("");
@@ -85,27 +87,27 @@ const MerchentSignUpBusinessScreen = ({ navigation }) => {
   // ============Register Api Call================
   const registerApiCall = async () => {
     var data = {
-      first_name: "Dhruvika",
-      last_name: "Chauhan",
-      phone_number: "+919998208121",
-      email: "dhruvikachauhan1110@gmail.com",
-      password: "Admin@123",
-      address_line_1: "Manek chowk",
-      latitude: "22.999880",
-      longitude: "72.660614",
-      city: "Ahmedabad",
-      country: "India",
-      post_code: "380001",
-      business_name: "Y.H.Print",
-      business_type: "Limited Company",
-      business_relationship: "Director",
-      business_description: "Textile Company",
-      trading_years: "25",
+      first_name: route.details.firstName ,
+      last_name: route.details.lastName,
+      phone_number: route.details.firstName,
+      email: route.details.email,
+      password: route.details.password,
+      address_line_1:route.addressdetail.addressLine1,
+      address_line_2:route.addressdetail.addressLine2,
+      address_line_3:route.addressdetail.addressLine3,
+      city: route.addressdetail.city,
+      country: route.addressdetail.country,
+      post_code:route.addressdetail.postCode,
+      business_name: businessName,
+      business_type: businessType,
+      business_relationship:businessRelation,
+      business_description: businessDescription,
+      trading_years: tradingYear,
       image: "",
       category_id: [6],
       sub_category_id: [46],
-      discountType: "DISCOUNT",
-      discount_percentage: "10%",
+      discountType: discountValue,
+      discount_percentage: discount,
       terms_and_conditions: "yes",
     };
 
@@ -208,6 +210,14 @@ const MerchentSignUpBusinessScreen = ({ navigation }) => {
               />
 
               <TextInput
+                value={businessName}
+                onChangeText={(businessName) => {
+                  setbusinessName(businessName);
+                }}
+                placeholder={strings.EnterbusinessDescriptionName}
+                style={styles.textInputstyle}
+              />
+              <TextInput
                 value={businessDescription}
                 onChangeText={(businessDescription) => {
                   setBusinessDescription(businessDescription);
@@ -271,7 +281,7 @@ const MerchentSignUpBusinessScreen = ({ navigation }) => {
               />
             </View>
 
-            <TouchableOpacity onPress={registerApiCall} style={styles.loginBtn}>
+            <TouchableOpacity onPress={()=>{registerApiCall()}} style={styles.loginBtn}>
               <Text
                 style={[
                   styles.loginText,
@@ -318,6 +328,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     margin: responsiveScreenWidth(3),
     marginTop: responsiveScreenWidth(4),
+    height:Platform.OS==="ios"?responsiveScreenWidth(12):responsiveScreenWidth(12)
   },
   loginBtn: {
     width: "75%",

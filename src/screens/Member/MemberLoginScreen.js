@@ -8,7 +8,11 @@ import {
   Text,
   TextInput,
   View,
+  Platform,
 } from 'react-native';
+import Spinner from "react-native-loading-spinner-overlay";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 // Custom ======================================================================================
 import colors from '../../res/colors/colors';
 import images from '../../res/imageConstant/images';
@@ -18,15 +22,52 @@ import {
   responsiveScreenWidth,
 } from '../../utils/Size';
 import strings from '../../res/strings/strings';
+import { BaseURL, EndPoint } from "../../api/ApiConstant";
 
 const MemberLoginScreen = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('vjrajanrd@gmail.com');
+  const [password, setPassword] = useState('India@123');
   const [isRemember, setIsRemember] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isPasswordError, setIsPasswordError] = useState(false);
+  const [isEmailError, setIsEmailError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  // ==========================================Api Call================
+  const loginApiCall = async () => {
+    setIsLoading(true);
+    var data = {
+      email: email,
+      password: password,
+    };
+
+    await axios
+      .post(BaseURL + EndPoint.LOGIN, data)
+      .then(async (res) => {
+        console.log(JSON.stringify(res.data));
+        setIsLoading(false);
+        storeData(res.data.result.token);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(JSON.stringify(err));
+      });
+  };
+
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem("isLogin", "true");
+      await AsyncStorage.setItem("loginType", "member");
+      global.loginTypeTemp="member"
+      await AsyncStorage.setItem("token", value);
+      navigation.navigate("DrawerNavigator");
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
+      <Spinner visible={isLoading} />
       <View style={styles.container}>
         <Image
           source={images.LogoIcon}
@@ -35,26 +76,33 @@ const MemberLoginScreen = ({navigation}) => {
         />
         <Text style={styles.loginText}>{strings.LOGIN}</Text>
 
-        <TextInput
+         <TextInput
           value={email}
-          onChangeText={email => {
+          onChangeText={(email) => {
             setEmail(email);
           }}
+          keyboardType="email-address"
           placeholder={strings.EnterEmail}
           style={styles.textInputstyle}
         />
+        {isEmailError ? (
+          <Text style={styles.errMsg}>{strings.EnterEmailErr}</Text>
+        ) : null}
         <TextInput
           value={password}
-          onChangeText={password => {
+          onChangeText={(password) => {
             setPassword(password);
           }}
           secureTextEntry={isShowPassword}
           placeholder={strings.EnterPassword}
           style={styles.textInputstyle}
         />
+        {isPasswordError ? (
+          <Text style={styles.errMsg}>{strings.EnterPasswordErr}</Text>
+        ) : null}
 
         <View style={styles.rowView}>
-          <View>
+          {/* <View>
             <TouchableOpacity
               onPress={() => {
                 setIsRemember(!isRemember);
@@ -68,7 +116,7 @@ const MemberLoginScreen = ({navigation}) => {
           </View>
           <View style={{marginStart: responsiveScreenWidth(-8)}}>
             <Text style={styles.rememberText}>{strings.RememberMe}</Text>
-          </View>
+          </View> */}
           <View>
             <Text
               onPress={() => {
@@ -81,7 +129,19 @@ const MemberLoginScreen = ({navigation}) => {
         </View>
         <TouchableOpacity
           onPress={() => {
-            // navigation.navigate('DrawerNavigator');
+            if (email != "" || password != "") {
+              loginApiCall();
+            } else {
+              var regexEmail = "/^[w-.]+@([w-]+.)+[w-]{2,4}$/";
+              var regexPassword =
+                "/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/";
+              if (email === "" || !regexEmail.test(email)) {
+                setIsEmailError(true);
+              }
+              if (password === "" || !regexPassword.test(password)) {
+                setIsPasswordError(true);
+              }
+            }
           }}
           style={styles.loginBtn}>
           <Text
@@ -145,13 +205,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     margin: responsiveScreenWidth(3),
     color: colors.BLACK,
+    height:Platform.OS==="ios"?responsiveScreenWidth(12):responsiveScreenWidth(12)
   },
   rowView: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-    justifyContent: 'space-between',
-    width: '75%',
+    alignSelf: 'flex-end',
     marginTop: responsiveScreenWidth(2),
+    marginEnd: responsiveScreenWidth(12),
   },
   forgotText: {
     color: colors.BLUETEXT,
@@ -226,6 +285,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     position: 'absolute',
     bottom: 0,
+  },
+  errMsg: {
+    color: colors.red,
+    fontSize: responsiveScreenFontSize(1.4),
+    fontWeight: "600",
+    marginTop: responsiveScreenWidth(-1),
+    width: "75%",
+    alignSelf: "center",
   },
 });
 

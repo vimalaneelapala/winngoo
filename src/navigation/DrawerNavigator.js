@@ -1,125 +1,179 @@
-import * as React from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import * as React from "react";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 // Custom Drawer
-import CustomDrawer from './CustomDrawer';
+import CustomDrawer from "./CustomDrawer";
 // Screens
-import colors from '../res/colors/colors';
-import {responsiveScreenWidth} from '../utils/Size';
-import DashboardScreen from '../screens/DrawerScreen/DashboardScreen';
-import PersonalInfoScreen from '../screens/DrawerScreen/ProfileDetail/PersonalInfoScreen';
-import ChangePasswordScreen from '../screens/DrawerScreen/ProfileDetail/ChangePasswordScreen';
-import CardDetailScreen from '../screens/DrawerScreen/ProfileDetail/CardDetailScreen';
-import ProfileEditScreen from '../screens/DrawerScreen/ProfileDetail/ProfileEditScreen';
-import AddBankDetailScreen from '../screens/DrawerScreen/ProfileDetail/AddBankDetailScreen';
+import colors from "../res/colors/colors";
+import { responsiveScreenWidth } from "../utils/Size";
+import DashboardScreen from "../screens/DrawerScreen/DashboardScreen";
+import PersonalInfoScreen from "../screens/DrawerScreen/ProfileDetail/PersonalInfoScreen";
+import WinngooCardDetail from "../screens/DrawerScreen/ProfileDetail/WinngooCardDetail";
+import ChangePasswordScreen from "../screens/DrawerScreen/ProfileDetail/ChangePasswordScreen";
+import CardDetailScreen from "../screens/DrawerScreen/ProfileDetail/CardDetailScreen";
+import ProfileEditScreen from "../screens/DrawerScreen/ProfileDetail/ProfileEditScreen";
+import AddBankDetailScreen from "../screens/DrawerScreen/ProfileDetail/AddBankDetailScreen";
 
-import BusinessDetailScreen from '../screens/DrawerScreen/BusinessDetail/BusinessDetailScreen';
-import BusinessInformationScreen from '../screens/DrawerScreen/BusinessDetail/BusinessInformationScreen';
-import BusinessTaglineScreen from '../screens/DrawerScreen/BusinessDetail/BusinessTaglineScreen';
+import BusinessDetailScreen from "../screens/DrawerScreen/BusinessDetail/BusinessDetailScreen";
+import BusinessInformationScreen from "../screens/DrawerScreen/BusinessDetail/BusinessInformationScreen";
+import BusinessTaglineScreen from "../screens/DrawerScreen/BusinessDetail/BusinessTaglineScreen";
+import EditTaglineScreen from "../screens/DrawerScreen/BusinessDetail/EditTaglineScreen";
+import AddTaglineScreen from "../screens/DrawerScreen/BusinessDetail/AddTaglineScreen";
 
-import MemberNewsScreen from '../screens/DrawerScreen/Summary/MemberNewsScreen';
-import NewsLetterScreen from '../screens/DrawerScreen/Summary/NewsLetterScreen';
-import NewsScreen from '../screens/DrawerScreen/Summary/NewsScreen';
-import ReferFreindScreen from '../screens/DrawerScreen/Summary/ReferFreindScreen';
-import RewardSummaryScreen from '../screens/DrawerScreen/Summary/RewardSummaryScreen';
-import TransactionHistoryScreen from '../screens/DrawerScreen/Summary/TransactionHistoryScreen';
-import TransactionInterfaceScreen from '../screens/DrawerScreen/Summary/TransactionInterfaceScreen';
+import FranchiseScreen from "../screens/DrawerScreen/Summary/FranchiseScreen";
+import CashbackHistoryScreen from "../screens/DrawerScreen/Summary/CashbackHistoryScreen";
+import MemberNewsScreen from "../screens/DrawerScreen/Summary/MemberNewsScreen";
+import NewsLetterScreen from "../screens/DrawerScreen/Summary/NewsLetterScreen";
+import NewsScreen from "../screens/DrawerScreen/Summary/NewsScreen";
+import ReferFreindScreen from "../screens/DrawerScreen/Summary/ReferFreindScreen";
+import RewardSummaryScreen from "../screens/DrawerScreen/Summary/RewardSummaryScreen";
+import TransactionHistoryScreen from "../screens/DrawerScreen/Summary/TransactionHistoryScreen";
+import TransactionInterfaceScreen from "../screens/DrawerScreen/Summary/TransactionInterfaceScreen";
+import AboutUsScreen from "../screens/DrawerScreen/WebScreen/AboutUsScreen";
+import FAQScreen from "../screens/DrawerScreen/WebScreen/FAQScreen";
+import PrivacyPolicyScreen from "../screens/DrawerScreen/WebScreen/PrivacyPolicyScreen";
+import TermConditionScreen from "../screens/DrawerScreen/WebScreen/TermConditionScreen";
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
-      drawerContent={props => <CustomDrawer {...props} />}
+      drawerContent={(props) => <CustomDrawer {...props} />}
       screenOptions={{
         drawerStyle: {
           backgroundColor: colors.WHITE,
-          width: responsiveScreenWidth(40),
+          width: responsiveScreenWidth(80),
         },
       }}
       initialRouteName={DashboardScreen}
-      >
+    >
       <Drawer.Screen
-        name={'DashboardScreen'}
+        name={"DashboardScreen"}
         component={DashboardScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Drawer.Screen
-        name={'PersonalInfoScreen'}
+        name={"PersonalInfoScreen"}
         component={PersonalInfoScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Drawer.Screen
-        name={'ChangePasswordScreen'}
+        name={"ChangePasswordScreen"}
         component={ChangePasswordScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Drawer.Screen
-        name={'CardDetailScreen'}
+        name={"CardDetailScreen"}
         component={CardDetailScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Drawer.Screen
-        name={'ProfileEditScreen'}
+        name={"ProfileEditScreen"}
         component={ProfileEditScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Drawer.Screen
-        name={'AddBankDetailScreen'}
+        name={"AddBankDetailScreen"}
         component={AddBankDetailScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
 
       <Drawer.Screen
-        name={'BusinessDetailScreen'}
+        name={"BusinessDetailScreen"}
         component={BusinessDetailScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Drawer.Screen
-        name={'BusinessInformationScreen'}
+        name={"BusinessInformationScreen"}
         component={BusinessInformationScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Drawer.Screen
-        name={'BusinessTaglineScreen'}
+        name={"BusinessTaglineScreen"}
         component={BusinessTaglineScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
-   
       <Drawer.Screen
-        name={'MemberNewsScreen'}
+        name={"AddTaglineScreen"}
+        component={AddTaglineScreen}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name={"EditTaglineScreen"}
+        component={EditTaglineScreen}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name={"WinngooCardDetail"}
+        component={WinngooCardDetail}
+        options={{ headerShown: false }}
+      />
+
+      <Drawer.Screen
+        name={"MemberNewsScreen"}
         component={MemberNewsScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Drawer.Screen
-        name={'NewsLetterScreen'}
+        name={"FranchiseScreen"}
+        component={FranchiseScreen}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name={"NewsLetterScreen"}
         component={NewsLetterScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Drawer.Screen
-        name={'NewsScreen'}
+        name={"NewsScreen"}
         component={NewsScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Drawer.Screen
-        name={'ReferFreindScreen'}
+        name={"ReferFreindScreen"}
         component={ReferFreindScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Drawer.Screen
-        name={'RewardSummaryScreen'}
+        name={"RewardSummaryScreen"}
         component={RewardSummaryScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Drawer.Screen
-        name={'TransactionHistoryScreen'}
+        name={"CashbackHistoryScreen"}
+        component={CashbackHistoryScreen}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name={"TransactionHistoryScreen"}
         component={TransactionHistoryScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Drawer.Screen
-        name={'TransactionInterfaceScreen'}
+        name={"TransactionInterfaceScreen"}
         component={TransactionInterfaceScreen}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name={"PrivacyPolicyScreen"}
+        component={PrivacyPolicyScreen}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name={"FAQScreen"}
+        component={FAQScreen}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name={"TermConditionScreen"}
+        component={TermConditionScreen}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name={"AboutUsScreen"}
+        component={AboutUsScreen}
+        options={{ headerShown: false }}
       />
     </Drawer.Navigator>
   );

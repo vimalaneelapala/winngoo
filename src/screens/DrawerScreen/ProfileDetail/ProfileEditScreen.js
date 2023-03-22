@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Image,
+  Modal,
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
@@ -8,6 +8,8 @@ import {
   Text,
   TextInput,
   View,
+  Platform,
+  Image
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
@@ -36,6 +38,8 @@ const ProfileEditScreen = ({ navigation, route }) => {
   const [country, setCountry] = useState(route.params.country);
   const [postalCode, setPostalCode] = useState(route.params.postalcode);
   const [isLoading, setIsLoading] = useState(false);
+  const [successModal, setsuccessModal] = useState(false);
+  const [failureModal, setfailureModal] = useState(false);
   // ==========================================Api Call================
   const updateAddressApi = async () => {
     let token = await AsyncStorage.getItem("token");
@@ -60,11 +64,13 @@ const ProfileEditScreen = ({ navigation, route }) => {
     await axios(config)
       .then(async (res) => {
         setIsLoading(false);
+        setsuccessModal(true)
         console.log(JSON.stringify(res));
-        alert("Your detail udpate successfully.");
+        // alert("Your detail udpate successfully.");
       })
       .catch((err) => {
         setIsLoading(false);
+        setfailureModal(true)
         console.log(JSON.stringify(err));
       });
   };
@@ -72,15 +78,15 @@ const ProfileEditScreen = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-      <TopHeaderView
-        onPress={() => {
-          navigation.dispatch(DrawerActions.openDrawer());
-        }}
-        headerText={strings.EditProfile}
-      />
+        <TopHeaderView
+          onPress={() => {
+            navigation.dispatch(DrawerActions.openDrawer());
+          }}
+          headerText={strings.EditProfile}
+        />
         <View style={styles.container}>
           <Spinner visible={isLoading} />
-         
+
           <TextInput
             value={firstName}
             editable={false}
@@ -173,6 +179,77 @@ const ProfileEditScreen = ({ navigation, route }) => {
               </Text>
             </TouchableOpacity>
           </View>
+
+          <Modal transparent={true} visible={successModal} animationType="slide">
+            <View style={styles.modalView}>
+              <Image
+                source={images.successIcon}
+                resizeMode="contain"
+                style={styles.ProfileIcon}
+              />
+              <Text
+                style={styles.modaltextStyle}
+              >
+                Your detail udpate successfully.
+              </Text>
+              <TouchableOpacity onPress={() => {
+                setsuccessModal(false)
+                navigation.goBack()
+              }}
+                style={{
+                  width: "50%",
+                  padding: responsiveScreenWidth(2),
+                  marginTop: responsiveScreenWidth(8),
+                  backgroundColor: colors.primary,
+                  borderRadius: responsiveScreenWidth(2),
+                  justifyContent: "center",
+                  alignSelf: "center",
+                  alignContent: "center"
+                }}
+              >
+                <Text style={{
+                  color: colors.white, alignSelf: "center",
+                  fontSize: responsiveScreenFontSize(1.8),
+                  fontWeight: "bold",
+                }}>Thank You</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
+          <Modal transparent={true} visible={failureModal} animationType="slide">
+            <View style={styles.modalView}>
+              <Image
+                source={images.cancelcon}
+                resizeMode="contain"
+                style={styles.ProfileIcon}
+              />
+              <Text
+                style={styles.modaltextStyle}
+              >
+                Update detail fails.
+              </Text>
+              <TouchableOpacity onPress={() => {
+                setfailureModal(false)
+                navigation.goBack()
+              }}
+                style={{
+                  width: "50%",
+                  padding: responsiveScreenWidth(2),
+                  marginTop: responsiveScreenWidth(8),
+                  backgroundColor: colors.primary,
+                  borderRadius: responsiveScreenWidth(2),
+                  justifyContent: "center",
+                  alignSelf: "center",
+                  alignContent: "center"
+                }}
+              >
+                <Text style={{
+                  color: colors.white, alignSelf: "center",
+                  fontSize: responsiveScreenFontSize(1.8),
+                  fontWeight: "bold",
+                }}>Try Again</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -193,6 +270,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     margin: responsiveScreenWidth(3),
     color: colors.BLACK,
+    height: Platform.OS === "ios" ? responsiveScreenWidth(12) : responsiveScreenWidth(12)
   },
   rowView: {
     flexDirection: "row",
@@ -214,6 +292,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignSelf: "center",
   },
+
   loginBtn: {
     width: "75%",
     alignSelf: "center",
@@ -251,6 +330,7 @@ const styles = StyleSheet.create({
     borderColor: colors.BLACK,
     borderWidth: responsiveScreenWidth(0.2),
   },
+ 
   checkImage: {
     height: responsiveScreenWidth(3),
     width: responsiveScreenWidth(3),
@@ -300,6 +380,40 @@ const styles = StyleSheet.create({
     color: colors.WHITE,
     fontSize: responsiveScreenFontSize(2),
     marginTop: 0,
+  },
+  modalView: {
+    width: "80%",
+    height: responsiveScreenWidth(60),
+    marginTop: responsiveScreenWidth(60),
+    borderRadius: responsiveScreenWidth(2),
+    padding: responsiveScreenWidth(4),
+    justifyContent: "center",
+    alignContent: "center",
+    alignSelf: "center",
+    backgroundColor: colors.white,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+
+    elevation: 7,
+  },
+  ProfileIcon: {
+    height: responsiveScreenWidth(20),
+    width: responsiveScreenWidth(20),
+    justifyContent: "center",
+    alignSelf: "center"
+  },  modaltextStyle: {
+    color: colors.BLACK,
+    fontSize: responsiveScreenFontSize(1.8),
+    marginTop: responsiveScreenWidth(8),
+    fontWeight: "bold",
+    width: "100%",
+    alignSelf: "center",
+    textAlign: "center"
   },
 });
 

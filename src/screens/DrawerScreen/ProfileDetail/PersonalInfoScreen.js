@@ -8,11 +8,13 @@ import {
   Text,
   TextInput,
   View,
+  Modal
 } from "react-native";
 import { DrawerActions } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Spinner from "react-native-loading-spinner-overlay";
 import axios from "axios";
+import {launchImageLibrary} from 'react-native-image-picker'
 // Custom ======================================================================================
 import colors from "../../../res/colors/colors";
 import images from "../../../res/imageConstant/images";
@@ -39,7 +41,8 @@ const PersonalInfoScreen = ({ navigation }) => {
   const [postalcode, setPostalCode] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const [successModal, setsuccessModal] = useState(false);
+  const [failureModal, setfailureModal] = useState(false);
   // ==========================================Api Call================
   useEffect(async () => {
     userDetailApiCall();
@@ -77,8 +80,21 @@ const PersonalInfoScreen = ({ navigation }) => {
         console.log(JSON.stringify(err));
       });
   };
+  const handleChoosePhoto = () => {
+    launchImageLibrary({
+      mediaType: 'photo',
+      includeBase64: false,
+      maxHeight: 200,
+      maxWidth: 200,
+    },
+      (response) => {
+        profileInfoCall(response.assets[0].uri)
+        console.log(response.assets[0].uri);
+        console.log(response.assets[0]);
+      })
+  }
   // ==========================================Api Call================
-  const profileInfoCall = async () => {
+  const profileInfoCall = async (data) => {
     let token = await AsyncStorage.getItem("token");
     setIsLoading(true);
     var config = {
@@ -87,14 +103,20 @@ const PersonalInfoScreen = ({ navigation }) => {
       headers: {
         "x-access-token": token,
       },
+      data: {
+        image: data
+      }
     };
     await axios(config)
       .then(async (res) => {
         setIsLoading(false);
+        setsuccessModal(true)
+        global.image=data
         console.log(JSON.stringify(res));
       })
       .catch((err) => {
         setIsLoading(false);
+        setfailureModal(true)
         console.log(JSON.stringify(err));
       });
   };
@@ -121,7 +143,9 @@ const PersonalInfoScreen = ({ navigation }) => {
             <View style={{ width: "40%" }}>
             </View>
             <View style={{ width: "60%" }}>
-              <TouchableOpacity
+              <TouchableOpacity onPress={() => {
+                handleChoosePhoto()
+              }}
                 style={[styles.loginBtn, { backgroundColor: colors.yellow }]}
               >
                 <Text
@@ -208,6 +232,76 @@ const PersonalInfoScreen = ({ navigation }) => {
             </Text>
             <Text style={styles.blueSmallText}>Help & Supports</Text>
           </View>
+          <Modal transparent={true} visible={successModal} animationType="slide">
+            <View style={styles.modalView}>
+              <Image
+                source={images.successIcon}
+                resizeMode="contain"
+                style={styles.ProfileIcon}
+              />
+              <Text
+                style={styles.modaltextStyle}
+              >
+                Your detail udpate successfully.
+              </Text>
+              <TouchableOpacity onPress={() => {
+                setsuccessModal(false)
+                navigation.goBack()
+              }}
+                style={{
+                  width: "50%",
+                  padding: responsiveScreenWidth(2),
+                  marginTop: responsiveScreenWidth(8),
+                  backgroundColor: colors.primary,
+                  borderRadius: responsiveScreenWidth(2),
+                  justifyContent: "center",
+                  alignSelf: "center",
+                  alignContent: "center"
+                }}
+              >
+                <Text style={{
+                  color: colors.white, alignSelf: "center",
+                  fontSize: responsiveScreenFontSize(1.8),
+                  fontWeight: "bold",
+                }}>Thank You</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
+          <Modal transparent={true} visible={failureModal} animationType="slide">
+            <View style={styles.modalView}>
+              <Image
+                source={images.cancelcon}
+                resizeMode="contain"
+                style={styles.ProfileIcon}
+              />
+              <Text
+                style={styles.modaltextStyle}
+              >
+                Update detail fails.
+              </Text>
+              <TouchableOpacity onPress={() => {
+                setfailureModal(false)
+                navigation.goBack()
+              }}
+                style={{
+                  width: "50%",
+                  padding: responsiveScreenWidth(2),
+                  marginTop: responsiveScreenWidth(8),
+                  backgroundColor: colors.primary,
+                  borderRadius: responsiveScreenWidth(2),
+                  justifyContent: "center",
+                  alignSelf: "center",
+                  alignContent: "center"
+                }}
+              >
+                <Text style={{
+                  color: colors.white, alignSelf: "center",
+                  fontSize: responsiveScreenFontSize(1.8),
+                  fontWeight: "bold",
+                }}>Try Again</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -265,6 +359,40 @@ const styles = StyleSheet.create({
     padding: responsiveScreenWidth(4),
     marginTop: responsiveScreenWidth(5),
     borderRadius: responsiveScreenWidth(2),
+  },
+  modalView: {
+    width: "80%",
+    height: responsiveScreenWidth(60),
+    marginTop: responsiveScreenWidth(60),
+    borderRadius: responsiveScreenWidth(2),
+    padding: responsiveScreenWidth(4),
+    justifyContent: "center",
+    alignContent: "center",
+    alignSelf: "center",
+    backgroundColor: colors.white,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+
+    elevation: 7,
+  },
+  ProfileIcon: {
+    height: responsiveScreenWidth(20),
+    width: responsiveScreenWidth(20),
+    justifyContent: "center",
+    alignSelf: "center"
+  }, modaltextStyle: {
+    color: colors.BLACK,
+    fontSize: responsiveScreenFontSize(1.8),
+    marginTop: responsiveScreenWidth(8),
+    fontWeight: "bold",
+    width: "100%",
+    alignSelf: "center",
+    textAlign: "center"
   },
 });
 

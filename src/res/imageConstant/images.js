@@ -18,4 +18,18 @@ export default images={
     GmailIcon:require("../images/gmail.png"),
     WhatsAppIcon:require("../images/whatsapp.png"),
     TwitterIcon:require("../images/twitter.png"),
+    PlusIcon:require("../images/plus.png"),
+    EditIcon:require("../images/edit.png"),
+    DeleteIcon:require("../images/bin.png"),
+    successIcon:require("../images/success.png"),
+    cancelcon:require("../images/cancel.png"),
+
+    leftArrow:require("../images/leftarrow.png"),
+    logout:require("../images/logout.png"),
+    rightarrow:require("../images/rightarrow.png"),
+    user:require("../images/user.png"),
+    wifi:require("../images/wifi.png"),
+    noData:require("../images/noData.png"),
+    increase:require("../images/increase.png"),
+    decrease:require("../images/decrease.png"),
 }

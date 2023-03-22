@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Image,
   SafeAreaView,
@@ -10,9 +10,11 @@ import {
   View,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Platform,
+  Modal
 } from 'react-native';
 // Library ======================================================================================
-import {Dropdown} from 'react-native-element-dropdown';
+import { Dropdown } from 'react-native-element-dropdown';
 // Custom ======================================================================================
 import colors from '../../res/colors/colors';
 import images from '../../res/imageConstant/images';
@@ -22,12 +24,15 @@ import {
   responsiveScreenWidth,
 } from '../../utils/Size';
 import strings from '../../res/strings/strings';
+import Spinner from 'react-native-loading-spinner-overlay/lib';
+import axios from "axios";
+import { BaseURL, EndPoint } from "../../api/ApiConstant";
 
 const genderList = [
-  {label: 'Female', value: 'Female'},
-  {label: 'Male', value: 'Male'},
+  { label: 'Female', value: 'Female' },
+  { label: 'Male', value: 'Male' },
 ];
-const MemberSignUpScreen = ({navigation}) => {
+const MemberSignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -42,23 +47,76 @@ const MemberSignUpScreen = ({navigation}) => {
   const [postCode, setPostCode] = useState('');
   const [country, setCountry] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [discountCode, setdiscountCode] = useState('');
   const [refferalCode, setRefferalCode] = useState('');
   const [birthMonth, setBirthMonth] = useState('');
   const [isRemember, setIsRemember] = useState(false);
   const [isFocus, setIsFocus] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
+  const [successModal, setsuccessModal] = useState(false);
+  const [failureModal, setfailureModal] = useState(false);
+  // ==========================================Api Call================
+  const checkValidation = () => {
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      gender === "" ||
+      email === "" ||
+      password === "" ||
+      addressLine1 === "" ||
+      city === "" ||
+      country === "" ||
+      postCode === "" ||
+      phoneNumber === "" ||
+      birthMonth === ""
+    ) {
+      alert("Please fill form properly!!!")
+    }
+    else {
+      callSignUpApi()
+    }
+  }
+
+  const callSignUpApi = async () => {
+    setisLoading(true)
+    var data = {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      password: password,
+      address_line_1: addressLine1,
+      address_line_2: addressLine2,
+      address_line_3: addressLine3,
+      city: city,
+      country: country,
+      post_code: postCode,
+      phone_number: phoneNumber,
+      birth_month: birthMonth,
+      referral_code: refferalCode,
+      discount_code: discountCode
+    };
+
+    await axios
+      .post(BaseURL + EndPoint.MEMBERREGISTER, data)
+      .then((res) => {
+        setisLoading(false)
+        setsuccessModal(true)
+        console.log(res.data);
+      })
+      .catch((err) => {
+        setisLoading(false)
+        setfailureModal(true)
+        console.log(JSON.stringify(err))
+      });
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView style={styles.container}>
           <View style={styles.container}>
-          <Image
-          source={images.LogoWingo}
-          resizeMode="contain"
-          style={styles.imageicon}
-        />
-            <Text style={styles.loginText}>{strings.SignUp}</Text>
-
+            <Spinner visible={isLoading} />
+            <Text style={styles.loginText}>{strings.MemberPersonalDetail}</Text>
             <View style={styles.mainview}>
               <Text style={styles.titleText}>
                 {strings.FirstName}
@@ -130,6 +188,30 @@ const MemberSignUpScreen = ({navigation}) => {
                 style={styles.textInputstyle}
               />
               <Text style={styles.titleText}>
+                {strings.Password}
+                <Text style={styles.starText}>{' *'}</Text>
+              </Text>
+              <TextInput
+                value={password}
+                onChangeText={password => {
+                  setPassword(password);
+                }}
+                placeholder={strings.EnterEmail}
+                style={styles.textInputstyle}
+              />
+              <Text style={styles.titleText}>
+                {strings.ConfirmPassword}
+                <Text style={styles.starText}>{' *'}</Text>
+              </Text>
+              <TextInput
+                value={confirmPassword}
+                onChangeText={confirmPassword => {
+                  setConfirmPassword(confirmPassword);
+                }}
+                placeholder={strings.EnterConfirmPassword}
+                style={styles.textInputstyle}
+              />
+              <Text style={styles.titleText}>
                 {strings.AddressLine1}
                 <Text style={styles.starText}>{' *'}</Text>
               </Text>
@@ -187,6 +269,14 @@ const MemberSignUpScreen = ({navigation}) => {
                 {strings.Country}
                 <Text style={styles.starText}>{' *'}</Text>
               </Text>
+              <TextInput
+                value={country}
+                onChangeText={country => {
+                  setCountry(country);
+                }}
+                placeholder={strings.EnterCity}
+                style={styles.textInputstyle}
+              />
               <Text style={styles.titleText}>
                 {strings.PhoneNumber}
                 <Text style={styles.starText}>{' *'}</Text>
@@ -208,13 +298,32 @@ const MemberSignUpScreen = ({navigation}) => {
                 placeholder={strings.EnterReferralCode}
                 style={styles.textInputstyle}
               />
+              <Text style={styles.titleText}>{strings.DiscountCode}</Text>
+              <TextInput
+                value={discountCode}
+                onChangeText={discountCode => {
+                  setdiscountCode(discountCode);
+                }}
+                placeholder={strings.EnterdiscountCodeCode}
+                style={styles.textInputstyle}
+              />
               <Text style={styles.titleText}>
                 {strings.BirthMonth}
                 <Text style={styles.starText}>{' *'}</Text>
               </Text>
+              <TextInput
+                value={birthMonth}
+                onChangeText={birthMonth => {
+                  setBirthMonth(birthMonth);
+                }}
+                placeholder={strings.EnterBirthMonth}
+                style={styles.textInputstyle}
+              />
             </View>
 
-            <TouchableOpacity style={styles.loginBtn}>
+            <TouchableOpacity onPress={() => {
+              checkValidation()
+            }} style={styles.loginBtn}>
               <Text
                 style={[
                   styles.loginText,
@@ -228,6 +337,76 @@ const MemberSignUpScreen = ({navigation}) => {
               </Text>
             </TouchableOpacity>
           </View>
+          <Modal transparent={true} visible={successModal} animationType="slide">
+            <View style={styles.modalView}>
+              <Image
+                source={images.successIcon}
+                resizeMode="contain"
+                style={styles.ProfileIcon}
+              />
+              <Text
+                style={styles.modaltextStyle}
+              >
+                You have created account successfully.
+              </Text>
+              <TouchableOpacity onPress={() => {
+                setsuccessModal(false)
+                navigation.goBack()
+              }}
+                style={{
+                  width: "50%",
+                  padding: responsiveScreenWidth(2),
+                  marginTop: responsiveScreenWidth(8),
+                  backgroundColor: colors.primary,
+                  borderRadius: responsiveScreenWidth(2),
+                  justifyContent: "center",
+                  alignSelf: "center",
+                  alignContent: "center"
+                }}
+              >
+                <Text style={{
+                  color: colors.white, alignSelf: "center",
+                  fontSize: responsiveScreenFontSize(1.8),
+                  fontWeight: "bold",
+                }}>Thank You</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
+          <Modal transparent={true} visible={failureModal} animationType="slide">
+            <View style={styles.modalView}>
+              <Image
+                source={images.cancelcon}
+                resizeMode="contain"
+                style={styles.ProfileIcon}
+              />
+              <Text
+                style={styles.modaltextStyle}
+              >
+                Update detail fails.
+              </Text>
+              <TouchableOpacity onPress={() => {
+                setfailureModal(false)
+                navigation.goBack()
+              }}
+                style={{
+                  width: "50%",
+                  padding: responsiveScreenWidth(2),
+                  marginTop: responsiveScreenWidth(8),
+                  backgroundColor: colors.primary,
+                  borderRadius: responsiveScreenWidth(2),
+                  justifyContent: "center",
+                  alignSelf: "center",
+                  alignContent: "center"
+                }}
+              >
+                <Text style={{
+                  color: colors.white, alignSelf: "center",
+                  fontSize: responsiveScreenFontSize(1.8),
+                  fontWeight: "bold",
+                }}>Try Again</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
         </KeyboardAvoidingView>
       </ScrollView>
     </SafeAreaView>
@@ -242,8 +421,8 @@ const styles = StyleSheet.create({
   loginText: {
     fontSize: responsiveScreenFontSize(3),
     color: colors.BLACK,
-    alignSelf: 'center',
-    fontWeight: 'bold',
+    alignSelf: "center",
+    fontWeight: "bold",
     marginTop: responsiveScreenWidth(5),
   },
   starText: {
@@ -254,13 +433,15 @@ const styles = StyleSheet.create({
     paddingTop: responsiveScreenWidth(8),
   },
   textInputstyle: {
-    backgroundColor: colors.TEXTINPUTBACKGROUND,
+    backgroundColor: colors.white,
     borderColor: colors.BLACK,
-    borderWidth: responsiveScreenWidth(0.1),
+    borderWidth: responsiveScreenWidth(0.2),
     fontSize: responsiveScreenFontSize(2),
-    width: '100%',
-    alignSelf: 'center',
+    width: "100%",
+    alignSelf: "center",
     margin: responsiveScreenWidth(3),
+    marginTop: responsiveScreenWidth(4),
+    height: Platform.OS === "ios" ? responsiveScreenWidth(12) : responsiveScreenWidth(12)
   },
   loginBtn: {
     width: '75%',
@@ -325,7 +506,42 @@ const styles = StyleSheet.create({
     width: responsiveScreenWidth(50),
     justifyContent: 'center',
     alignSelf: 'center',
-    margin:responsiveScreenWidth(5)
+    margin: responsiveScreenWidth(5)
+  },
+  modaltextStyle: {
+    color: colors.BLACK,
+    fontSize: responsiveScreenFontSize(1.8),
+    marginTop: responsiveScreenWidth(8),
+    fontWeight: "bold",
+    width: "100%",
+    alignSelf: "center",
+    textAlign: "center"
+  },
+  ProfileIcon: {
+    height: responsiveScreenWidth(20),
+    width: responsiveScreenWidth(20),
+    justifyContent: "center",
+    alignSelf: "center"
+  },
+  modalView: {
+    width: "80%",
+    height: responsiveScreenWidth(60),
+    marginTop: responsiveScreenWidth(60),
+    borderRadius: responsiveScreenWidth(2),
+    padding: responsiveScreenWidth(4),
+    justifyContent: "center",
+    alignContent: "center",
+    alignSelf: "center",
+    backgroundColor: colors.white,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+
+    elevation: 7,
   },
 });
 

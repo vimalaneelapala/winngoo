@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -13,6 +13,8 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DrawerActions } from "@react-navigation/native";
+import Spinner from "react-native-loading-spinner-overlay";
+import axios from "axios";
 // Custom ======================================================================================
 import TopHeaderView from "../../../component/Header";
 import colors from "../../../res/colors/colors";
@@ -23,6 +25,8 @@ import {
   responsiveScreenWidth,
   responsiveScreenFontSize,
 } from "../../../utils/Size";
+import { BaseURL, EndPoint } from "../../../api/ApiConstant";
+
 const shareOptions = {
   title: "Title",
   message: "Message to share", // Note that according to the documentation at least one of "message" or "url" fields is required
@@ -30,8 +34,32 @@ const shareOptions = {
   subject: "Subject",
 };
 const ReferFreindScreen = ({ navigation }) => {
-  // UseEffect ======================================================================================
-
+  const [isVisible, setIsVisible] = useState(false);
+  // ==========================================useEffect Call================
+  // useEffect(async () => {
+  //   getReferFreindCall();
+  // }, [getReferFreindCall]);
+  // ==========================================Api Call================
+  const getReferFreindCall = async () => {
+    let token = await AsyncStorage.getItem("token");
+    setIsVisible(true);
+    var config = {
+      method: "post",
+      url: BaseURL + EndPoint.REFERFREIND,
+      headers: {
+        "x-access-token": token,
+      },
+    };
+    await axios(config)
+      .then(async (res) => {
+        setIsVisible(false);
+        console.log(JSON.stringify(res.data.result));
+      })
+      .catch((err) => {
+        setIsVisible(false);
+        console.log(JSON.stringify(err));
+      });
+  };
   // Render ======================================================================================
   return (
     <SafeAreaView style={styles.container}>
@@ -42,6 +70,7 @@ const ReferFreindScreen = ({ navigation }) => {
         headerText={strings.ReferFriends}
       />
       <View style={styles.container}>
+        <Spinner visible={isVisible} />
         <View
           style={[
             styles.shadowView,
@@ -110,7 +139,7 @@ const ReferFreindScreen = ({ navigation }) => {
                 marginTop: responsiveScreenWidth(5),
               }}
             >
-              <Text style={styles.linkViewText}>Sfkdkf</Text>
+              <Text style={styles.linkViewText}>{global.refferalCode}</Text>
               <Text style={styles.copyViewText}>{strings.CopyLink}</Text>
             </View>
           </TouchableOpacity>

@@ -11,6 +11,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { DrawerActions } from "@react-navigation/native";
+import NetInfo from "@react-native-community/netinfo";
+import Spinner from "react-native-loading-spinner-overlay";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 // Custom ======================================================================================
 import colors from "../../res/colors/colors";
 import images from "../../res/imageConstant/images";
@@ -20,33 +24,56 @@ import {
   responsiveScreenWidth,
 } from "../../utils/Size";
 import TopHeaderView from "../../component/Header";
-import Spinner from "react-native-loading-spinner-overlay";
 import { BaseURL, EndPoint } from "../../api/ApiConstant";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
 
 const DashboardScreen = ({ navigation }) => {
-  const [isModal, setIsModal] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isConnected, setisConnected] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [discountContribute, setdiscountContribute] = useState(0);
+  const [pendingRefferalEarning, setpendingRefferalEarning] = useState(0);
+  const [refferalEarning, setrefferalEarning] = useState(0);
+  const [refferalCode, setrefferalCode] = useState(0);
+  const [discountPointEarned, setdiscountPointEarned] = useState(0);
+  const [loginType, setloginType] = useState("");
   // UseEffect=================================================================================
-  // api Call=================================================================================
-  const callLogOutApi = async () => {
+  // ==========================================Api Call================
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      setisConnected(state.isConnected);
+      console.log(state.isConnected)
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+  useEffect(() => {
+    userDetailApiCall();
+  }, [userDetailApiCall]);
+  // ==========================================Api Call================
+  const userDetailApiCall = async () => {
     let token = await AsyncStorage.getItem("token");
-    setIsModal(false);
+    let loginTypeTemp = await AsyncStorage.getItem("loginType");
+    global.loginTypeTemp = loginTypeTemp;
+    setloginType(loginTypeTemp);
     setIsLoading(true);
     var config = {
-      method: "post",
-      url: BaseURL + EndPoint.LOGOUT,
+      method: "get",
+      url: BaseURL + EndPoint.USER,
       headers: {
         "x-access-token": token,
       },
     };
     await axios(config)
-      .then(async () => {
+      .then(async (res) => {
         setIsLoading(false);
-        await AsyncStorage.clear();
-        alert("You have logout successfully.");
-        navigation.navigate("MerchentLoginScreen");
+        console.log(JSON.stringify(res.data.result));
+        setdiscountContribute(res.data.result.discount);
+        setdiscountPointEarned(res.data.result.received_discount_points);
+        setpendingRefferalEarning(res.data.result.pending_referral_earning);
+        setrefferalCode(res.data.result.winngoo_user.referral_code);
+        setrefferalEarning(res.data.result.referral_earning);
+        global.refferalCode = res.data.result.winngoo_user.referral_code;
+        global.image=res.data.result.image!=null?res.data.result.image:null
       })
       .catch((err) => {
         setIsLoading(false);
@@ -77,53 +104,105 @@ const DashboardScreen = ({ navigation }) => {
             onPress={() => {
               navigation.dispatch(DrawerActions.openDrawer());
             }}
-            onPress1={() => {
-              setIsModal(!isModal);
-            }}
           />
           <Spinner visible={isLoading} />
-          {cardView(
-            "Total Savings",
-            "5000",
-            colors.BLUETEXT,
-            images.CreditCardIcon
-          )}
-          {cardView("Total Savings", "5000", colors.orange, images.DollarIcon)}
-          {cardView(
-            "Total Savings",
-            "5000",
-            colors.yellow,
-            images.MultipleUserIcon
-          )}
-          {cardView("Total Savings", "5000", colors.green, images.NewsPaerIcon)}
-          {cardView(
-            "Total Savings",
-            "5000",
-            colors.blue,
-            images.MemberCardIcon
-          )}
-
-          <Modal transparent={true} visible={isModal} animationType="slide">
-            <View style={styles.modalView}>
-              <Text
-                onPress={() => {
-                  navigation.navigate("PersonalInfoScreen");
-                }}
-                style={styles.modaltextStyle}
-              >
-                Profile Information
-              </Text>
-              <View style={styles.modalline} />
-              <Text
-                onPress={() => {
-                  callLogOutApi();
-                }}
-                style={styles.modaltextStyle}
-              >
-                Logout
-              </Text>
-            </View>
-          </Modal>
+          {isConnected ||isConnected===undefined?
+          <View>
+            {loginType === "member" ? (
+              <View>
+                {cardView(
+                  "TOTAL SAVINGS",
+                  discountContribute,
+                  colors.BLUETEXT,
+                  images.CreditCardIcon
+                )}
+                {cardView(
+                  "DISCOUNTS RECEIVED",
+                  discountContribute,
+                  colors.BLUETEXT,
+                  images.CreditCardIcon
+                )}
+                {cardView(
+                  "CASHBACK RECEIVED",
+                  pendingRefferalEarning,
+                  colors.orange,
+                  images.DollarIcon
+                )}
+                {cardView(
+                  "PENDING REFERRAL EARNING",
+                  pendingRefferalEarning,
+                  colors.yellow,
+                  images.MultipleUserIcon
+                )}
+                {cardView(
+                  "REFERRAL EARNINGS",
+                  refferalEarning,
+                  colors.green,
+                  images.NewsPaerIcon
+                )}
+                {cardView(
+                  "REFERRER CODE",
+                  refferalCode,
+                  colors.blue,
+                  images.MemberCardIcon
+                )}
+                {cardView(
+                  "DISCOUNT POINTS RECEIVED",
+                  discountPointEarned,
+                  colors.blue,
+                  images.MemberCardIcon
+                )}
+              </View>
+            ) : (
+              <View>
+                {cardView(
+                  "DISCOUNTS CONTRIBUTED",
+                  discountContribute,
+                  colors.BLUETEXT,
+                  images.CreditCardIcon
+                )}
+                {cardView(
+                  "PENDING REFERRAL EARNING",
+                  pendingRefferalEarning,
+                  colors.orange,
+                  images.DollarIcon
+                )}
+                {cardView(
+                  "REFERRAL EARNINGS",
+                  refferalEarning,
+                  colors.yellow,
+                  images.MultipleUserIcon
+                )}
+                {cardView(
+                  "REFERRER CODE",
+                  refferalCode,
+                  colors.green,
+                  images.NewsPaerIcon
+                )}
+                {cardView(
+                  "DISCOUNT POINTS RECEIVED",
+                  discountPointEarned,
+                  colors.blue,
+                  images.MemberCardIcon
+                )}
+              </View>
+            )}
+          </View>:
+          <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+             <View style={{
+            height: responsiveScreenWidth(100),
+            width: responsiveScreenWidth(100),
+            justifyContent: "center",
+            alignSelf: "center",
+          }}>
+            <Image
+              source={images.wifi}
+              resizeMode="contain"
+              style={styles.noData}
+            />
+            <Text style={[styles.paginatonTxt, { fontSize: responsiveScreenFontSize(2.4) }]}>{"No Internet Connection\nPlease try again."}</Text>
+          </View>
+        </View>}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -260,6 +339,22 @@ const styles = StyleSheet.create({
     backgroundColor: colors.blue,
     height: responsiveScreenWidth(0.2),
     margin: responsiveScreenWidth(2),
+  },
+  noData: {
+    height: responsiveScreenWidth(35),
+    width: responsiveScreenWidth(35),
+    justifyContent: 'center',
+    alignSelf: 'center',
+    margin: responsiveScreenWidth(4),
+    marginTop: responsiveScreenWidth(40),
+    tintColor:colors.primary
+  },
+  paginatonTxt: {
+    color: colors.BLACK,
+    fontSize: responsiveScreenFontSize(1.8),
+    alignSelf: "center",
+    textAlign: "center",
+    fontWeight: "bold"
   },
 });
 

@@ -16,6 +16,7 @@ export default strings = {
   ResetPassword: "Please enter email address here.",
   ResetLink: "Sent Reset Password Link",
   PartnerUs: "Partner with Us",
+  MemberPersonalDetail: "Enter Member Personal Detail",
   //Sign Up ============================
   Email: "Email",
   ConfirmEmail: "Confirm Email",
@@ -34,6 +35,7 @@ export default strings = {
   PostCode: "Post Code",
   PhoneNumber: "Phone Number",
   Reffereal: "Refferal Code",
+  DiscountCode: "Discount Code",
   BirthMonth: "Birth Month",
   AcceptText1: " I accept ",
   AcceptText2: " of Winngoo.",
@@ -79,6 +81,10 @@ export default strings = {
   ExpireDate:"Expire Date: ",
   //Wingo Card Detail ============================
   CardDetail: "Winngoo Bank Detail",
+  //Business  Tagline ============================
+  BusinessTagline: "Manage Business Taglines",
+  AddBusinessTagline: "Add Business Taglines",
+  BusinessTagline: "Business Tagline",
   //Business  Details ============================
   BusinessDetails: "Business Details",
   Category:"Category: ",
@@ -112,12 +118,18 @@ export default strings = {
   submit: "Submit",
   //Member News ============================
   MemberNews: "Member News",
+  //Franchise News ============================
+  Franchises: "Franchises",
+  AddFranchises: "Add Franchises",
   //Newsletter ============================
   Newsletter: "Newsletter",
   Note: "Note",
   Note2: "Get our weekly newsletter to receive news and updates about our discounts, vouchers, cashback, merchants, and more.",
   Note1: "Be the first one to get the best deals from your favourite merchants!",
-  NoteText:"1.By subscribing, you are agreeing to our terms and conditions.\n2.You can unsubscribe at any time.\n3.For information about our privacy practices, please click here.",
+  NoteText1:"1.By subscribing, you are agreeing to our ",
+  NoteText2:"terms and conditions.\n",
+  NoteText3:"2.You can unsubscribe at any time.\n3.For information about our privacy practices, ",
+  NoteText4:"please click here.",
   //Place holder ============================
   EnterEmail: "Enter email here",
   EnterConfirmEmail: "Enter confirm email here",
@@ -160,9 +172,11 @@ export default strings = {
   EnterCountry: "Enter country here",
   EnterBirthMonth: "Enter birth month here",
   EnterReferralCode: "Enter refferal code here",
+  EnterdiscountCodeCode: "Enter discount code here",
   EnterPostCode: "Enter post code here",
   EnterregistrationNumber: "Enter Registration Number here",
   EnterbusinessDescription: "Enter Business Description here",
+  EnterbusinessDescriptionName: "Enter Business Name here",
   EnterbusinessDetail: "Enter Business Detail here",
   EntertradingYear: "Enter Trading Business Year here",
   EnterwebsiteLink: "Enter Website Link here",

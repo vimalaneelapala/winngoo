@@ -8,6 +8,7 @@ import {
   Text,
   TextInput,
   View,
+  Platform,
 } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
 import axios from "axios";
@@ -57,6 +58,7 @@ const MerchentLoginScreen = ({ navigation }) => {
     try {
       await AsyncStorage.setItem("isLogin", "true");
       await AsyncStorage.setItem("loginType", "merchent");
+      global.loginTypeTemp="merchent"
       await AsyncStorage.setItem("token", value);
       navigation.navigate("DrawerNavigator");
     } catch (e) {
@@ -183,6 +185,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     margin: responsiveScreenWidth(3),
     color: colors.BLACK,
+    height:Platform.OS==="ios"?responsiveScreenWidth(12):responsiveScreenWidth(12)
   },
   rowView: {
     flexDirection: "row",

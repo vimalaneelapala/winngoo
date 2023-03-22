@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -10,6 +10,8 @@ import {
   Image,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Spinner from "react-native-loading-spinner-overlay";
+import axios from "axios";
 // Custom ======================================================================================
 import TopHeaderView from "../../../component/Header";
 import ButtonImage from "../../../component/ButtonImage";
@@ -22,10 +24,41 @@ import {
   responsiveScreenFontSize,
 } from "../../../utils/Size";
 import { DrawerActions } from "@react-navigation/native";
+import { BaseURL, EndPoint } from "../../../api/ApiConstant";
 
 const NewsLetterScreen = ({ navigation }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [newsLetter, setNewsLetter] = useState(true);
   // UseEffect ======================================================================================
+  
+  // ==========================================Api Call================
+  const getSubscribeCall = async () => {
+    let token = await AsyncStorage.getItem("token");
+    let newsLetter = await AsyncStorage.getItem("newsLetter");
+    setIsVisible(true);
+    var data = new FormData();
+    data.append("is_newsletter_subscribed", newsLetter===null?false:newsLetter);
 
+    var config = {
+      method: "post",
+      url: BaseURL + EndPoint.NEWSLETTER,
+      headers: {
+        "x-access-token": token,
+      },
+      data: data,
+    };
+    await axios(config)
+      .then(async (res) => {
+        setIsVisible(false);
+        await AsyncStorage.setItem("newsLetter", !newsLetter);
+        setNewsLetter(!newsLetter);
+        console.log(JSON.stringify(res.data.result));
+      })
+      .catch((err) => {
+        setIsVisible(false);
+        console.log(JSON.stringify(err));
+      });
+  };
   // Render ======================================================================================
   return (
     <SafeAreaView style={styles.container}>
@@ -36,10 +69,17 @@ const NewsLetterScreen = ({ navigation }) => {
         headerText={strings.Newsletter}
       />
       <View style={styles.container}>
+        <Spinner visible={isVisible} />
         <ButtonImage
-          text={"Subscribe"}
+          text={newsLetter ? "Subscribe" : "UnSubscribe"}
           images={images.GmailIcon}
-          loginBtn={{ backgroundColor: colors.green,marginTop:responsiveScreenWidth(5) }}
+          loginBtn={{
+            backgroundColor: newsLetter ? colors.green : colors.red,
+            marginTop: responsiveScreenWidth(5),
+          }}
+          onPress={() => {
+            getSubscribeCall();
+          }}
         />
         <View style={[styles.shadowView, { backgroundColor: colors.cyan }]}>
           <Text style={styles.whiteMediumText}>{strings.Note1}</Text>
@@ -47,7 +87,14 @@ const NewsLetterScreen = ({ navigation }) => {
         </View>
         <View style={styles.shadowView}>
           <Text style={styles.blackMediumText}>{strings.Note}</Text>
-          <Text style={styles.blackSmallText}>{strings.NoteText}</Text>
+          <Text style={styles.blackSmallText}>{strings.NoteText1}
+          <Text onPress={()=>{
+            navigation.navigate("TermConditionScreen")
+          }} style={styles.blueSmallText}>{strings.NoteText2}</Text>
+          <Text style={styles.blackSmallText}>{strings.NoteText3}</Text>
+          <Text onPress={()=>{
+            navigation.navigate("PrivacyPolicyScreen")
+          }} style={styles.blueSmallText}>{strings.NoteText4}</Text></Text>
         </View>
       </View>
     </SafeAreaView>
@@ -99,6 +146,13 @@ const styles = StyleSheet.create({
   },
   blackSmallText: {
     color: colors.BLACK,
+    fontSize: responsiveScreenFontSize(1.8),
+    fontWeight: "400",
+    alignSelf: "center",
+    marginTop: responsiveScreenWidth(5),
+  },
+  blueSmallText: {
+    color: colors.primary,
     fontSize: responsiveScreenFontSize(1.8),
     fontWeight: "400",
     alignSelf: "center",

@@ -8,6 +8,7 @@ import {
   Text,
   TextInput,
   View,
+  Platform,
 } from 'react-native';
 // Custom ======================================================================================
 import colors from '../../res/colors/colors';
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
     width: '75%',
     alignSelf: 'center',
     margin: responsiveScreenWidth(3),
+    height:Platform.OS==="ios"?responsiveScreenWidth(12):responsiveScreenWidth(12)
   },
   rowView: {
     flexDirection: 'row',

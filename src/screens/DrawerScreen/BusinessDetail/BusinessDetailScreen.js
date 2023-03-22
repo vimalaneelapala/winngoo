@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -22,10 +22,42 @@ import TopHeaderView from "../../../component/Header";
 import ButtonText from "../../../component/ButtonText";
 import ButtonImage from "../../../component/ButtonImage";
 import { DrawerActions } from "@react-navigation/native";
+import { BaseURL, EndPoint } from "../../../api/ApiConstant";
+import Spinner from "react-native-loading-spinner-overlay";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 const BusinessDetailScreen = ({ navigation }) => {
-  // UseEffect ======================================================================================
-
+  const [isVisible, setIsVisible] = useState(false);
+  const [isTimeDetail, setIsTimeDetail] = useState([]);
+  const [data, setData] = useState([]);
+  // ==========================================useEffect Call================
+  useEffect(async () => {
+    getBusinessDetail();
+  }, [getBusinessDetail]);
+  // ==========================================Api Call================
+  const getBusinessDetail = async () => {
+    let token = await AsyncStorage.getItem("token");
+    setIsVisible(true);
+    var config = {
+      method: "get",
+      url: BaseURL + EndPoint.MERCHENTBUSINESSDETAIL,
+      headers: {
+        "x-access-token": token,
+      },
+    };
+    await axios(config)
+      .then(async (res) => {
+        setIsVisible(false);
+        setData(res.data.result)
+        setIsTimeDetail(res.data.result.business_hours)
+        console.log(JSON.stringify(res.data.result));
+      })
+      .catch((err) => {
+        setIsVisible(false);
+        console.log(JSON.stringify(err));
+      });
+  };
   // Render ======================================================================================
   return (
     <SafeAreaView style={styles.container}>
@@ -36,6 +68,7 @@ const BusinessDetailScreen = ({ navigation }) => {
         headerText={strings.BusinessDetails}
       />
       <View style={styles.container}>
+        <Spinner visible={isVisible} />
         <View style={styles.shadowView}>
           <View style={styles.rowView}>
             <Text style={styles.blackSmallBoldText}>{strings.Category}</Text>
@@ -44,7 +77,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"Textile Industry"}
+              {data?.category}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -54,7 +87,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"Textile Industry"}
+              {data?.sub_category}
             </Text>
           </View>
         </View>
@@ -66,7 +99,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"Textile Industry"}
+              {data?.reward_value}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -78,7 +111,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"Textile Industry"}
+              {data?.reward_detail}
             </Text>
           </View>
         </View>
@@ -92,7 +125,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"Textile Industry"}
+              {data?.terms_and_condition}
             </Text>
           </View>
         </View>
@@ -107,7 +140,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"12:00 - 7:00"}
+              {isTimeDetail[0]?.opening_time + " - " + isTimeDetail[0]?.closing_time}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -117,7 +150,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"12:00 - 7:00"}
+              {isTimeDetail[1]?.opening_time + "-" + isTimeDetail[1]?.closing_time}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -127,7 +160,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"12:00 - 7:00"}
+              {isTimeDetail[2]?.opening_time + "-" + isTimeDetail[2]?.closing_time}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -137,7 +170,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"12:00 - 7:00"}
+              {isTimeDetail[3]?.opening_time + "-" + isTimeDetail[3]?.closing_time}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -147,7 +180,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"12:00 - 7:00"}
+              {isTimeDetail[4]?.opening_time + "-" + isTimeDetail[4]?.closing_time}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -157,7 +190,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"12:00 - 7:00"}
+              {isTimeDetail[5]?.opening_time + "-" + isTimeDetail[5]?.closing_time}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -167,7 +200,7 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"12:00 - 7:00"}
+              {isTimeDetail[6]?.opening_time + "-" + isTimeDetail[6]?.closing_time}
             </Text>
           </View>
         </View>

@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     flexDirection:"row",
     borderRadius: responsiveScreenWidth(1),
     height: responsiveScreenWidth(12),
-    backgroundColor: colors.BLUETEXT,
+    backgroundColor: colors.primary,
     padding: responsiveScreenWidth(3),
   },
   loginText: {
@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
     height:responsiveScreenWidth(5),
     width:responsiveScreenWidth(5),
     alignSelf:"center",
-    marginEnd:responsiveScreenWidth(2)
+    marginEnd:responsiveScreenWidth(2),
+    tintColor:colors.WHITE
   },
   personalView: {
     shadowColor: "#000",

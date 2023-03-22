@@ -10,6 +10,7 @@ import {
   View,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 // Library ======================================================================================
 import { Dropdown } from "react-native-element-dropdown";
@@ -150,8 +151,8 @@ const MerchentSignUpAddressScreen = ({ navigation ,route}) => {
 
             <TouchableOpacity
               onPress={() => {
-                // validationForm();
-                navigation.navigate("MerchentSignUpBusinessScreen")
+                validationForm();
+                // navigation.navigate("MerchentSignUpBusinessScreen")
               }}
               style={styles.loginBtn}
             >
@@ -201,6 +202,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     margin: responsiveScreenWidth(3),
     marginTop: responsiveScreenWidth(4),
+    height:Platform.OS==="ios"?responsiveScreenWidth(12):responsiveScreenWidth(12)
   },
   loginBtn: {
     width: "75%",

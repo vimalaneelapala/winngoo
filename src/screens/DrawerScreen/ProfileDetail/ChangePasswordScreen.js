@@ -8,6 +8,8 @@ import {
   Text,
   TextInput,
   View,
+  Platform,
+  Modal
 } from "react-native";
 import { DrawerActions } from "@react-navigation/native";
 // Custom ======================================================================================
@@ -37,7 +39,8 @@ const ChangePasswordScreen = ({ navigation }) => {
   const [isShowPasswordOld, setIsShowPasswordOld] = useState(false);
   const [isShowPasswordNew, setIsShowPasswordNew] = useState(false);
   const [isShowPasswordConfirm, setIsShowPasswordConfirm] = useState(false);
-
+  const [successModal, setsuccessModal] = useState(false);
+  const [failureModal, setfailureModal] = useState(false);
   // ==========================================Api Call================
   const changePasswordCall = async () => {
     let token = await AsyncStorage.getItem("token");
@@ -62,12 +65,13 @@ const ChangePasswordScreen = ({ navigation }) => {
         setOldPassword("");
         setNewPassword("");
         setConfirmPassword("");
-        alert("Password Updated Successfully.");
+       setsuccessModal(true)
       })
       .catch((err) => {
         setIsLoading(false);
         setOldPassword("");
         setNewPassword("");
+        setfailureModal(true)
         setConfirmPassword("");
         console.log(JSON.stringify(err));
       });
@@ -216,6 +220,78 @@ const ChangePasswordScreen = ({ navigation }) => {
               </Text>
             </TouchableOpacity>
           </View>
+
+          <Modal transparent={true} visible={successModal} animationType="slide">
+            <View style={styles.modalView}>
+              <Image
+                source={images.successIcon}
+                resizeMode="contain"
+                style={styles.ProfileIcon}
+              />
+              <Text
+                style={styles.modaltextStyle}
+              >
+                Your detail udpate successfully.
+              </Text>
+              <TouchableOpacity onPress={() => {
+                setsuccessModal(false)
+                navigation.goBack()
+              }}
+                style={{
+                  width: "50%",
+                  padding: responsiveScreenWidth(2),
+                  marginTop: responsiveScreenWidth(8),
+                  backgroundColor: colors.primary,
+                  borderRadius: responsiveScreenWidth(2),
+                  justifyContent: "center",
+                  alignSelf: "center",
+                  alignContent: "center"
+                }}
+              >
+                <Text style={{
+                  color: colors.white, alignSelf: "center",
+                  fontSize: responsiveScreenFontSize(1.8),
+                  fontWeight: "bold",
+                }}>Thank You</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
+          <Modal transparent={true} visible={failureModal} animationType="slide">
+            <View style={styles.modalView}>
+              <Image
+                source={images.cancelcon}
+                resizeMode="contain"
+                style={styles.ProfileIcon}
+              />
+              <Text
+                style={styles.modaltextStyle}
+              >
+                Update detail fails.
+              </Text>
+              <TouchableOpacity onPress={() => {
+                setfailureModal(false)
+                navigation.goBack()
+              }}
+                style={{
+                  width: "50%",
+                  padding: responsiveScreenWidth(2),
+                  marginTop: responsiveScreenWidth(8),
+                  backgroundColor: colors.primary,
+                  borderRadius: responsiveScreenWidth(2),
+                  justifyContent: "center",
+                  alignSelf: "center",
+                  alignContent: "center"
+                }}
+              >
+                <Text style={{
+                  color: colors.white, alignSelf: "center",
+                  fontSize: responsiveScreenFontSize(1.8),
+                  fontWeight: "bold",
+                }}>Try Again</Text>
+              </TouchableOpacity>
+            </View>
+          </Modal>
+
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -251,6 +327,7 @@ const styles = StyleSheet.create({
     margin: responsiveScreenWidth(3),
     marginStart: 0,
     color: colors.BLACK,
+    height:Platform.OS==="ios"?responsiveScreenWidth(12):responsiveScreenWidth(12)
   },
   errMsg: {
     color: colors.red,
@@ -309,6 +386,39 @@ const styles = StyleSheet.create({
     color: colors.WHITE,
     fontSize: responsiveScreenFontSize(2),
     marginTop: 0,
+  },  modalView: {
+    width: "80%",
+    height: responsiveScreenWidth(60),
+    marginTop: responsiveScreenWidth(60),
+    borderRadius: responsiveScreenWidth(2),
+    padding: responsiveScreenWidth(4),
+    justifyContent: "center",
+    alignContent: "center",
+    alignSelf: "center",
+    backgroundColor: colors.white,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+
+    elevation: 7,
+  },
+  ProfileIcon: {
+    height: responsiveScreenWidth(20),
+    width: responsiveScreenWidth(20),
+    justifyContent: "center",
+    alignSelf: "center"
+  },  modaltextStyle: {
+    color: colors.BLACK,
+    fontSize: responsiveScreenFontSize(1.8),
+    marginTop: responsiveScreenWidth(8),
+    fontWeight: "bold",
+    width: "100%",
+    alignSelf: "center",
+    textAlign: "center"
   },
 });
 

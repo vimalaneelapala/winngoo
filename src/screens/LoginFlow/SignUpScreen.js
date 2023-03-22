@@ -10,6 +10,7 @@ import {
   View,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 // Library ======================================================================================
 import {Dropdown} from 'react-native-element-dropdown';
@@ -261,6 +262,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignSelf: 'center',
     margin: responsiveScreenWidth(3),
+    height:Platform.OS==="ios"?responsiveScreenWidth(12):responsiveScreenWidth(12)
   },
   loginBtn: {
     width: '75%',
