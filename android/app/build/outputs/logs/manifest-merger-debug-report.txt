@@ -1,22 +1,25 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
-INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
-INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
-INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
-MERGED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
+ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
+INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
+INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
+INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
+MERGED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
 MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/apple/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:8:1-18:12
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /Users/apple/.gradle/caches/transforms-3/e32b7eeb3398efff4e100fae60e161ae/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /Users/apple/.gradle/caches/transforms-3/d00cb5af49214c127447117a850c65b4/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
-MERGED from [:react-native-async-storage_async-storage] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:react-native-community_masked-view] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/@react-native-community/masked-view/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:react-native-gesture-handler] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:react-native-safe-area-context] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:react-native-screens] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-async-storage_async-storage] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-community_masked-view] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/@react-native-community/masked-view/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-community_netinfo] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/@react-native-community/netinfo/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-12:12
+MERGED from [:react-native-gesture-handler] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-image-picker] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-21:12
+MERGED from [:react-native-safe-area-context] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-screens] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-webview] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-21:12
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/apple/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/apple/.gradle/caches/transforms-3/4aa3daa4c119e5ebf154ad11d072f485/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.facebook.react:hermes-engine:0.70.6] /Users/apple/.gradle/caches/transforms-3/9d7eb90167c45c49ac02b1539a4fe443/transformed/jetified-hermes-engine-0.70.6-debug/AndroidManifest.xml:2:1-9:12
-MERGED from [:react-native-reanimated] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-reanimated/android/build/.transforms/473cfcb1a83c825b78da7b9b3a74ddd8/transformed/jetified-react-native-reanimated-70-hermes/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-reanimated] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-reanimated/android/build/.transforms/b688faea3f4b5e42e2100521990a71ec/transformed/jetified-react-native-reanimated-70-hermes/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:flipper:2.6.0] /Users/apple/.gradle/caches/transforms-3/254be36e6f6eb176e072fd687d368667/transformed/jetified-flipper-2.6.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:stetho:2.6.0] /Users/apple/.gradle/caches/transforms-3/e90babe485946eeebe0b18572938e7fb/transformed/jetified-stetho-2.6.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.facebook.fresco:fresco:2.6.0] /Users/apple/.gradle/caches/transforms-3/6bf0185b9b85a5b617e433ea49b9063b/transformed/jetified-fresco-2.6.0/AndroidManifest.xml:2:1-9:12
@@ -42,7 +45,9 @@ MERGED from [com.facebook.fresco:ui-common:2.6.0] /Users/apple/.gradle/caches/tr
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/apple/.gradle/caches/transforms-3/c66a0e494ae03615f4f2412eca3a7dd2/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/apple/.gradle/caches/transforms-3/859aeea425ecb1c9af8d15503a5ef58a/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core-ktx:1.6.0] /Users/apple/.gradle/caches/transforms-3/9644fb1c4cab9aa0d403c9f34e6ea78e/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] /Users/apple/.gradle/caches/transforms-3/dabeb127ebcf68c206ca5581e62d75f6/transformed/exifinterface-1.3.3/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/apple/.gradle/caches/transforms-3/499913aa779d5677f84de1b3821854aa/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.webkit:webkit:1.4.0] /Users/apple/.gradle/caches/transforms-3/741cf2d34c873c8e864caa328e982ec0/transformed/webkit-1.4.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.sqlite:sqlite:2.1.0] /Users/apple/.gradle/caches/transforms-3/6c2e0b04a335666cd4b78cb912868b2a/transformed/sqlite-2.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/apple/.gradle/caches/transforms-3/237960ca1607edccd2d98c15f52b2dce/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.3.6] /Users/apple/.gradle/caches/transforms-3/d7aa1f198091ea1cc50dc1c26600633f/transformed/fragment-1.3.6/AndroidManifest.xml:17:1-24:12
@@ -72,36 +77,40 @@ MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] /Users/apple/.gradle/ca
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /Users/apple/.gradle/caches/transforms-3/264bfea9cec9553b72567ddd2a81a286/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.facebook.fresco:fbcore:2.6.0] /Users/apple/.gradle/caches/transforms-3/fe525e62d2b9e85c0d777a0bb14f7298/transformed/jetified-fbcore-2.6.0/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/apple/.gradle/caches/transforms-3/54294f5f857978835a11e24fc1422778/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
-INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:2:1-13:12
-INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:2:1-13:12
-INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:2:1-13:12
+INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:2:1-13:12
+INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:2:1-13:12
+INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:2:1-13:12
 	package
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:2:3-27
-		INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:2:3-27
-		INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:2:3-27
+		INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:2:3-27
+		INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
-		INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
+		INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
 	xmlns:tools
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:3:5-51
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:3:5-51
 	android:versionCode
-		INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
-		INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:1-26:12
+		INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:11-69
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:1:11-69
 uses-permission#android.permission.INTERNET
-ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:4:5-67
+ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:4:5-67
 MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/apple/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:15:5-67
 MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/apple/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:15:5-67
 	android:name
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:4:22-64
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:4:22-64
 application
-ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:6:5-25:19
-MERGED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:6:5-25:19
-MERGED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:6:5-25:19
+ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:6:5-25:19
+MERGED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:6:5-25:19
+MERGED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:6:5-25:19
+MERGED from [:react-native-image-picker] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-19:19
+MERGED from [:react-native-image-picker] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-19:19
+MERGED from [:react-native-webview] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-19:19
+MERGED from [:react-native-webview] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-19:19
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/apple/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:9:5-20
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/apple/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:9:5-20
 MERGED from [com.facebook.soloader:soloader:0.10.4] /Users/apple/.gradle/caches/transforms-3/87826452408345e9fcde9828ee0fb34c/transformed/jetified-soloader-0.10.4/AndroidManifest.xml:11:5-20
@@ -121,81 +130,87 @@ MERGED from [androidx.startup:startup-runtime:1.0.0] /Users/apple/.gradle/caches
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.7.0] /Users/apple/.gradle/caches/transforms-3/63a3df243d2d102452600006144a86df/transformed/core-1.7.0/AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:8:7-39
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:8:7-39
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:8:7-39
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:8:7-39
 	tools:ignore
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:10:9-48
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:10:9-48
 	android:roundIcon
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:10:7-43
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:10:7-43
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:10:7-43
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:10:7-43
 	tools:targetApi
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:9:9-29
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:9:9-29
 	android:icon
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:9:7-38
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:9:7-38
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:9:7-38
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:9:7-38
 	android:allowBackup
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:11:7-34
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:11:7-34
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:11:7-34
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:11:7-34
 	android:theme
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:12:7-38
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:12:7-38
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:12:7-38
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:12:7-38
 	android:usesCleartextTraffic
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:8:9-44
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:8:9-44
 	android:name
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:7:7-38
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:7:7-38
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:7:7-38
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:7:7-38
 activity#com.winngooapp.MainActivity
-ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:13:7-24:18
+ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:13:7-24:18
 	android:label
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:15:9-41
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:15:9-41
 	android:launchMode
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:17:9-40
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:17:9-40
 	android:windowSoftInputMode
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:18:9-51
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:18:9-51
 	android:exported
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:19:9-32
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:19:9-32
 	android:configChanges
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:16:9-118
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:16:9-118
 	android:name
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:14:9-37
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:14:9-37
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:20:9-23:25
+ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:20:9-23:25
 action#android.intent.action.MAIN
-ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:21:13-65
+ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:21:13-65
 	android:name
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:21:21-62
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:21:21-62
 category#android.intent.category.LAUNCHER
-ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:22:13-73
+ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:22:13-73
 	android:name
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml:22:23-70
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml:22:23-70
 uses-sdk
-INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml
-INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml
+INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml
+INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml
 MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/apple/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper:0.125.0] /Users/apple/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /Users/apple/.gradle/caches/transforms-3/e32b7eeb3398efff4e100fae60e161ae/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /Users/apple/.gradle/caches/transforms-3/e32b7eeb3398efff4e100fae60e161ae/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /Users/apple/.gradle/caches/transforms-3/d00cb5af49214c127447117a850c65b4/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /Users/apple/.gradle/caches/transforms-3/d00cb5af49214c127447117a850c65b4/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
-MERGED from [:react-native-async-storage_async-storage] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-async-storage_async-storage] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-community_masked-view] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/@react-native-community/masked-view/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-community_masked-view] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/@react-native-community/masked-view/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-gesture-handler] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-gesture-handler] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-safe-area-context] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-safe-area-context] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-screens] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-screens] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-async-storage_async-storage] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-async-storage_async-storage] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_masked-view] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/@react-native-community/masked-view/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_masked-view] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/@react-native-community/masked-view/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_netinfo] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/@react-native-community/netinfo/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-community_netinfo] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/@react-native-community/netinfo/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-gesture-handler] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-gesture-handler] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-image-picker] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-image-picker] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-safe-area-context] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-safe-area-context] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-screens] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-screens] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-screens/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-webview] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-webview] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/apple/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:react-native:0.70.6] /Users/apple/.gradle/caches/transforms-3/0b825f9a3cd84cf1738e48fbfed11fea/transformed/jetified-react-native-0.70.6-debug/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/apple/.gradle/caches/transforms-3/4aa3daa4c119e5ebf154ad11d072f485/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/apple/.gradle/caches/transforms-3/4aa3daa4c119e5ebf154ad11d072f485/transformed/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.facebook.react:hermes-engine:0.70.6] /Users/apple/.gradle/caches/transforms-3/9d7eb90167c45c49ac02b1539a4fe443/transformed/jetified-hermes-engine-0.70.6-debug/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.react:hermes-engine:0.70.6] /Users/apple/.gradle/caches/transforms-3/9d7eb90167c45c49ac02b1539a4fe443/transformed/jetified-hermes-engine-0.70.6-debug/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-reanimated] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-reanimated/android/build/.transforms/473cfcb1a83c825b78da7b9b3a74ddd8/transformed/jetified-react-native-reanimated-70-hermes/AndroidManifest.xml:5:5-7:41
-MERGED from [:react-native-reanimated] /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/node_modules/react-native-reanimated/android/build/.transforms/473cfcb1a83c825b78da7b9b3a74ddd8/transformed/jetified-react-native-reanimated-70-hermes/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-reanimated] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-reanimated/android/build/.transforms/b688faea3f4b5e42e2100521990a71ec/transformed/jetified-react-native-reanimated-70-hermes/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-reanimated] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-reanimated/android/build/.transforms/b688faea3f4b5e42e2100521990a71ec/transformed/jetified-react-native-reanimated-70-hermes/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:flipper:2.6.0] /Users/apple/.gradle/caches/transforms-3/254be36e6f6eb176e072fd687d368667/transformed/jetified-flipper-2.6.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:flipper:2.6.0] /Users/apple/.gradle/caches/transforms-3/254be36e6f6eb176e072fd687d368667/transformed/jetified-flipper-2.6.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.facebook.fresco:stetho:2.6.0] /Users/apple/.gradle/caches/transforms-3/e90babe485946eeebe0b18572938e7fb/transformed/jetified-stetho-2.6.0/AndroidManifest.xml:5:5-7:41
@@ -246,8 +261,12 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/apple/.gradle/cach
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/apple/.gradle/caches/transforms-3/859aeea425ecb1c9af8d15503a5ef58a/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core-ktx:1.6.0] /Users/apple/.gradle/caches/transforms-3/9644fb1c4cab9aa0d403c9f34e6ea78e/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.core:core-ktx:1.6.0] /Users/apple/.gradle/caches/transforms-3/9644fb1c4cab9aa0d403c9f34e6ea78e/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] /Users/apple/.gradle/caches/transforms-3/dabeb127ebcf68c206ca5581e62d75f6/transformed/exifinterface-1.3.3/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] /Users/apple/.gradle/caches/transforms-3/dabeb127ebcf68c206ca5581e62d75f6/transformed/exifinterface-1.3.3/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/apple/.gradle/caches/transforms-3/499913aa779d5677f84de1b3821854aa/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/apple/.gradle/caches/transforms-3/499913aa779d5677f84de1b3821854aa/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.webkit:webkit:1.4.0] /Users/apple/.gradle/caches/transforms-3/741cf2d34c873c8e864caa328e982ec0/transformed/webkit-1.4.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.webkit:webkit:1.4.0] /Users/apple/.gradle/caches/transforms-3/741cf2d34c873c8e864caa328e982ec0/transformed/webkit-1.4.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.sqlite:sqlite:2.1.0] /Users/apple/.gradle/caches/transforms-3/6c2e0b04a335666cd4b78cb912868b2a/transformed/sqlite-2.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.sqlite:sqlite:2.1.0] /Users/apple/.gradle/caches/transforms-3/6c2e0b04a335666cd4b78cb912868b2a/transformed/sqlite-2.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/apple/.gradle/caches/transforms-3/237960ca1607edccd2d98c15f52b2dce/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
@@ -306,28 +325,60 @@ MERGED from [com.facebook.fresco:fbcore:2.6.0] /Users/apple/.gradle/caches/trans
 MERGED from [com.facebook.fresco:fbcore:2.6.0] /Users/apple/.gradle/caches/transforms-3/fe525e62d2b9e85c0d777a0bb14f7298/transformed/jetified-fbcore-2.6.0/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/apple/.gradle/caches/transforms-3/54294f5f857978835a11e24fc1422778/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/apple/.gradle/caches/transforms-3/54294f5f857978835a11e24fc1422778/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
-INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
-INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
+INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
+INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml
-		INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/main/AndroidManifest.xml
-		INJECTED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
+		INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/main/AndroidManifest.xml
+		INJECTED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
-ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:5:5-77
+ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:5:5-77
 	android:name
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:5:22-75
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:5:22-75
 activity#com.facebook.react.devsupport.DevSettingsActivity
-ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:11:9-111
+ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:11:9-111
 	android:exported
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:11:84-108
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:11:84-108
 	android:name
-		ADDED from /Volumes/Samsung_T5/Demo/WinngooApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:11:19-83
+		ADDED from /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/android/app/src/debug/AndroidManifest.xml:11:19-83
 uses-permission#android.permission.ACCESS_WIFI_STATE
 ADDED from [com.facebook.flipper:flipper:0.125.0] /Users/apple/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:5-76
+MERGED from [:react-native-community_netinfo] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/@react-native-community/netinfo/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-76
+MERGED from [:react-native-community_netinfo] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/@react-native-community/netinfo/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-76
 	android:name
 		ADDED from [com.facebook.flipper:flipper:0.125.0] /Users/apple/.gradle/caches/transforms-3/03f04a3f11198ce3b7c6cedb9b41266b/transformed/jetified-flipper-0.125.0/AndroidManifest.xml:16:22-73
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:react-native-community_netinfo] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/@react-native-community/netinfo/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-79
+	android:name
+		ADDED from [:react-native-community_netinfo] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/@react-native-community/netinfo/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-76
+provider#com.imagepicker.ImagePickerProvider
+ADDED from [:react-native-image-picker] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-18:20
+	android:grantUriPermissions
+		ADDED from [:react-native-image-picker] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-47
+	android:authorities
+		ADDED from [:react-native-image-picker] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-71
+	android:exported
+		ADDED from [:react-native-image-picker] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
+	android:name
+		ADDED from [:react-native-image-picker] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-63
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:react-native-image-picker] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:70
+	android:resource
+		ADDED from [:react-native-image-picker] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-67
+	android:name
+		ADDED from [:react-native-image-picker] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-67
+provider#com.reactnativecommunity.webview.RNCWebViewFileProvider
+ADDED from [:react-native-webview] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-18:20
+	android:grantUriPermissions
+		ADDED from [:react-native-webview] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-47
+	android:authorities
+		ADDED from [:react-native-webview] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-64
+	android:exported
+		ADDED from [:react-native-webview] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
+	android:name
+		ADDED from [:react-native-webview] /Volumes/Samsung_T5/Demo/FNApp/WinngooApp/node_modules/react-native-webview/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-83
 provider#androidx.startup.InitializationProvider
 ADDED from [androidx.emoji2:emoji2:1.0.0] /Users/apple/.gradle/caches/transforms-3/b6fe4da57007a43d86a66ba4c66459bd/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
 MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /Users/apple/.gradle/caches/transforms-3/bc74a39e1ea23fea00bfcf2682a93948/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:26:9-34:20

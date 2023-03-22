@@ -43,7 +43,7 @@ const RewardSummaryScreen = ({ navigation }) => {
     var data = {
       "perPage": pageSize,
       "page": page,
-      "order": "DESC",
+      // "order": "DESC",
     };
     var config = {
       method: "post",
