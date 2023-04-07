@@ -57,7 +57,10 @@ const RewardSummaryScreen = ({ navigation }) => {
       .then(async (res) => {
         setIsLoading(false);
         console.log(JSON.stringify(res.data.result));
-        setrewardSummary(res.data.result)
+        console.log(JSON.stringify(res.data.result.data));
+        res.data.result.data.length>0?
+        setrewardSummary(res.data.result.data)
+        :null
       })
       .catch((err) => {
         setIsLoading(false);
