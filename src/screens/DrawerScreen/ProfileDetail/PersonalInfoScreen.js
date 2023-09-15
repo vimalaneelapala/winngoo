@@ -8,13 +8,13 @@ import {
   Text,
   TextInput,
   View,
-  Modal
+  Modal,
 } from "react-native";
 import { DrawerActions } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Spinner from "react-native-loading-spinner-overlay";
 import axios from "axios";
-import {launchImageLibrary} from 'react-native-image-picker'
+import { launchImageLibrary } from "react-native-image-picker";
 // Custom ======================================================================================
 import colors from "../../../res/colors/colors";
 import images from "../../../res/imageConstant/images";
@@ -65,7 +65,7 @@ const PersonalInfoScreen = ({ navigation }) => {
         setName(res.data.result.first_name + " " + res.data.result.last_name);
         setEmail(res.data.result.email);
         setPhoneNumber(res.data.result.phone_number);
-        setDateOfBirth("11 Oct 1994");
+        setDateOfBirth(res.data.result.birth_month);
 
         setAddress1(res.data.result.address.address_line_1);
         setCity(res.data.result.address.city);
@@ -81,45 +81,76 @@ const PersonalInfoScreen = ({ navigation }) => {
       });
   };
   const handleChoosePhoto = () => {
-    launchImageLibrary({
-      mediaType: 'photo',
-      includeBase64: false,
-      maxHeight: 200,
-      maxWidth: 200,
-    },
+    launchImageLibrary(
+      {
+        mediaType: "photo",
+        includeBase64: false,
+        maxHeight: 200,
+        maxWidth: 200,
+      },
       (response) => {
-        profileInfoCall(response.assets[0].uri)
-        console.log(response.assets[0].uri);
-        console.log(response.assets[0]);
-      })
-  }
+        if (response.didCancel) {
+          console.log("User cancelled image picker");
+        } else if (response.error) {
+          console.log("ImagePicker Error: ", response.error);
+        } else if (response.customButton) {
+          console.log("User tapped custom button: ", response.customButton);
+          alert(response.customButton);
+        } else {
+          profileInfoCall(response.assets[0].uri);
+          console.log(response.assets[0].uri);
+          console.log(response.assets[0]);
+        }
+      }
+    );
+  };
   // ==========================================Api Call================
   const profileInfoCall = async (data) => {
+    console.log("DD::","Data::",data);
     let token = await AsyncStorage.getItem("token");
+
+
+    var formdata = new FormData();
+    formdata.append("image", data);
+
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("x-access-token", token);
     setIsLoading(true);
     var config = {
       method: "put",
-      url: BaseURL + EndPoint.PROFILEIMAGE,
-      headers: {
-        "x-access-token": token,
-      },
-      data: {
-        image: data
-      }
+      headers: myHeaders,
+      body: formdata,
     };
-    await axios(config)
-      .then(async (res) => {
+
+    fetch(BaseURL + EndPoint.PROFILEIMAGE, config)
+      .then((response) => response.json())
+      .then((result) => {
         setIsLoading(false);
-        setsuccessModal(true)
-        global.image=data
-        console.log(JSON.stringify(res));
+        setsuccessModal(true);
+        global.image = data;
+        console.log(JSON.stringify(result));
       })
       .catch((err) => {
         setIsLoading(false);
-        setfailureModal(true)
+        setfailureModal(true);
+        alert(err);
         console.log(JSON.stringify(err));
       });
   };
+  //   await axios(config)
+  //     .then(async (res) => {
+  //       setIsLoading(false);
+  //       setsuccessModal(true);
+  //       global.image = data;
+  //       console.log(JSON.stringify(res));
+  //     })
+  //     .catch((err) => {
+  //       setIsLoading(false);
+  //       setfailureModal(true);
+  //       console.log('DD::',JSON.stringify(err));
+  //     });
+  // };
   // ==========================================Render Call================
   return (
     <SafeAreaView style={styles.container}>
@@ -140,12 +171,12 @@ const PersonalInfoScreen = ({ navigation }) => {
               marginEnd: responsiveScreenWidth(4),
             }}
           >
-            <View style={{ width: "40%" }}>
-            </View>
+            <View style={{ width: "40%" }}></View>
             <View style={{ width: "60%" }}>
-              <TouchableOpacity onPress={() => {
-                handleChoosePhoto()
-              }}
+              <TouchableOpacity
+                onPress={() => {
+                  handleChoosePhoto();
+                }}
                 style={[styles.loginBtn, { backgroundColor: colors.yellow }]}
               >
                 <Text
@@ -232,22 +263,25 @@ const PersonalInfoScreen = ({ navigation }) => {
             </Text>
             <Text style={styles.blueSmallText}>Help & Supports</Text>
           </View>
-          <Modal transparent={true} visible={successModal} animationType="slide">
+          <Modal
+            transparent={true}
+            visible={successModal}
+            animationType="slide"
+          >
             <View style={styles.modalView}>
               <Image
                 source={images.successIcon}
                 resizeMode="contain"
                 style={styles.ProfileIcon}
               />
-              <Text
-                style={styles.modaltextStyle}
-              >
+              <Text style={styles.modaltextStyle}>
                 Your detail udpate successfully.
               </Text>
-              <TouchableOpacity onPress={() => {
-                setsuccessModal(false)
-                navigation.goBack()
-              }}
+              <TouchableOpacity
+                onPress={() => {
+                  setsuccessModal(false);
+                  navigation.goBack();
+                }}
                 style={{
                   width: "50%",
                   padding: responsiveScreenWidth(2),
@@ -256,33 +290,39 @@ const PersonalInfoScreen = ({ navigation }) => {
                   borderRadius: responsiveScreenWidth(2),
                   justifyContent: "center",
                   alignSelf: "center",
-                  alignContent: "center"
+                  alignContent: "center",
                 }}
               >
-                <Text style={{
-                  color: colors.white, alignSelf: "center",
-                  fontSize: responsiveScreenFontSize(1.8),
-                  fontWeight: "bold",
-                }}>Thank You</Text>
+                <Text
+                  style={{
+                    color: colors.white,
+                    alignSelf: "center",
+                    fontSize: responsiveScreenFontSize(1.8),
+                    fontWeight: "bold",
+                  }}
+                >
+                  Thank You
+                </Text>
               </TouchableOpacity>
             </View>
           </Modal>
-          <Modal transparent={true} visible={failureModal} animationType="slide">
+          <Modal
+            transparent={true}
+            visible={failureModal}
+            animationType="slide"
+          >
             <View style={styles.modalView}>
               <Image
                 source={images.cancelcon}
                 resizeMode="contain"
                 style={styles.ProfileIcon}
               />
-              <Text
-                style={styles.modaltextStyle}
-              >
-                Update detail fails.
-              </Text>
-              <TouchableOpacity onPress={() => {
-                setfailureModal(false)
-                navigation.goBack()
-              }}
+              <Text style={styles.modaltextStyle}>Update detail fails.</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  setfailureModal(false);
+                  navigation.goBack();
+                }}
                 style={{
                   width: "50%",
                   padding: responsiveScreenWidth(2),
@@ -291,14 +331,19 @@ const PersonalInfoScreen = ({ navigation }) => {
                   borderRadius: responsiveScreenWidth(2),
                   justifyContent: "center",
                   alignSelf: "center",
-                  alignContent: "center"
+                  alignContent: "center",
                 }}
               >
-                <Text style={{
-                  color: colors.white, alignSelf: "center",
-                  fontSize: responsiveScreenFontSize(1.8),
-                  fontWeight: "bold",
-                }}>Try Again</Text>
+                <Text
+                  style={{
+                    color: colors.white,
+                    alignSelf: "center",
+                    fontSize: responsiveScreenFontSize(1.8),
+                    fontWeight: "bold",
+                  }}
+                >
+                  Try Again
+                </Text>
               </TouchableOpacity>
             </View>
           </Modal>
@@ -384,15 +429,16 @@ const styles = StyleSheet.create({
     height: responsiveScreenWidth(20),
     width: responsiveScreenWidth(20),
     justifyContent: "center",
-    alignSelf: "center"
-  }, modaltextStyle: {
+    alignSelf: "center",
+  },
+  modaltextStyle: {
     color: colors.BLACK,
     fontSize: responsiveScreenFontSize(1.8),
     marginTop: responsiveScreenWidth(8),
     fontWeight: "bold",
     width: "100%",
     alignSelf: "center",
-    textAlign: "center"
+    textAlign: "center",
   },
 });
 

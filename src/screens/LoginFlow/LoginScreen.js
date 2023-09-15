@@ -36,7 +36,7 @@ const LoginScreen = ({navigation}) => {
         />
         <Text style={styles.loginText}>{strings.LOGIN}</Text>
 
-        <TextInput
+         <TextInput placeholderTextColor={colors.gray}
           value={email}
           onChangeText={email => {
             setEmail(email);
@@ -44,7 +44,7 @@ const LoginScreen = ({navigation}) => {
           placeholder={strings.EnterEmail}
           style={styles.textInputstyle}
         />
-        <TextInput
+         <TextInput placeholderTextColor={colors.gray}
           value={password}
           onChangeText={password => {
             setPassword(password);

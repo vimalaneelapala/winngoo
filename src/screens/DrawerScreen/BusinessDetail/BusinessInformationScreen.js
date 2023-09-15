@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -39,21 +39,27 @@ const BusinessInformationScreen = ({ navigation }) => {
   const getBusinessDetail = async () => {
     let token = await AsyncStorage.getItem("token");
     setIsVisible(true);
-    var config = {
+
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("x-access-token", token);
+
+    var requestOptions = {
       method: "get",
-      url: BaseURL + EndPoint.MERCHENTBUSINESSDETAIL,
-      headers: {
-        "x-access-token": token,
-      },
+      headers: myHeaders,
+      redirect: "follow",
     };
-    await axios(config)
-      .then(async (res) => {
+
+    fetch(BaseURL + EndPoint.USER, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("merchant:: ", JSON.stringify(result.result.merchant));
         setIsVisible(false);
-        console.log(JSON.stringify(res.data.result));
-        setData(res.data.result)
+        setData(result.result.merchant);
       })
       .catch((err) => {
         setIsVisible(false);
+        alert(err);
         console.log(JSON.stringify(err));
       });
   };
@@ -66,17 +72,19 @@ const BusinessInformationScreen = ({ navigation }) => {
         }}
         headerText={strings.BusinessInformation}
       />
-       <Spinner visible={isVisible} />
+      <Spinner visible={isVisible} />
       <View style={styles.container}>
         <View style={styles.shadowView}>
           <View style={styles.rowView}>
-            <Text style={styles.blackSmallBoldText}>{strings.BusinessType}</Text>
+            <Text style={styles.blackSmallBoldText}>
+              {strings.BusinessType}
+            </Text>
             <Text
               numberOfLines={2}
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"Textile Industry"}
+              {data.business_type}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -86,7 +94,7 @@ const BusinessInformationScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"K"}
+              {data.trading_name}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -98,10 +106,10 @@ const BusinessInformationScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"K"}
+              {data.business_relationship}
             </Text>
           </View>
-          <View style={styles.rowView}>
+          <View style={{ margin: responsiveScreenWidth(1), width: "80%" }}>
             <Text style={styles.blackSmallBoldText}>
               {strings.BusinessDescription}
             </Text>
@@ -110,27 +118,29 @@ const BusinessInformationScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"K"}
+              {data.business_description}
             </Text>
           </View>
           <View style={styles.rowView}>
-            <Text style={styles.blackSmallBoldText}>{strings.YearsTrading}</Text>
+            <Text style={styles.blackSmallBoldText}>
+              {strings.YearsTrading}
+            </Text>
             <Text
               numberOfLines={2}
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"K"}
+              {data.years_of_trading}
             </Text>
           </View>
-          <View style={styles.rowView}>
+          <View style={{ margin: responsiveScreenWidth(1), width: "80%" }}>
             <Text style={styles.blackSmallBoldText}>{strings.OwnerName}</Text>
             <Text
               numberOfLines={2}
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"K"}
+              {data.owner_name}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -142,7 +152,7 @@ const BusinessInformationScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"K"}
+              {data.registration_number}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -152,7 +162,7 @@ const BusinessInformationScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"K"}
+              {data.is_franchise}
             </Text>
           </View>
         </View>
@@ -164,7 +174,7 @@ const BusinessInformationScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"K"}
+              {data.business_name}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -174,29 +184,7 @@ const BusinessInformationScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"K"}
-            </Text>
-          </View>
-          <View style={styles.rowView}>
-            <Text style={styles.blackSmallBoldText}>{strings.PhoneNumber}</Text>
-            <Text
-              numberOfLines={2}
-              ellipsizeMode="tail"
-              style={styles.blackSmallText}
-            >
-              {"K"}
-            </Text>
-          </View>
-        </View>
-        <View style={styles.shadowView}>
-          <View style={styles.rowView}>
-            <Text style={styles.blackSmallBoldText}>{strings.Address}</Text>
-            <Text
-              numberOfLines={2}
-              ellipsizeMode="tail"
-              style={styles.blackSmallText}
-            >
-              {"K"}
+              {data.website_link}
             </Text>
           </View>
         </View>
@@ -208,7 +196,7 @@ const BusinessInformationScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"K"}
+              {data.start_date}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -218,7 +206,7 @@ const BusinessInformationScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {"K"}
+              {data.expiry_date}
             </Text>
           </View>
         </View>

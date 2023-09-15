@@ -89,7 +89,7 @@ const AddBankDetailScreen = ({ navigation }) => {
         />
         <View style={{marginTop:responsiveScreenWidth(5)}}>
         <Spinner visible={isLoading} />
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={accNumber}
             onChangeText={(accNumber) => {
               setAccNumber(accNumber);
@@ -98,7 +98,7 @@ const AddBankDetailScreen = ({ navigation }) => {
             style={styles.textInputstyle}
             keyboardType="number-pad"
           />
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={accName}
             onChangeText={(accName) => {
               setAccName(accName);
@@ -107,7 +107,7 @@ const AddBankDetailScreen = ({ navigation }) => {
             style={styles.textInputstyle}
             keyboardType="email-address"
           />
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={bankName}
             onChangeText={(bankName) => {
               setBankName(bankName);
@@ -115,7 +115,7 @@ const AddBankDetailScreen = ({ navigation }) => {
             placeholder={strings.BankName}
             style={styles.textInputstyle}
           />
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={sortCode}
             onChangeText={(sortCode) => {
               setSortCode(sortCode);
@@ -124,7 +124,7 @@ const AddBankDetailScreen = ({ navigation }) => {
             style={styles.textInputstyle}
             keyboardType="number-pad"
           />
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={rollNumber}
             onChangeText={(rollNumber) => {
               setRollNumber(rollNumber);

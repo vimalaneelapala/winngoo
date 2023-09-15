@@ -47,6 +47,7 @@ const CardDetailScreen = ({ navigation }) => {
         "x-access-token": token,
       },
     };
+    console.log("DD:",config);
     await axios(config)
       .then(async (res) => {
         setIsVisible(false);
@@ -65,19 +66,19 @@ const CardDetailScreen = ({ navigation }) => {
       <View style={styles.personalView}>
         <View style={styles.rowView}>
           <Text style={styles.blackSmallText}>Card Holder Name:</Text>
-          <Text style={styles.blackSmallText}>{data.account_holder_name}</Text>
+          <Text style={styles.blackSmallText}>{data?.account_holder_name}</Text>
         </View>
         <View style={styles.rowView}>
           <Text style={styles.blackSmallText}>Card Number:</Text>
-          <Text style={styles.blackSmallText}>{data.account_number}</Text>
+          <Text style={styles.blackSmallText}>{data?.account_number}</Text>
         </View>
         <View style={styles.rowView}>
           <Text style={styles.blackSmallText}>Bank Name:</Text>
-          <Text style={styles.blackSmallText}>{data.bank_name}</Text>
+          <Text style={styles.blackSmallText}>{data?.bank_name}</Text>
         </View>
         <View style={styles.rowView}>
           <Text style={styles.blackSmallText}>Expirt Date:</Text>
-          <Text style={styles.blackSmallText}>{data.sort_code}</Text>
+          <Text style={styles.blackSmallText}>{data?.sort_code}</Text>
         </View>
       </View>
     );

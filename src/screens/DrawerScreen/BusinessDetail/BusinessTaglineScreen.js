@@ -10,7 +10,7 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
-  FlatList
+  FlatList,
 } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
 import axios from "axios";
@@ -31,10 +31,10 @@ import { BaseURL, EndPoint } from "../../../api/ApiConstant";
 import { DrawerActions } from "@react-navigation/native";
 
 const BusinessTaglineScreen = ({ navigation }) => {
-  const [loadMore, setloadMore] = useState(false)
-  const [isloading, setIsLoading] = useState(false)
-  const [pageSize, setPageSize] = useState(10)
-  const [page, setPage] = useState(1)
+  const [loadMore, setloadMore] = useState(false);
+  const [isloading, setIsLoading] = useState(false);
+  const [pageSize, setPageSize] = useState(10);
+  const [page, setPage] = useState(1);
   const [taglineData, settaglineData] = useState([]);
   // UseEffect ======================================================================================
   useEffect(async () => {
@@ -44,27 +44,38 @@ const BusinessTaglineScreen = ({ navigation }) => {
   const taglineDataApiCall = async () => {
     let token = await AsyncStorage.getItem("token");
     setIsLoading(true);
-    var data = {
-      "perPage": pageSize,
-      "page": page,
-      "order": "DESC",
+    console.log("!");
+    var formdata = new FormData();
+    formdata.append("perPage", pageSize);
+    formdata.append("page", page);
+    formdata.append("order", "DESC");
+    console.log("!2");
+    
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("x-access-token", token);
+    console.log("!23");
+    
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
     };
-    var config = {
-      method: "post",
-      url: BaseURL + EndPoint.MERCHENTTAGLINELIST,
-      headers: {
-        "x-access-token": token,
-      },
-      data: data
-    };
-    await axios(config)
-      .then(async (res) => {
+    console.log("!235");
+
+    fetch(BaseURL + EndPoint.MERCHENTTAGLINELIST, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(JSON.stringify(result));
         setIsLoading(false);
-        console.log(JSON.stringify(res.data.result));
-        // setrewardSummary(res.data.result)
+        // setrewardSummary(result.result);
+        result?.data===""?settaglineData([]):settaglineData(result.errors.business_tagline)
+        console.log(JSON.stringify(result.result));
       })
       .catch((err) => {
         setIsLoading(false);
+        // alert(err);
         console.log(JSON.stringify(err));
       });
   };
@@ -85,13 +96,13 @@ const BusinessTaglineScreen = ({ navigation }) => {
         setIsLoading(false);
         console.log(JSON.stringify(res));
         alert("Tagline deleted successfully");
-        navigation.goBack()
+        navigation.goBack();
       })
       .catch((err) => {
         setIsLoading(false);
         console.log(JSON.stringify(err));
       });
-  }
+  };
   // Render Function ======================================================================================
   const renderItemView = ({ item, index }) => {
     return (
@@ -158,20 +169,30 @@ const BusinessTaglineScreen = ({ navigation }) => {
         }}
       />
       <Spinner visible={isloading} />
-      {taglineData.length > 0 ?
-        <View style={{
-          height: responsiveScreenWidth(100),
-          width: responsiveScreenWidth(100),
-          justifyContent: "center",
-          alignSelf: "center",
-        }}>
+      {taglineData.length > 0 ? (
+        <View
+          style={{
+            height: responsiveScreenWidth(100),
+            width: responsiveScreenWidth(100),
+            justifyContent: "center",
+            alignSelf: "center",
+          }}
+        >
           <Image
             source={images.noData}
             resizeMode="contain"
             style={styles.noData}
           />
-          <Text style={[styles.paginatonTxt, { fontSize: responsiveScreenFontSize(2.4) }]}>{"No Data Found"}</Text>
-        </View> :
+          <Text
+            style={[
+              styles.paginatonTxt,
+              { fontSize: responsiveScreenFontSize(2.4) },
+            ]}
+          >
+            {"No Data Found"}
+          </Text>
+        </View>
+      ) : (
         <View style={styles.container}>
           <FlatList
             data={taglineData}
@@ -184,42 +205,53 @@ const BusinessTaglineScreen = ({ navigation }) => {
             showsVerticalScrollIndicator={false}
             keyExtractor={(item, index) => index}
           />
-             <View style={{ flexDirection: "row", justifyContent: "center", padding: responsiveScreenWidth(1) }}>
-              <TouchableOpacity
-                onPress={() => {
-                  if (page > 1) {
-                    var pageTemp = Number(page) - Number(1)
-                    setPage(pageTemp)
-                    var pageSizeTemp = Number(pageSize) - Number(10)
-                    setPageSize(pageSizeTemp)
-                    setIsLoading(true)
-                    taglineDataApiCall()
-                  }
-                }}>
-                <Image
-                  source={images.leftArrow}
-                  resizeMode="contain"
-                  style={styles.socialIcon}
-                />
-              </TouchableOpacity>
-              <Text style={styles.paginatonTxt}>{page}/{pageSize}</Text>
-              <TouchableOpacity
-                onPress={() => {
-                  var pageTemp = Number(page) + Number(1)
-                  setPage(pageTemp)
-                  var pageSizeTemp = Number(pageSize) + Number(10)
-                  setPageSize(pageSizeTemp)
-                  setIsLoading(true)
-                  taglineDataApiCall()
-                }}>
-                <Image
-                  source={images.rightarrow}
-                  resizeMode="contain"
-                  style={styles.socialIcon}
-                />
-              </TouchableOpacity>
-            </View>
-        </View>}
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              padding: responsiveScreenWidth(1),
+            }}
+          >
+            <TouchableOpacity
+              onPress={() => {
+                if (page > 1) {
+                  var pageTemp = Number(page) - Number(1);
+                  setPage(pageTemp);
+                  var pageSizeTemp = Number(pageSize) - Number(10);
+                  setPageSize(pageSizeTemp);
+                  setIsLoading(true);
+                  taglineDataApiCall();
+                }
+              }}
+            >
+              <Image
+                source={images.leftArrow}
+                resizeMode="contain"
+                style={styles.socialIcon}
+              />
+            </TouchableOpacity>
+            <Text style={styles.paginatonTxt}>
+              {page}/{pageSize}
+            </Text>
+            <TouchableOpacity
+              onPress={() => {
+                var pageTemp = Number(page) + Number(1);
+                setPage(pageTemp);
+                var pageSizeTemp = Number(pageSize) + Number(10);
+                setPageSize(pageSizeTemp);
+                setIsLoading(true);
+                taglineDataApiCall();
+              }}
+            >
+              <Image
+                source={images.rightarrow}
+                resizeMode="contain"
+                style={styles.socialIcon}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -255,42 +287,42 @@ const styles = StyleSheet.create({
   },
   footer: {
     padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
   },
   loadMoreBtn: {
     padding: 10,
-    backgroundColor: '#800000',
+    backgroundColor: "#800000",
     borderRadius: 4,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   btnText: {
-    color: 'white',
+    color: "white",
     fontSize: 15,
-    textAlign: 'center',
+    textAlign: "center",
   },
   noData: {
     height: responsiveScreenWidth(35),
     width: responsiveScreenWidth(35),
-    justifyContent: 'center',
-    alignSelf: 'center',
+    justifyContent: "center",
+    alignSelf: "center",
     margin: responsiveScreenWidth(4),
-    marginTop: responsiveScreenWidth(40)
+    marginTop: responsiveScreenWidth(40),
   },
   paginatonTxt: {
     color: colors.BLACK,
     fontSize: responsiveScreenFontSize(1.8),
     alignSelf: "center",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   socialIcon: {
     height: responsiveScreenWidth(5),
     width: responsiveScreenWidth(5),
-    justifyContent: 'center',
-    alignSelf: 'center',
+    justifyContent: "center",
+    alignSelf: "center",
     margin: responsiveScreenWidth(4),
   },
 });

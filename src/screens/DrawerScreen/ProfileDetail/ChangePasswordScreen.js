@@ -94,7 +94,7 @@ const ChangePasswordScreen = ({ navigation }) => {
             <Text style={styles.starText}>{" *"}</Text>
           </Text>
           <View style={styles.textinputRow}>
-            <TextInput
+             <TextInput placeholderTextColor={colors.gray}
               value={oldPassword}
               onChangeText={(password) => {
                 setOldPassword(password);
@@ -127,7 +127,7 @@ const ChangePasswordScreen = ({ navigation }) => {
             <Text style={styles.starText}>{" *"}</Text>
           </Text>
           <View style={styles.textinputRow}>
-            <TextInput
+             <TextInput placeholderTextColor={colors.gray}
               value={newPassword}
               onChangeText={(password) => {
                 setNewPassword(password);
@@ -160,7 +160,7 @@ const ChangePasswordScreen = ({ navigation }) => {
             <Text style={styles.starText}>{" *"}</Text>
           </Text>
           <View style={styles.textinputRow}>
-            <TextInput
+             <TextInput placeholderTextColor={colors.gray}
               value={confirmPassword}
               onChangeText={(password) => {
                 setConfirmPassword(password);

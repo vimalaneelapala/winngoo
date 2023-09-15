@@ -39,22 +39,29 @@ const BusinessDetailScreen = ({ navigation }) => {
   const getBusinessDetail = async () => {
     let token = await AsyncStorage.getItem("token");
     setIsVisible(true);
-    var config = {
+
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("x-access-token", token);
+
+    var requestOptions = {
       method: "get",
-      url: BaseURL + EndPoint.MERCHENTBUSINESSDETAIL,
-      headers: {
-        "x-access-token": token,
-      },
+      headers: myHeaders,
+      redirect: "follow",
     };
-    await axios(config)
-      .then(async (res) => {
+
+    fetch(BaseURL + EndPoint.MERCHENTBUSINESSDETAIL, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(JSON.stringify(result));
         setIsVisible(false);
-        setData(res.data.result)
-        setIsTimeDetail(res.data.result.business_hours)
-        console.log(JSON.stringify(res.data.result));
+        setData(result.result);
+        setIsTimeDetail(result.result.business_hours);
+        console.log(JSON.stringify(result.result.business_hours));
       })
       .catch((err) => {
         setIsVisible(false);
+        alert(err);
         console.log(JSON.stringify(err));
       });
   };
@@ -116,13 +123,13 @@ const BusinessDetailScreen = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.shadowView}>
-          <View style={styles.rowView}>
+          <View style={{ margin: responsiveScreenWidth(1), width: "80%" }}>
             <Text style={styles.blackSmallBoldText}>
               {strings.TermsCondition}
             </Text>
             <Text
-              numberOfLines={2}
-              ellipsizeMode="tail"
+              numberOfLines={4}
+              ellipsizeMode={"tail"}
               style={styles.blackSmallText}
             >
               {data?.terms_and_condition}
@@ -130,9 +137,7 @@ const BusinessDetailScreen = ({ navigation }) => {
           </View>
         </View>
         <View style={styles.shadowView}>
-          <Text style={styles.blackSmallBoldText}>
-            {strings.Timing}
-          </Text>
+          <Text style={styles.blackSmallBoldText}>{strings.Timing}</Text>
           <View style={styles.rowView}>
             <Text style={styles.blackSmallBoldText}>{strings.Monday}</Text>
             <Text
@@ -140,7 +145,9 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {isTimeDetail[0]?.opening_time + " - " + isTimeDetail[0]?.closing_time}
+              {isTimeDetail[0]?.opening_time +
+                " - " +
+                isTimeDetail[0]?.closing_time}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -150,7 +157,9 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {isTimeDetail[1]?.opening_time + "-" + isTimeDetail[1]?.closing_time}
+              {isTimeDetail[1]?.opening_time +
+                "-" +
+                isTimeDetail[1]?.closing_time}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -160,7 +169,9 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {isTimeDetail[2]?.opening_time + "-" + isTimeDetail[2]?.closing_time}
+              {isTimeDetail[2]?.opening_time +
+                "-" +
+                isTimeDetail[2]?.closing_time}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -170,7 +181,9 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {isTimeDetail[3]?.opening_time + "-" + isTimeDetail[3]?.closing_time}
+              {isTimeDetail[3]?.opening_time +
+                "-" +
+                isTimeDetail[3]?.closing_time}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -180,7 +193,9 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {isTimeDetail[4]?.opening_time + "-" + isTimeDetail[4]?.closing_time}
+              {isTimeDetail[4]?.opening_time +
+                "-" +
+                isTimeDetail[4]?.closing_time}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -190,7 +205,9 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {isTimeDetail[5]?.opening_time + "-" + isTimeDetail[5]?.closing_time}
+              {isTimeDetail[5]?.opening_time +
+                "-" +
+                isTimeDetail[5]?.closing_time}
             </Text>
           </View>
           <View style={styles.rowView}>
@@ -200,7 +217,9 @@ const BusinessDetailScreen = ({ navigation }) => {
               ellipsizeMode="tail"
               style={styles.blackSmallText}
             >
-              {isTimeDetail[6]?.opening_time + "-" + isTimeDetail[6]?.closing_time}
+              {isTimeDetail[6]?.opening_time +
+                "-" +
+                isTimeDetail[6]?.closing_time}
             </Text>
           </View>
         </View>

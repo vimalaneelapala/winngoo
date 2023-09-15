@@ -29,6 +29,7 @@ import { BaseURL, EndPoint } from "../../api/ApiConstant";
 const genderList = [
   { label: "Female", value: "Female" },
   { label: "Male", value: "Male" },
+  { label: "Other", value: "other" },
 ];
 const MerchentSignUpAddressScreen = ({ navigation ,route}) => {
   const [addressLine1, setAddressLine1] = useState("");
@@ -36,7 +37,7 @@ const MerchentSignUpAddressScreen = ({ navigation ,route}) => {
   const [addressLine3, setAddressLine3] = useState("");
   const [city, setCity] = useState("");
   const [postCode, setPostCode] = useState("");
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("United Kingdom");
 
   const [addressLine1Err, setAddressLine1Err] = useState(false);
   const [cityErr, setCityErr] = useState(false);
@@ -69,7 +70,7 @@ const MerchentSignUpAddressScreen = ({ navigation ,route}) => {
         country:country,
         postCode:postCode
       };
-      navigation.navigate("MerchentSignUpBusinessScreen", { addressdetail: data,detail:route.details });
+      navigation.navigate("MerchentSignUpBusinessScreen", { addressdetail: data,detail:route.params });
     } catch (e) {
       console.log(e);
     }
@@ -80,10 +81,18 @@ const MerchentSignUpAddressScreen = ({ navigation ,route}) => {
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView style={styles.container}>
           <View style={styles.container}>
-            <Text style={styles.loginText}>{strings.AddressDetail}</Text>
+          <View style={{flexDirection:"row"}}>
+              <TouchableOpacity onPress={()=>{
+                navigation.goBack()
+              }}>
+
+<Image source={images.leftArrow} style={{height:responsiveScreenWidth(5),width:responsiveScreenWidth(5),margin:responsiveScreenWidth(5)}}/>
+              </TouchableOpacity>
+            <Text style={[styles.loginText,{marginTop:responsiveScreenWidth(1)}]}>{strings.AddressDetail}</Text>
+            </View>
 
             <View style={styles.mainview}>
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={addressLine1}
                 onChangeText={(addressLine1) => {
                   setAddressLine1(addressLine1);
@@ -95,7 +104,7 @@ const MerchentSignUpAddressScreen = ({ navigation ,route}) => {
               {addressLine1Err ? (
                 <Text style={styles.starText}>{strings.EnterAddress1Err}</Text>
               ) : null}
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={addressLine2}
                 onChangeText={(addressLine2) => {
                   setAddressLine2(addressLine2);
@@ -103,7 +112,7 @@ const MerchentSignUpAddressScreen = ({ navigation ,route}) => {
                 placeholder={strings.EnterAddress2}
                 style={styles.textInputstyle}
               />
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={addressLine3}
                 onChangeText={(addressLine3) => {
                   setAddressLine3(addressLine3);
@@ -111,7 +120,7 @@ const MerchentSignUpAddressScreen = ({ navigation ,route}) => {
                 placeholder={strings.EnterAddress3}
                 style={styles.textInputstyle}
               />
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={city}
                 onChangeText={(city) => {
                   setCity(city);
@@ -123,19 +132,20 @@ const MerchentSignUpAddressScreen = ({ navigation ,route}) => {
               {cityErr ? (
                 <Text style={styles.starText}>{strings.EnterCityErr}</Text>
               ) : null}
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={country}
-                onChangeText={(country) => {
-                  setCountry(country);
-                  setCountryErr(false)
-                }}
+                // onChangeText={(country) => {
+                //   setCountry(country);
+                //   setCountryErr(false)
+                // }}
+                editable={false}
                 placeholder={strings.EnterCountry}
                 style={styles.textInputstyle}
               />
               {countryErr ? (
                 <Text style={styles.starText}>{strings.EnterCountryErr}</Text>
               ) : null}
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={postCode}
                 onChangeText={(postCode) => {
                   setPostCode(postCode);
@@ -194,8 +204,9 @@ const styles = StyleSheet.create({
     fontWeight: "400",
   },
   textInputstyle: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.TEXTINPUTBACKGROUND,
     borderColor: colors.BLACK,
+    color:colors.BLACK,
     borderWidth: responsiveScreenWidth(0.2),
     fontSize: responsiveScreenFontSize(2),
     width: "100%",
@@ -230,7 +241,7 @@ const styles = StyleSheet.create({
     borderRadius: responsiveScreenWidth(1),
     borderColor: colors.BLACK,
     borderWidth: responsiveScreenWidth(0.1),
-    backgroundColor: colors.white,
+    backgroundColor: colors.TEXTINPUTBACKGROUND,
     marginTop: responsiveScreenWidth(4),
     width: "100%",
     alignSelf: "center",

@@ -73,7 +73,7 @@ const FAQScreen = ({ navigation }) => {
         {webViewData === "" ? (
         <View style={styles.shadowView}>
             <Text style={styles.blackSmallText}>
-              {"Winngoo Re Launch soon."}
+              {"WinngooApp Re Launch soon."}
             </Text>
         </View>
           ) : (

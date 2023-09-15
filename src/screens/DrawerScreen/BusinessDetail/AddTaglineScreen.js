@@ -39,25 +39,33 @@ const AddTaglineScreen = ({ navigation }) => {
   const callCreateApi = async () => {
     let token = await AsyncStorage.getItem("token");
     setIsLoading(true);
-    var data = new FormData();
-    data.append("business_tagline", tagline);
-    var config = {
-      method: "post",
-      url: BaseURL + EndPoint.MERCHENTTAGLINELIST,
-      headers: {
-        "x-access-token": token,
-        "Content-Type": "multipart/form-data",
-      },
-      data: data,
+
+    var formdata = new FormData();
+    formdata.append("business_tagline", tagline);
+
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("x-access-token", token);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
     };
-    await axios(config)
-      .then(async (res) => {
-        setIsLoading(false);
-        console.log(JSON.stringify(res));
+
+    fetch(BaseURL + EndPoint.MERCHENTTAGLINELIST, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(JSON.stringify(result));
+        setIsVisible(false);
         alert("Tagline udpate successfully.");
+        console.log(JSON.stringify(result.result));
+        navigation.goBack()
       })
       .catch((err) => {
-        setIsLoading(false);
+        setIsVisible(false);
+        alert(err);
         console.log(JSON.stringify(err));
       });
   };
@@ -72,30 +80,29 @@ const AddTaglineScreen = ({ navigation }) => {
       <Spinner visible={isLoading} />
       <ScrollView>
         <View style={styles.container}>
-           {/* Business Tagline */}
-           <Text style={styles.titleText}>
-            {strings.BusinessTagline}
-          </Text>
+          {/* Business Tagline */}
+          <Text style={styles.titleText}>{strings.BusinessTagline}</Text>
           <View style={styles.textinputRow}>
-            <TextInput
+             <TextInput placeholderTextColor={colors.gray}
               value={tagline}
               onChangeText={(tagline) => {
                 settagline(tagline);
               }}
               style={styles.textInputstyle}
             />
-          </View>  
+          </View>
           <View style={styles.rowView}>
             <TouchableOpacity
               onPress={() => {
-                callCreateApi()
+                callCreateApi();
               }}
               style={styles.btnBlue}
             >
               <Text style={styles.btnText}>{strings.Update}</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => { settagline("");
+              onPress={() => {
+                settagline("");
               }}
               style={[
                 styles.btnBlue,
@@ -122,7 +129,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignSelf: "center",
-    width:"90%"
+    width: "90%",
   },
   touchable: {
     borderColor: colors.BLACK,
@@ -143,7 +150,10 @@ const styles = StyleSheet.create({
     margin: responsiveScreenWidth(3),
     marginStart: 0,
     color: colors.BLACK,
-    height:Platform.OS==="ios"?responsiveScreenWidth(12):responsiveScreenWidth(12)
+    height:
+      Platform.OS === "ios"
+        ? responsiveScreenWidth(12)
+        : responsiveScreenWidth(12),
   },
   errMsg: {
     color: colors.red,

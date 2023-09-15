@@ -14,6 +14,7 @@ import {
 } from "react-native";
 // Library ======================================================================================
 import { Dropdown } from "react-native-element-dropdown";
+import { launchImageLibrary } from "react-native-image-picker";
 // Custom ======================================================================================
 import colors from "../../res/colors/colors";
 import images from "../../res/imageConstant/images";
@@ -43,11 +44,13 @@ const discount = [
   { label: "Discount", value: "Discount" },
   { label: "Reward", value: "Reward" },
 ];
-const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
+const MerchentSignUpBusinessScreen = ({ navigation, route }) => {
   const [registrationNumber, setRegistrationNumber] = useState("");
   const [category, setCategory] = useState([]);
+  const [categoryId, setCategoryId] = useState([]);
   const [categoryValue, setCategoryValue] = useState("");
   const [subCategory, setSubCategory] = useState([]);
+  const [subCategoryId, setSubCategoryId] = useState([]);
   const [subCategoryValue, setSubCategoryValue] = useState([]);
   const [businessTypeValue, setBusinessType] = useState("");
   const [businessDescription, setBusinessDescription] = useState("");
@@ -58,8 +61,18 @@ const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
   const [businessName, setbusinessName] = useState("");
   const [discountTerm, setdiscountTerm] = useState("");
   const [websiteLink, setwebsiteLink] = useState("");
+  const [discountPercentage, setDiscountPercentage] = useState("");
   const [refferalCode, setrefferalCode] = useState("");
   const [photo, setphoto] = useState("");
+  const [imageUrl, setimageUrl] = useState("");
+  const [isAgrree, setisAgrree] = useState(false);
+  console.log(">>>>>>>>>>>>>>>>>>>>", route.params.addressdetail);
+  console.log(">>>>>>>>>>>>>>>>>>>>", route.params.addressdetail.addressLine1);
+  console.log(">>>>>>>>>>>>>>>>>>>>", JSON.stringify(route.params.detail));
+  console.log(
+    ">>>>>>>>>>>>>>>>>>>>",
+    JSON.stringify(route.params.detail.details)
+  );
   // ==========================================Api Call================
   useEffect(() => {
     getCategoryApi();
@@ -86,37 +99,86 @@ const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
   };
   // ============Register Api Call================
   const registerApiCall = async () => {
-    var data = {
-      first_name: route.details.firstName ,
-      last_name: route.details.lastName,
-      phone_number: route.details.firstName,
-      email: route.details.email,
-      password: route.details.password,
-      address_line_1:route.addressdetail.addressLine1,
-      address_line_2:route.addressdetail.addressLine2,
-      address_line_3:route.addressdetail.addressLine3,
-      city: route.addressdetail.city,
-      country: route.addressdetail.country,
-      post_code:route.addressdetail.postCode,
-      business_name: businessName,
-      business_type: businessType,
-      business_relationship:businessRelation,
-      business_description: businessDescription,
-      trading_years: tradingYear,
-      image: "",
-      category_id: [6],
-      sub_category_id: [46],
-      discountType: discountValue,
-      discount_percentage: discount,
-      terms_and_conditions: "yes",
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+
+    var formdata = new FormData();
+    formdata.append("first_name", route.params.detail.details.firstName),
+      formdata.append("last_name", route.params.detail.details.lastName),
+      formdata.append("phone_number", route.params.detail.details.phoneNumber),
+      formdata.append("email", route.params.detail.details.email),
+      formdata.append("password", route.params.detail.details.password),
+      formdata.append("address_line_1", route.params.address_line_1),
+      formdata.append("address_line_2", route.params.address_line_2),
+      formdata.append("address_line_3", route.params.address_line_3),
+      formdata.append("city", route.params.city),
+      formdata.append("country", route.params.country),
+      formdata.append("post_code", route.params.post_code),
+      formdata.append("business_name", businessName),
+      formdata.append("business_type", businessType),
+      formdata.append("business_relationship", businessRelation),
+      formdata.append("business_description", businessDescription),
+      formdata.append("trading_years", tradingYear),
+      formdata.append("image", imageUrl),
+      formdata.append("category_id", categoryId),
+      formdata.append("sub_category_id", subCategoryId),
+      formdata.append("discountType", discountValue),
+      formdata.append("discount_percentage", discountPercentage),
+      formdata.append("status[0]", "Open");
+    formdata.append("status[1]", "Open");
+    formdata.append("status[2]", "Open");
+    formdata.append("status[3]", "Open");
+    formdata.append("status[4]", "Open");
+    formdata.append("status[5]", "Open");
+    formdata.append("status[6]", "Open");
+    formdata.append("openingTime[]", "");
+    formdata.append("closingTime[]", "");
+    formdata.append("dayOfWeek[]", "Monday");
+    formdata.append("terms_and_conditions", "yes");
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
     };
 
-    await axios
-      .post(BaseURL + EndPoint.REGISTERMERCHENT, data)
-      .then((res) => {
-        alert(res.data);
+    console.log(requestOptions);
+    console.log(BaseURL + EndPoint.REGISTERMERCHENT);
+    fetch(BaseURL + EndPoint.REGISTERMERCHENT, requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(JSON.stringify(result));
+        if (result.success === true) {
+          console.log(result.message);
+          setisLoading(false);
+          setsuccessModal(true);
+        } else {
+          alert(result.message);
+        }
       })
-      .catch((err) => console.log(JSON.stringify(err)));
+      .catch((error) => {
+        setisLoading(false);
+        setfailureModal(true);
+        console.log(JSON.stringify(error));
+        console.log("error", error);
+      });
+  };
+  // ==========================================Render Call================
+  const selectFile = () => {
+    launchImageLibrary(
+      {
+        mediaType: "photo",
+        includeBase64: false,
+        maxHeight: 200,
+        maxWidth: 200,
+      },
+      (response) => {
+        setimageUrl(response.assets[0].uri);
+        console.log(response.assets[0].uri);
+        console.log(response.assets[0]);
+      }
+    );
   };
   // ==========================================Render Call================
   return (
@@ -124,7 +186,30 @@ const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView style={styles.container}>
           <View style={styles.container}>
-            <Text style={styles.loginText}>{strings.EnterBusinessDetail}</Text>
+            <View style={{ flexDirection: "row" }}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.goBack();
+                }}
+              >
+                <Image
+                  source={images.leftArrow}
+                  style={{
+                    height: responsiveScreenWidth(5),
+                    width: responsiveScreenWidth(5),
+                    margin: responsiveScreenWidth(5),
+                  }}
+                />
+              </TouchableOpacity>
+              <Text
+                style={[
+                  styles.loginText,
+                  { marginTop: responsiveScreenWidth(1) },
+                ]}
+              >
+                {strings.EnterBusinessDetail}
+              </Text>
+            </View>
 
             <View style={styles.mainview}>
               <Dropdown
@@ -142,7 +227,8 @@ const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
                 value={categoryValue}
                 onChange={(item) => {
                   // alert(JSON.stringify(item))
-                  setCategoryValue(item.name);
+                  setCategoryValue(item.slug);
+                  setCategoryId(item.id);
                   getSubCategoryApi(item.id);
                 }}
               />
@@ -162,7 +248,8 @@ const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
                 value={subCategoryValue}
                 onChange={(item) => {
                   // alert(JSON.stringify(item))
-                  setSubCategoryValue(item.name);
+                  setSubCategoryValue(item.slug);
+                  setSubCategoryId(item.id);
                 }}
               />
               <Dropdown
@@ -184,6 +271,7 @@ const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
               />
 
               <TextInput
+                placeholderTextColor={colors.gray}
                 value={registrationNumber}
                 onChangeText={(registrationNumber) => {
                   setRegistrationNumber(registrationNumber);
@@ -210,6 +298,7 @@ const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
               />
 
               <TextInput
+                placeholderTextColor={colors.gray}
                 value={businessName}
                 onChangeText={(businessName) => {
                   setbusinessName(businessName);
@@ -218,6 +307,7 @@ const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
                 style={styles.textInputstyle}
               />
               <TextInput
+                placeholderTextColor={colors.gray}
                 value={businessDescription}
                 onChangeText={(businessDescription) => {
                   setBusinessDescription(businessDescription);
@@ -227,6 +317,7 @@ const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
               />
 
               <TextInput
+                placeholderTextColor={colors.gray}
                 value={tradingYear}
                 onChangeText={(tradingYear) => {
                   settradingYear(tradingYear);
@@ -254,6 +345,16 @@ const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
               />
 
               <TextInput
+                placeholderTextColor={colors.gray}
+                value={discountPercentage}
+                onChangeText={(text) => {
+                  setDiscountPercentage(text);
+                }}
+                placeholder={"Discount Percentage"}
+                style={styles.textInputstyle}
+              />
+              <TextInput
+                placeholderTextColor={colors.gray}
                 value={detail}
                 onChangeText={(detail) => {
                   setdetail(detail);
@@ -263,6 +364,7 @@ const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
               />
 
               <TextInput
+                placeholderTextColor={colors.gray}
                 value={websiteLink}
                 onChangeText={(websiteLink) => {
                   setwebsiteLink(websiteLink);
@@ -272,6 +374,7 @@ const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
               />
 
               <TextInput
+                placeholderTextColor={colors.gray}
                 value={refferalCode}
                 onChangeText={(refferalCode) => {
                   setrefferalCode(refferalCode);
@@ -279,9 +382,111 @@ const MerchentSignUpBusinessScreen = ({ navigation,route }) => {
                 placeholder={strings.EnterReferralCode}
                 style={styles.textInputstyle}
               />
+
+              <TouchableOpacity
+                style={[
+                  styles.textInputstyle,
+                  {
+                    flexDirection: "row",
+                    height: responsiveScreenWidth(10),
+                    alignItem: "center",
+                    padding: 5,
+                  },
+                ]}
+                onPress={() => {
+                  selectFile();
+                }}
+              >
+                <Image
+                  source={images.GalleryIcon}
+                  style={{
+                    height: 20,
+                    width: 20,
+                    alignSelf: "center",
+                    marginStart: 10,
+                  }}
+                ></Image>
+
+                <Text
+                  style={[
+                    styles.modaltextStyle1,
+                    {
+                      colors: colors.BLUETEXT,
+                      alignSelf: "center",
+                      marginStart: 15,
+                    },
+                  ]}
+                >
+                  Select Image
+                </Text>
+              </TouchableOpacity>
+
+              <View
+                style={{
+                  flexDirection: "row",
+                  marginTop: responsiveScreenWidth(3),
+                }}
+              >
+                <TouchableOpacity
+                  onPress={() => {
+                    setisAgrree(!isAgrree);
+                  }}
+                  style={{
+                    height: 20,
+                    width: 20,
+                    borderColor: "black",
+                    borderWidth: 1,
+                    marginEnd: responsiveScreenWidth(2),
+                    justifyContent: "center",
+                  }}
+                >
+                  <Image
+                    source={isAgrree ? images.Check : null}
+                    style={{ height: 15, width: 15, alignSelf: "center" }}
+                  ></Image>
+                </TouchableOpacity>
+                <Text style={styles.modaltextStyle1}>
+                  I agree to the{" "}
+                  <Text
+                    style={[
+                      styles.modaltextStyle1,
+                      { colors: colors.BLUETEXT },
+                    ]}
+                  >
+                    Affiliate/Partner Agreement
+                  </Text>
+                </Text>
+              </View>
             </View>
 
-            <TouchableOpacity onPress={()=>{registerApiCall()}} style={styles.loginBtn}>
+            <TouchableOpacity
+              onPress={() => {
+                if (categoryValue === "") {
+                  alert("Please select category to procced");
+                } else if (subCategoryValue === "") {
+                  alert("Please select sub category to procced");
+                } else if (businessType === "") {
+                  alert("Please select business type to procced");
+                } else if (businessRelationValue === "") {
+                  alert("Please select business relation to procced");
+                } else if (businessDescription === "") {
+                  alert("Please select business description to procced");
+                } else if (tradingYear === "") {
+                  alert("Please select number of trading years to procced");
+                } else if (discountValue === "") {
+                  alert("Please select type of discount to procced");
+                } else if (discountPercentage === "") {
+                  alert("Please select discount percentage to procced");
+                } else if (imageUrl === "") {
+                  alert("Please select image to procced");
+                } else {
+                  isAgrree
+                    ? registerApiCall()
+                    : alert("Please accept agrrement to procced");
+                }
+              }}
+              style={styles.loginBtn}
+            >
               <Text
                 style={[
                   styles.loginText,
@@ -320,15 +525,19 @@ const styles = StyleSheet.create({
     fontWeight: "400",
   },
   textInputstyle: {
-    backgroundColor: colors.white,
+    backgroundColor: colors.TEXTINPUTBACKGROUND,
     borderColor: colors.BLACK,
+    color: colors.BLACK,
     borderWidth: responsiveScreenWidth(0.2),
     fontSize: responsiveScreenFontSize(2),
     width: "100%",
     alignSelf: "center",
     margin: responsiveScreenWidth(3),
     marginTop: responsiveScreenWidth(4),
-    height:Platform.OS==="ios"?responsiveScreenWidth(12):responsiveScreenWidth(12)
+    height:
+      Platform.OS === "ios"
+        ? responsiveScreenWidth(12)
+        : responsiveScreenWidth(12),
   },
   loginBtn: {
     width: "75%",
@@ -352,12 +561,12 @@ const styles = StyleSheet.create({
   },
 
   dropdown: {
-    height: responsiveScreenWidth(12),
+    height: responsiveScreenWidth(13),
     borderRadius: responsiveScreenWidth(1),
     borderColor: colors.BLACK,
-    borderWidth: responsiveScreenWidth(0.1),
-    backgroundColor: colors.white,
-    marginTop: responsiveScreenWidth(5),
+    borderWidth: responsiveScreenWidth(0.2),
+    backgroundColor: colors.TEXTINPUTBACKGROUND,
+    marginTop: responsiveScreenWidth(3),
     width: "99%",
     alignSelf: "center",
     paddingStart: responsiveScreenWidth(1),
@@ -394,6 +603,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
     margin: responsiveScreenWidth(5),
+  },
+  modaltextStyle1: {
+    color: colors.BLACK,
+    fontSize: responsiveScreenFontSize(1.8),
+    fontWeight: "400",
   },
 });
 

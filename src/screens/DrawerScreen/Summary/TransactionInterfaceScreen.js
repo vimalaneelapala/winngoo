@@ -43,7 +43,7 @@ const TransactionInterfaceScreen = ({ navigation }) => {
     let token = await AsyncStorage.getItem("token");
     setIsLoading(true);
     var data = {
-      "winngoo_card_email": cardNumber
+      "WinngooApp_card_email": cardNumber
     };
     var header = {
       headers: {
@@ -78,9 +78,9 @@ const TransactionInterfaceScreen = ({ navigation }) => {
       <View style={styles.container}>
         <View style={styles.shadowView}>
           <Text style={styles.blackSmallText}>
-            Enter Winngoo Card Number/ Email
+            Enter WinngooApp Card Number/ Email
           </Text>
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={cardNumber}
             onChangeText={(cardNumber) => {
               setcardNumber(cardNumber);

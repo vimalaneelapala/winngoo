@@ -14,6 +14,8 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import Spinner from "react-native-loading-spinner-overlay/lib";
+import { DrawerActions } from "@react-navigation/native";
+import { launchImageLibrary } from "react-native-image-picker";
 // Custom ======================================================================================
 import colors from "../../../res/colors/colors";
 import images from "../../../res/imageConstant/images";
@@ -71,7 +73,7 @@ const ProfileEditScreen = ({ navigation, route }) => {
       .catch((err) => {
         setIsLoading(false);
         setfailureModal(true)
-        console.log(JSON.stringify(err));
+        console.log("DD log::",JSON.stringify(err));
       });
   };
   // ==========================================Render Call================
@@ -87,22 +89,22 @@ const ProfileEditScreen = ({ navigation, route }) => {
         <View style={styles.container}>
           <Spinner visible={isLoading} />
 
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={firstName}
             editable={false}
             style={styles.textInputstyle}
           />
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={lastName}
             editable={false}
             style={styles.textInputstyle}
           />
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={email}
             editable={false}
             style={styles.textInputstyle}
           />
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={address1}
             onChangeText={(address1) => {
               setAddress1(address1);
@@ -110,7 +112,7 @@ const ProfileEditScreen = ({ navigation, route }) => {
             placeholder={strings.AddressLine1}
             style={styles.textInputstyle}
           />
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={address2}
             onChangeText={(address2) => {
               setAddress2(address2);
@@ -118,7 +120,7 @@ const ProfileEditScreen = ({ navigation, route }) => {
             placeholder={strings.AddressLine2}
             style={styles.textInputstyle}
           />
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={address1}
             onChangeText={(address3) => {
               setAddress3(address3);
@@ -126,7 +128,7 @@ const ProfileEditScreen = ({ navigation, route }) => {
             placeholder={strings.AddressLine3}
             style={styles.textInputstyle}
           />
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={city}
             onChangeText={(city) => {
               setCity(city);
@@ -134,7 +136,7 @@ const ProfileEditScreen = ({ navigation, route }) => {
             placeholder={strings.City}
             style={styles.textInputstyle}
           />
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={country}
             onChangeText={(country) => {
               setCountry(country);
@@ -142,7 +144,7 @@ const ProfileEditScreen = ({ navigation, route }) => {
             placeholder={strings.Country}
             style={styles.textInputstyle}
           />
-          <TextInput
+           <TextInput placeholderTextColor={colors.gray}
             value={postalCode}
             onChangeText={(postalCode) => {
               setPostalCode(postalCode);

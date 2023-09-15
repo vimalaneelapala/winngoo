@@ -59,7 +59,7 @@ const MemberForgotPasswordScreen = ({navigation}) => {
 
         <Text style={styles.rememberText}>{strings.ResetPassword}</Text>
 
-        <TextInput
+         <TextInput placeholderTextColor={colors.gray}
           value={getemail}
           onChangeText={(email) => {
             setEmail(email);

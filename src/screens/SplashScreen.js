@@ -31,7 +31,7 @@ const SplashScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <Image
-          source={images.LogoIcon}
+          source={images.logoWithName}
           resizeMode="contain"
           style={styles.imageicon}
         />
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageicon: {
-    height: responsiveScreenWidth(30),
-    width: responsiveScreenWidth(50),
+    height: responsiveScreenWidth(50),
+    width: responsiveScreenWidth(80),
     justifyContent: "center",
     alignSelf: "center",
   },

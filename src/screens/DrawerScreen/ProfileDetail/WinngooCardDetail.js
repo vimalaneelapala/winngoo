@@ -28,7 +28,7 @@ import Spinner from "react-native-loading-spinner-overlay";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
-const WinngooCardDetail = ({ navigation }) => {
+const WinngooAppCardDetail = ({ navigation }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDetail, setIsDetail] = useState(false);
   const [data, setData] = useState([]);
@@ -42,7 +42,7 @@ const WinngooCardDetail = ({ navigation }) => {
     setIsVisible(true);
     var config = {
       method: "get",
-      url: BaseURL + EndPoint.WINNGOOCARDDETAIL,
+      url: BaseURL + EndPoint.WinngooAppCARDDETAIL,
       headers: {
         "x-access-token": token,
       },
@@ -152,4 +152,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WinngooCardDetail;
+export default WinngooAppCardDetail;

@@ -37,24 +37,36 @@ const EditTaglineScreen = ({ navigation }) => {
   const [failureModal, setfailureModal] = useState(false);
   // ==========================================Api Call================
   const callEditApi = async () => {
+    console.log("!12dsfßß");
     let token = await AsyncStorage.getItem("token");
     setIsLoading(true);
+    console.log("!");
+    
     var data = new FormData();
     data.append("business_tagline", tagline);
-    var config = {
-      method: "post",
-      url: BaseURL + EndPoint.MERCHENTTAGLINE+id,
-      headers: {
-        "x-access-token": token,
-        "Content-Type": "multipart/form-data",
-      },
-      data: data,
+    console.log("!2");
+    console.log("!2");
+    
+    var myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("x-access-token", token);
+    console.log("!23");
+    
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: formdata,
+      redirect: "follow",
     };
-    await axios(config)
-      .then(async (res) => {
+      console.log("!235");
+
+    fetch(BaseURL + EndPoint.MERCHENTTAGLINE+id, requestOptions)
+      .then((response) => response.json()) 
+      .then((result) => {
         setIsLoading(false);
-        console.log(JSON.stringify(res));
+        console.log(JSON.stringify(result));
         alert("Tagline udpate successfully.");
+        navigation.goBack()
       })
       .catch((err) => {
         setIsLoading(false);
@@ -78,7 +90,7 @@ const EditTaglineScreen = ({ navigation }) => {
             {strings.BusinessTagline}
           </Text>
           <View style={styles.textinputRow}>
-            <TextInput
+             <TextInput placeholderTextColor={colors.gray}
               value={tagline}
               onChangeText={(tagline) => {
                 settagline(tagline);

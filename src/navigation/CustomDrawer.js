@@ -32,6 +32,14 @@ const CustomDrawer = ({ navigation }) => {
           </View>
           <View style={styles.line} />
           <TouchableOpacity onPress={() => {
+            navigation.navigate("DashboardScreen");
+          }} style={{ flexDirection: "row", }}>
+            <Image source={images.LogoIcon} style={styles.blueIcon} />
+            <Text style={styles.titletextStyle}>
+             Dashboard
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {
             setProfileModal(true);
           }} style={{ flexDirection: "row", }}>
             <Image source={images.ProfileIconD} style={styles.blueIcon} />
@@ -148,6 +156,13 @@ const CustomDrawer = ({ navigation }) => {
           </TouchableOpacity>
         </ScrollView>
         <Modal transparent={true} visible={profileModal} animationType="slide">
+        <TouchableOpacity
+              onPress={() => {
+                console.log("Modal has been closed.");
+                setProfileModal(!profileModal);
+              }}
+              style={{ backgroundColor: "#00000030", flex: 1 }}
+            >
           <View style={styles.modalView}>
             <Text
               onPress={() => {
@@ -158,7 +173,7 @@ const CustomDrawer = ({ navigation }) => {
             >
               Personal Information
             </Text>
-            <View style={styles.modalline} />
+            {global.loginTypeTemp === "member" ?  <View style={styles.modalline} />:null}
             {global.loginTypeTemp === "member" ? <Text
               onPress={() => {
                 setProfileModal(false);
@@ -189,8 +204,16 @@ const CustomDrawer = ({ navigation }) => {
               Bank Detail
             </Text>
           </View>
+          </TouchableOpacity>
         </Modal>
         <Modal transparent={true} visible={businessModal} animationType="slide">
+        <TouchableOpacity
+              onPress={() => {
+                console.log("Modal has been closed.");
+                setBusinessModal(!businessModal);
+              }}
+              style={{ backgroundColor: "#00000030", flex: 1 }}
+            >
           <View style={styles.modalView}>
             <Text
               onPress={() => {
@@ -222,6 +245,7 @@ const CustomDrawer = ({ navigation }) => {
               Business Tagline
             </Text>
           </View>
+          </TouchableOpacity>
         </Modal>
       </View>
     </SafeAreaView>

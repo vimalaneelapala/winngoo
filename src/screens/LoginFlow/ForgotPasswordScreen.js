@@ -31,7 +31,7 @@ const ForgotPasswordScreen = ({navigation}) => {
 
         <Text style={styles.rememberText}>{strings.ResetPassword}</Text>
 
-        <TextInput
+         <TextInput placeholderTextColor={colors.gray}
           value={password}
           onChangeText={password => {
             setPassword(password);

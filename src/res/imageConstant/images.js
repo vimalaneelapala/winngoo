@@ -1,5 +1,6 @@
 export default images={
     LogoIcon:require("../images/logoicon.png"),
+    logoWithName:require("../images/logoWithName.png"),
     Check:require("../images/check.png"),
     InvisibleIcon:require("../images/invisible.png"),
     EyeIcon:require("../images/view.png"),
@@ -32,4 +33,5 @@ export default images={
     noData:require("../images/noData.png"),
     increase:require("../images/increase.png"),
     decrease:require("../images/decrease.png"),
+    GalleryIcon:require("../images/gallery.png"),
 }

@@ -27,6 +27,7 @@ import strings from '../../res/strings/strings';
 const genderList = [
   {label: 'Female', value: 'Female'},
   {label: 'Male', value: 'Male'},
+  { label: "Other", value: "other" },
 ];
 const MemberSignUpScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -65,7 +66,7 @@ const MemberSignUpScreen = ({navigation}) => {
                 {strings.FirstName}
                 <Text style={styles.starText}>{' *'}</Text>
               </Text>
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={firstName}
                 onChangeText={firstName => {
                   setFirstName(firstName);
@@ -77,7 +78,7 @@ const MemberSignUpScreen = ({navigation}) => {
                 {strings.LastName}
                 <Text style={styles.starText}>{' *'}</Text>
               </Text>
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={lastName}
                 onChangeText={lastName => {
                   setLastName(lastName);
@@ -110,7 +111,7 @@ const MemberSignUpScreen = ({navigation}) => {
                 {strings.Email}
                 <Text style={styles.starText}>{' *'}</Text>
               </Text>
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={email}
                 onChangeText={email => {
                   setEmail(email);
@@ -122,7 +123,7 @@ const MemberSignUpScreen = ({navigation}) => {
                 {strings.ConfirmEmail}
                 <Text style={styles.starText}>{' *'}</Text>
               </Text>
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={confirmEmail}
                 onChangeText={confirmEmail => {
                   setConfirmEmail(confirmEmail);
@@ -134,7 +135,7 @@ const MemberSignUpScreen = ({navigation}) => {
                 {strings.AddressLine1}
                 <Text style={styles.starText}>{' *'}</Text>
               </Text>
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={addressLine1}
                 onChangeText={addressLine1 => {
                   setAddressLine1(addressLine1);
@@ -143,7 +144,7 @@ const MemberSignUpScreen = ({navigation}) => {
                 style={styles.textInputstyle}
               />
               <Text style={styles.titleText}>{strings.AddressLine2}</Text>
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={addressLine2}
                 onChangeText={addressLine2 => {
                   setAddressLine2(addressLine2);
@@ -152,7 +153,7 @@ const MemberSignUpScreen = ({navigation}) => {
                 style={styles.textInputstyle}
               />
               <Text style={styles.titleText}>{strings.AddressLine3}</Text>
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={addressLine3}
                 onChangeText={addressLine3 => {
                   setAddressLine3(addressLine3);
@@ -164,7 +165,7 @@ const MemberSignUpScreen = ({navigation}) => {
                 {strings.City}
                 <Text style={styles.starText}>{' *'}</Text>
               </Text>
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={city}
                 onChangeText={city => {
                   setCity(city);
@@ -176,7 +177,7 @@ const MemberSignUpScreen = ({navigation}) => {
                 {strings.PostCode}
                 <Text style={styles.starText}>{' *'}</Text>
               </Text>
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={postCode}
                 onChangeText={postCode => {
                   setPostCode(postCode);
@@ -192,7 +193,7 @@ const MemberSignUpScreen = ({navigation}) => {
                 {strings.PhoneNumber}
                 <Text style={styles.starText}>{' *'}</Text>
               </Text>
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={phoneNumber}
                 onChangeText={phoneNumber => {
                   setPhoneNumber(phoneNumber);
@@ -201,7 +202,7 @@ const MemberSignUpScreen = ({navigation}) => {
                 style={styles.textInputstyle}
               />
               <Text style={styles.titleText}>{strings.Reffereal}</Text>
-              <TextInput
+               <TextInput placeholderTextColor={colors.gray}
                 value={refferalCode}
                 onChangeText={refferalCode => {
                   setRefferalCode(refferalCode);
