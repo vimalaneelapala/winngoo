@@ -19,7 +19,7 @@
     "axios": "^1.2.2",
     "deprecated-react-native-prop-types": "^4.0.0",
     "react": "18.1.0",
-    "react-native": "0.70.6",
+    "react-native": "^0.70.6",
     "react-native-element-dropdown": "^2.5.3",
     "react-native-gesture-handler": "^2.8.0",
     "react-native-image-picker": "^5.1.0",
