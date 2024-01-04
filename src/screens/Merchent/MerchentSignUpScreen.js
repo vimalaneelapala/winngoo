@@ -155,7 +155,7 @@ const MerchentSignUpScreen = ({ navigation }) => {
                   setGenderErr(item.label);
                 }}
               />
-              {gender==='' ? (
+              {genderErr==='' ? (
                 <Text style={styles.starText}>{strings.EnterGenderErr}</Text>
               ) : null}
                <TextInput placeholderTextColor={colors.gray}

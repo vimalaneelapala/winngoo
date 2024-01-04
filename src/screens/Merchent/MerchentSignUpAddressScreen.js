@@ -25,13 +25,14 @@ import {
 import strings from "../../res/strings/strings";
 import axios from "axios";
 import { BaseURL, EndPoint } from "../../api/ApiConstant";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 
 const genderList = [
   { label: "Female", value: "Female" },
   { label: "Male", value: "Male" },
   { label: "Other", value: "other" },
 ];
-const MerchentSignUpAddressScreen = ({ navigation ,route}) => {
+const MerchentSignUpAddressScreen = ({ navigation, route }) => {
   const [addressLine1, setAddressLine1] = useState("");
   const [addressLine2, setAddressLine2] = useState("");
   const [addressLine3, setAddressLine3] = useState("");
@@ -63,14 +64,17 @@ const MerchentSignUpAddressScreen = ({ navigation ,route}) => {
   const setUserDetail = async () => {
     try {
       var data = {
-        addressLine1:addressLine1,
-        addressLine2:addressLine2,
-        addressLine3:addressLine3,
-        city:city,
-        country:country,
-        postCode:postCode
+        addressLine1: addressLine1,
+        addressLine2: addressLine2,
+        addressLine3: addressLine3,
+        city: city,
+        country: country,
+        postCode: postCode,
       };
-      navigation.navigate("MerchentSignUpBusinessScreen", { addressdetail: data,detail:route.params });
+      navigation.navigate("MerchentSignUpBusinessScreen", {
+        addressdetail: data,
+        detail: route.params,
+      });
     } catch (e) {
       console.log(e);
     }
@@ -78,21 +82,35 @@ const MerchentSignUpAddressScreen = ({ navigation ,route}) => {
   // ==========================================Render Call================
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.container}>
-        <KeyboardAvoidingView style={styles.container}>
-          <View style={styles.container}>
-          <View style={{flexDirection:"row"}}>
-              <TouchableOpacity onPress={()=>{
-                navigation.goBack()
-              }}>
+      <KeyboardAvoidingView style={styles.container}>
+        <View style={styles.container}>
+          <View style={{ flexDirection: "row" }}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.goBack();
+              }}
+            >
+              <Image
+                source={images.leftArrow}
+                style={{
+                  height: responsiveScreenWidth(5),
+                  width: responsiveScreenWidth(5),
+                  margin: responsiveScreenWidth(5),
+                }}
+              />
+            </TouchableOpacity>
+            <Text
+              style={[
+                styles.loginText,
+                { marginTop: responsiveScreenWidth(1) },
+              ]}
+            >
+              {strings.AddressDetail}
+            </Text>
+          </View>
 
-<Image source={images.leftArrow} style={{height:responsiveScreenWidth(5),width:responsiveScreenWidth(5),margin:responsiveScreenWidth(5)}}/>
-              </TouchableOpacity>
-            <Text style={[styles.loginText,{marginTop:responsiveScreenWidth(1)}]}>{strings.AddressDetail}</Text>
-            </View>
-
-            <View style={styles.mainview}>
-               <TextInput placeholderTextColor={colors.gray}
+          <View style={styles.mainview}>
+            {/* <TextInput placeholderTextColor={colors.gray}
                 value={addressLine1}
                 onChangeText={(addressLine1) => {
                   setAddressLine1(addressLine1);
@@ -100,88 +118,104 @@ const MerchentSignUpAddressScreen = ({ navigation ,route}) => {
                 }}
                 placeholder={strings.EnterAddress1}
                 style={styles.textInputstyle}
-              />
-              {addressLine1Err ? (
-                <Text style={styles.starText}>{strings.EnterAddress1Err}</Text>
-              ) : null}
-               <TextInput placeholderTextColor={colors.gray}
-                value={addressLine2}
-                onChangeText={(addressLine2) => {
-                  setAddressLine2(addressLine2);
-                }}
-                placeholder={strings.EnterAddress2}
-                style={styles.textInputstyle}
-              />
-               <TextInput placeholderTextColor={colors.gray}
-                value={addressLine3}
-                onChangeText={(addressLine3) => {
-                  setAddressLine3(addressLine3);
-                }}
-                placeholder={strings.EnterAddress3}
-                style={styles.textInputstyle}
-              />
-               <TextInput placeholderTextColor={colors.gray}
-                value={city}
-                onChangeText={(city) => {
-                  setCity(city);
-                  setCityErr(false)
-                }}
-                placeholder={strings.EnterCity}
-                style={styles.textInputstyle}
-              />
-              {cityErr ? (
-                <Text style={styles.starText}>{strings.EnterCityErr}</Text>
-              ) : null}
-               <TextInput placeholderTextColor={colors.gray}
-                value={country}
-                // onChangeText={(country) => {
-                //   setCountry(country);
-                //   setCountryErr(false)
-                // }}
-                editable={false}
-                placeholder={strings.EnterCountry}
-                style={styles.textInputstyle}
-              />
-              {countryErr ? (
-                <Text style={styles.starText}>{strings.EnterCountryErr}</Text>
-              ) : null}
-               <TextInput placeholderTextColor={colors.gray}
-                value={postCode}
-                onChangeText={(postCode) => {
-                  setPostCode(postCode);
-                  setPostCodeErr(false)
-                }}
-                placeholder={strings.EnterPostCode}
-                style={styles.textInputstyle}
-              />
-              {postCodeErr ? (
-                <Text style={styles.starText}>{strings.EnterPostCodeErr}</Text>
-              ) : null}
-            </View>
-
-            <TouchableOpacity
-              onPress={() => {
-                validationForm();
-                // navigation.navigate("MerchentSignUpBusinessScreen")
+              /> */}
+            <GooglePlacesAutocomplete
+              placeholder={strings.EnterAddress1}
+              query={{
+                key: "AIzaSyBvr3MA7Y0y7F9cg_PflaY3jCa0yiPkF8I",
+                language: "en",
               }}
-              style={styles.loginBtn}
-            >
-              <Text
-                style={[
-                  styles.loginText,
-                  {
-                    color: colors.WHITE,
-                    fontSize: responsiveScreenFontSize(2),
-                    marginTop: 0,
-                  },
-                ]}
-              >
-                {strings.Continue}
-              </Text>
-            </TouchableOpacity>
+              fetchDetails={true}
+              onPress={(data, details = null) => console.log(data, details)}
+              onFail={(error) => console.log(error)}
+              onNotFound={() => console.log("no results")}
+              styles={[styles.textInputstyle,{height:responsiveScreenWidth(12)}]}
+            />
+            {addressLine1Err ? (
+              <Text style={styles.starText}>{strings.EnterAddress1Err}</Text>
+            ) : null}
+            <TextInput
+              placeholderTextColor={colors.gray}
+              value={addressLine2}
+              onChangeText={(addressLine2) => {
+                setAddressLine2(addressLine2);
+              }}
+              placeholder={strings.EnterAddress2}
+              style={styles.textInputstyle}
+            />
+            <TextInput
+              placeholderTextColor={colors.gray}
+              value={addressLine3}
+              onChangeText={(addressLine3) => {
+                setAddressLine3(addressLine3);
+              }}
+              placeholder={strings.EnterAddress3}
+              style={styles.textInputstyle}
+            />
+            <TextInput
+              placeholderTextColor={colors.gray}
+              value={city}
+              onChangeText={(city) => {
+                setCity(city);
+                setCityErr(false);
+              }}
+              placeholder={strings.EnterCity}
+              style={styles.textInputstyle}
+            />
+            {cityErr ? (
+              <Text style={styles.starText}>{strings.EnterCityErr}</Text>
+            ) : null}
+            <TextInput
+              placeholderTextColor={colors.gray}
+              value={country}
+              // onChangeText={(country) => {
+              //   setCountry(country);
+              //   setCountryErr(false)
+              // }}
+              editable={false}
+              placeholder={strings.EnterCountry}
+              style={styles.textInputstyle}
+            />
+            {countryErr ? (
+              <Text style={styles.starText}>{strings.EnterCountryErr}</Text>
+            ) : null}
+            <TextInput
+              placeholderTextColor={colors.gray}
+              value={postCode}
+              onChangeText={(postCode) => {
+                setPostCode(postCode);
+                setPostCodeErr(false);
+              }}
+              placeholder={strings.EnterPostCode}
+              style={styles.textInputstyle}
+            />
+            {postCodeErr ? (
+              <Text style={styles.starText}>{strings.EnterPostCodeErr}</Text>
+            ) : null}
           </View>
-        </KeyboardAvoidingView>
-      </ScrollView>
+
+          <TouchableOpacity
+            onPress={() => {
+              validationForm();
+              // navigation.navigate("MerchentSignUpBusinessScreen")
+            }}
+            style={styles.loginBtn}
+          >
+            <Text
+              style={[
+                styles.loginText,
+                {
+                  color: colors.WHITE,
+                  fontSize: responsiveScreenFontSize(2),
+                  marginTop: 0,
+                },
+              ]}
+            >
+              {strings.Continue}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -206,14 +240,17 @@ const styles = StyleSheet.create({
   textInputstyle: {
     backgroundColor: colors.TEXTINPUTBACKGROUND,
     borderColor: colors.BLACK,
-    color:colors.BLACK,
+    color: colors.BLACK,
     borderWidth: responsiveScreenWidth(0.2),
     fontSize: responsiveScreenFontSize(2),
     width: "100%",
     alignSelf: "center",
     margin: responsiveScreenWidth(3),
     marginTop: responsiveScreenWidth(4),
-    height:Platform.OS==="ios"?responsiveScreenWidth(12):responsiveScreenWidth(12)
+    height:
+      Platform.OS === "ios"
+        ? responsiveScreenWidth(12)
+        : responsiveScreenWidth(12),
   },
   loginBtn: {
     width: "75%",

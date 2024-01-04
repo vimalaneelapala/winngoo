@@ -27,6 +27,7 @@ import strings from "../../res/strings/strings";
 import Spinner from "react-native-loading-spinner-overlay/lib";
 import axios from "axios";
 import { BaseURL, EndPoint } from "../../api/ApiConstant";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 
 const genderList = [
   { label: "Female", value: "female" },
@@ -150,7 +151,7 @@ const MemberSignUpScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.container}>
+      <ScrollView nestedScrollEnabled={true} style={styles.container}>
         <KeyboardAvoidingView style={styles.container}>
           <View style={styles.container}>
             <Spinner visible={isLoading} />
@@ -323,6 +324,7 @@ const MemberSignUpScreen = ({ navigation }) => {
                 {strings.AddressLine1}
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
+             
                <TextInput placeholderTextColor={colors.gray}
                 value={addressLine1}
                 onChangeText={(addressLine1) => {
