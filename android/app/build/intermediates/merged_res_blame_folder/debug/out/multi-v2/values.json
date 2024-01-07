@@ -99,23 +99,6 @@
                     }
                 },
                 {
-                    "source": "/Users/dhruvikachauhan/Downloads/ReactNative/WinngooApp/android/app/build/generated/res/resValues/debug/values/gradleResValues.xml",
-                    "from": {
-                        "startLines": "6,8",
-                        "startColumns": "4,4",
-                        "startOffsets": "156,262",
-                        "endColumns": "63,68",
-                        "endOffsets": "215,326"
-                    },
-                    "to": {
-                        "startLines": "661,662",
-                        "startColumns": "4,4",
-                        "startOffsets": "41901,41965",
-                        "endColumns": "63,68",
-                        "endOffsets": "41960,42029"
-                    }
-                },
-                {
                     "source": "/Users/dhruvikachauhan/.gradle/caches/transforms-3/237960ca1607edccd2d98c15f52b2dce/transformed/jetified-viewpager2-1.0.0/res/values/values.xml",
                     "from": {
                         "startLines": "2",
@@ -207,23 +190,6 @@
                     }
                 },
                 {
-                    "source": "/Users/dhruvikachauhan/Downloads/ReactNative/WinngooApp/android/app/src/main/res/values/strings.xml",
-                    "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "16",
-                        "endColumns": "47",
-                        "endOffsets": "59"
-                    },
-                    "to": {
-                        "startLines": "698",
-                        "startColumns": "4",
-                        "startOffsets": "44503",
-                        "endColumns": "47",
-                        "endOffsets": "44546"
-                    }
-                },
-                {
                     "source": "/Users/dhruvikachauhan/.gradle/caches/transforms-3/8fac770e659683206d28c35b067abb41/transformed/jetified-drawee-2.6.0/res/values/values.xml",
                     "from": {
                         "startLines": "2,141",
@@ -259,6 +225,42 @@
                         "endLines": "583,608,641,5839,5843",
                         "endColumns": "56,64,63,24,24",
                         "endOffsets": "37812,39003,40710,343998,344147"
+                    }
+                },
+                {
+                    "source": "/Users/dhruvikachauhan/Downloads/ReactNative/DemoApp/WinngooApp/android/app/build/generated/res/resValues/debug/values/gradleResValues.xml",
+                    "from": {
+                        "startLines": "6,8",
+                        "startColumns": "4,4",
+                        "startOffsets": "156,262",
+                        "endColumns": "63,68",
+                        "endOffsets": "215,326"
+                    },
+                    "to": {
+                        "startLines": "661,662",
+                        "startColumns": "4,4",
+                        "startOffsets": "41901,41965",
+                        "endColumns": "63,68",
+                        "endOffsets": "41960,42029"
+                    }
+                },
+                {
+                    "source": "/Users/dhruvikachauhan/Downloads/ReactNative/DemoApp/WinngooApp/android/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "54",
+                        "endLines": "5",
+                        "endColumns": "13",
+                        "endOffsets": "181"
+                    },
+                    "to": {
+                        "startLines": "828",
+                        "startColumns": "4",
+                        "startOffsets": "60028",
+                        "endLines": "830",
+                        "endColumns": "13",
+                        "endOffsets": "60120"
                     }
                 },
                 {
@@ -315,22 +317,20 @@
                     }
                 },
                 {
-                    "source": "/Users/dhruvikachauhan/Downloads/ReactNative/WinngooApp/android/app/src/main/res/values/styles.xml",
+                    "source": "/Users/dhruvikachauhan/Downloads/ReactNative/DemoApp/WinngooApp/android/app/src/main/res/values/strings.xml",
                     "from": {
-                        "startLines": "3",
+                        "startLines": "1",
                         "startColumns": "4",
-                        "startOffsets": "54",
-                        "endLines": "5",
-                        "endColumns": "13",
-                        "endOffsets": "181"
+                        "startOffsets": "16",
+                        "endColumns": "47",
+                        "endOffsets": "59"
                     },
                     "to": {
-                        "startLines": "828",
+                        "startLines": "698",
                         "startColumns": "4",
-                        "startOffsets": "60028",
-                        "endLines": "830",
-                        "endColumns": "13",
-                        "endOffsets": "60120"
+                        "startOffsets": "44503",
+                        "endColumns": "47",
+                        "endOffsets": "44546"
                     }
                 },
                 {

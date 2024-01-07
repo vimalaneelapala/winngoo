@@ -324,7 +324,25 @@ const MemberSignUpScreen = ({ navigation }) => {
                 {strings.AddressLine1}
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
-             
+              {/* <GooglePlacesAutocomplete
+        placeholder="Type a place"
+        query={{key: "AIzaSyBvr3MA7Y0y7F9cg_PflaY3jCa0yiPkF8I"}}
+        renderDescription={row => row.description} // custom description render
+        onPress={(data, details = null) => {
+        console.log(data)
+        console.log(details)
+        }}
+        renderLeftButton={()  => <Text style={{ marginTop: 12, marginLeft:16, fontSize: 18 }}> Location </Text>}
+        nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
+        GoogleReverseGeocodingQuery={{
+          // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
+        }}
+        GooglePlacesSearchQuery={{
+          // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
+          rankby: 'distance',
+          types: 'food'
+        }}
+      /> */}
                <TextInput placeholderTextColor={colors.gray}
                 value={addressLine1}
                 onChangeText={(addressLine1) => {
