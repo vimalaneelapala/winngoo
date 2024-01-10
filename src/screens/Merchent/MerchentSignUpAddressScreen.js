@@ -119,18 +119,32 @@ const MerchentSignUpAddressScreen = ({ navigation, route }) => {
                 placeholder={strings.EnterAddress1}
                 style={styles.textInputstyle}
               /> */}
-            <GooglePlacesAutocomplete
-              placeholder={strings.EnterAddress1}
-              query={{
-                key: "AIzaSyBvr3MA7Y0y7F9cg_PflaY3jCa0yiPkF8I",
-                language: "en",
-              }}
-              fetchDetails={true}
-              onPress={(data, details = null) => console.log(data, details)}
-              onFail={(error) => console.log(error)}
-              onNotFound={() => console.log("no results")}
-              styles={[styles.textInputstyle,{height:responsiveScreenWidth(12)}]}
-            />
+          <GooglePlacesAutocomplete
+                styles={{
+                  backgroundColor: colors.TEXTINPUTBACKGROUND,
+                  borderColor: colors.BLACK,
+                  borderWidth: responsiveScreenWidth(0.1),
+                  width: "100%",
+                  alignSelf: "center",
+                  margin: responsiveScreenWidth(3),
+                  color: colors.BLACK,
+                  height:
+                    Platform.OS === "ios"
+                      ? responsiveScreenWidth(12)
+                      : responsiveScreenWidth(12),
+                }}
+                placeholder="Enter Address Detail 1 here"
+                onPress={(data, details = null) => console.log(data, details)}
+                query={{ key: "AIzaSyBvr3MA7Y0y7F9cg_PflaY3jCa0yiPkF8I" }}
+                fetchDetails={true}
+                onFail={(error) => console.log(error)}
+                onNotFound={() => console.log("no results")}
+                listEmptyComponent={() => (
+                  <View style={{ flex: 1 }}>
+                    <Text>No results were found</Text>
+                  </View>
+                )}
+              />
             {addressLine1Err ? (
               <Text style={styles.starText}>{strings.EnterAddress1Err}</Text>
             ) : null}

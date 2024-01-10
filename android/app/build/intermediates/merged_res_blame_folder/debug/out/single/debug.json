@@ -1,23 +1,31 @@
 [
     {
-        "merged": "com.winngooapp-merged_res-29:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.winngooapp-main-31:/mipmap-hdpi/ic_launcher.png"
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.winngooapp-merged_res-29:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.winngooapp-main-31:/mipmap-mdpi/ic_launcher.png"
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-xhdpi_logoicon.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-xhdpi/logoicon.png"
+    },
+    {
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-xxhdpi_logoicon.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-xxhdpi/logoicon.png"
+    },
+    {
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-mdpi/ic_launcher_round.png"
     },
     {
         "merged": "com.winngooapp-merged_res-29:/mipmap-xhdpi_logoicon.png.flat",
         "source": "com.winngooapp-main-31:/mipmap-xhdpi/logoicon.png"
     },
     {
-        "merged": "com.winngooapp-merged_res-29:/mipmap-hdpi_logoicon.png.flat",
-        "source": "com.winngooapp-main-31:/mipmap-hdpi/logoicon.png"
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-xxxhdpi_logoicon.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-xxxhdpi/logoicon.png"
     },
     {
-        "merged": "com.winngooapp-merged_res-29:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "com.winngooapp-main-31:/mipmap-xxxhdpi/ic_launcher_round.png"
+        "merged": "com.winngooapp-merged_res-29:/mipmap-hdpi_logoicon.png.flat",
+        "source": "com.winngooapp-main-31:/mipmap-hdpi/logoicon.png"
     },
     {
         "merged": "com.winngooapp-merged_res-29:/mipmap-xxhdpi_logoicon.png.flat",
@@ -28,35 +36,47 @@
         "source": "com.winngooapp-main-31:/mipmap-mdpi/logoicon.png"
     },
     {
-        "merged": "com.winngooapp-merged_res-29:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.winngooapp-main-31:/mipmap-xxxhdpi/ic_launcher.png"
-    },
-    {
         "merged": "com.winngooapp-merged_res-29:/mipmap-xxxhdpi_logoicon.png.flat",
         "source": "com.winngooapp-main-31:/mipmap-xxxhdpi/logoicon.png"
     },
     {
-        "merged": "com.winngooapp-merged_res-29:/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "com.winngooapp-main-31:/mipmap-xxhdpi/ic_launcher_round.png"
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-xxxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.winngooapp-merged_res-29:/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "com.winngooapp-main-31:/mipmap-hdpi/ic_launcher_round.png"
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-mdpi/ic_launcher.png"
     },
     {
-        "merged": "com.winngooapp-merged_res-29:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.winngooapp-main-31:/mipmap-xhdpi/ic_launcher.png"
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-hdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.winngooapp-merged_res-29:/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "com.winngooapp-main-31:/mipmap-xhdpi/ic_launcher_round.png"
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.winngooapp-merged_res-29:/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "com.winngooapp-main-31:/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-hdpi/ic_launcher.png"
     },
     {
-        "merged": "com.winngooapp-merged_res-29:/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "com.winngooapp-main-31:/mipmap-mdpi/ic_launcher_round.png"
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-mdpi_logoicon.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-mdpi/logoicon.png"
+    },
+    {
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-merged_res-29:/mipmap-hdpi_logoicon.png.flat",
+        "source": "/Users/dhruvikachauhan/.gradle/daemon/7.5.1/com.winngooapp-main-31:/mipmap-hdpi/logoicon.png"
     }
 ]

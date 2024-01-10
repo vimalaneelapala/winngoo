@@ -129,7 +129,10 @@ const MemberSignUpScreen = ({ navigation }) => {
       redirect: "follow",
     };
 
-    fetch("https://WinngooappApp.co.uk/api/user/register-member", requestOptions)
+    fetch(
+      "https://WinngooappApp.co.uk/api/user/register-member",
+      requestOptions
+    )
       .then((response) => response.json())
       .then((result) => {
         console.log(JSON.stringify(result));
@@ -184,7 +187,8 @@ const MemberSignUpScreen = ({ navigation }) => {
                 {strings.FirstName}
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
-               <TextInput placeholderTextColor={colors.gray}
+              <TextInput
+                placeholderTextColor={colors.gray}
                 value={firstName}
                 onChangeText={(firstName) => {
                   setFirstName(firstName);
@@ -196,7 +200,8 @@ const MemberSignUpScreen = ({ navigation }) => {
                 {strings.LastName}
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
-               <TextInput placeholderTextColor={colors.gray}
+              <TextInput
+                placeholderTextColor={colors.gray}
                 value={lastName}
                 onChangeText={(lastName) => {
                   setLastName(lastName);
@@ -230,7 +235,8 @@ const MemberSignUpScreen = ({ navigation }) => {
                 {strings.Email}
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
-               <TextInput placeholderTextColor={colors.gray}
+              <TextInput
+                placeholderTextColor={colors.gray}
                 value={email}
                 onChangeText={(email) => {
                   setEmail(email);
@@ -242,7 +248,8 @@ const MemberSignUpScreen = ({ navigation }) => {
                 {strings.ConfirmEmail}
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
-               <TextInput placeholderTextColor={colors.gray}
+              <TextInput
+                placeholderTextColor={colors.gray}
                 value={confirmEmail}
                 onChangeText={(confirmEmail) => {
                   setConfirmEmail(confirmEmail);
@@ -255,7 +262,8 @@ const MemberSignUpScreen = ({ navigation }) => {
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
               <View style={[styles.textInputstyle1, { flexDirection: "row" }]}>
-                 <TextInput placeholderTextColor={colors.gray}
+                <TextInput
+                  placeholderTextColor={colors.gray}
                   value={password}
                   onChangeText={(password) => {
                     setPassword(password);
@@ -275,7 +283,9 @@ const MemberSignUpScreen = ({ navigation }) => {
                   }}
                 >
                   <Image
-                    source={isShowPassword ? images.InvisibleIcon : images.EyeIcon}
+                    source={
+                      isShowPassword ? images.InvisibleIcon : images.EyeIcon
+                    }
                     style={{
                       height: responsiveScreenWidth(5),
                       width: responsiveScreenWidth(5),
@@ -290,7 +300,8 @@ const MemberSignUpScreen = ({ navigation }) => {
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
               <View style={[styles.textInputstyle1, { flexDirection: "row" }]}>
-                 <TextInput placeholderTextColor={colors.gray}
+                <TextInput
+                  placeholderTextColor={colors.gray}
                   value={confirmPassword}
                   onChangeText={(confirmPassword) => {
                     setConfirmPassword(confirmPassword);
@@ -310,7 +321,9 @@ const MemberSignUpScreen = ({ navigation }) => {
                   }}
                 >
                   <Image
-                    source={isShowPassword1 ? images.InvisibleIcon : images.EyeIcon}
+                    source={
+                      isShowPassword1 ? images.InvisibleIcon : images.EyeIcon
+                    }
                     style={{
                       height: responsiveScreenWidth(5),
                       width: responsiveScreenWidth(5),
@@ -324,35 +337,43 @@ const MemberSignUpScreen = ({ navigation }) => {
                 {strings.AddressLine1}
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
-              {/* <GooglePlacesAutocomplete
-        placeholder="Type a place"
-        query={{key: "AIzaSyBvr3MA7Y0y7F9cg_PflaY3jCa0yiPkF8I"}}
-        renderDescription={row => row.description} // custom description render
-        onPress={(data, details = null) => {
-        console.log(data)
-        console.log(details)
-        }}
-        renderLeftButton={()  => <Text style={{ marginTop: 12, marginLeft:16, fontSize: 18 }}> Location </Text>}
-        nearbyPlacesAPI='GooglePlacesSearch' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
-        GoogleReverseGeocodingQuery={{
-          // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
-        }}
-        GooglePlacesSearchQuery={{
-          // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
-          rankby: 'distance',
-          types: 'food'
-        }}
-      /> */}
-               <TextInput placeholderTextColor={colors.gray}
+              <GooglePlacesAutocomplete
+                styles={{
+                  backgroundColor: colors.TEXTINPUTBACKGROUND,
+                  borderColor: colors.BLACK,
+                  borderWidth: responsiveScreenWidth(0.1),
+                  width: "100%",
+                  alignSelf: "center",
+                  margin: responsiveScreenWidth(3),
+                  color: colors.BLACK,
+                  height:
+                    Platform.OS === "ios"
+                      ? responsiveScreenWidth(12)
+                      : responsiveScreenWidth(12),
+                }}
+                placeholder="Enter Address Detail 1 here"
+                onPress={(data, details = null) => console.log(data, details)}
+                query={{ key: "AIzaSyBvr3MA7Y0y7F9cg_PflaY3jCa0yiPkF8I" }}
+                fetchDetails={true}
+                onFail={(error) => console.log(error)}
+                onNotFound={() => console.log("no results")}
+                listEmptyComponent={() => (
+                  <View style={{ flex: 1 }}>
+                    <Text>No results were found</Text>
+                  </View>
+                )}
+              />
+              {/* <TextInput placeholderTextColor={colors.gray}
                 value={addressLine1}
                 onChangeText={(addressLine1) => {
                   setAddressLine1(addressLine1);
                 }}
                 placeholder={strings.EnterAddress1}
                 style={styles.textInputstyle}
-              />
+              /> */}
               <Text style={styles.titleText}>{strings.AddressLine2}</Text>
-               <TextInput placeholderTextColor={colors.gray}
+              <TextInput
+                placeholderTextColor={colors.gray}
                 value={addressLine2}
                 onChangeText={(addressLine2) => {
                   setAddressLine2(addressLine2);
@@ -361,7 +382,8 @@ const MemberSignUpScreen = ({ navigation }) => {
                 style={styles.textInputstyle}
               />
               <Text style={styles.titleText}>{strings.AddressLine3}</Text>
-               <TextInput placeholderTextColor={colors.gray}
+              <TextInput
+                placeholderTextColor={colors.gray}
                 value={addressLine3}
                 onChangeText={(addressLine3) => {
                   setAddressLine3(addressLine3);
@@ -373,7 +395,8 @@ const MemberSignUpScreen = ({ navigation }) => {
                 {strings.City}
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
-               <TextInput placeholderTextColor={colors.gray}
+              <TextInput
+                placeholderTextColor={colors.gray}
                 value={city}
                 onChangeText={(city) => {
                   setCity(city);
@@ -385,7 +408,8 @@ const MemberSignUpScreen = ({ navigation }) => {
                 {strings.PostCode}
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
-               <TextInput placeholderTextColor={colors.gray}
+              <TextInput
+                placeholderTextColor={colors.gray}
                 value={postCode}
                 onChangeText={(postCode) => {
                   setPostCode(postCode);
@@ -397,8 +421,9 @@ const MemberSignUpScreen = ({ navigation }) => {
                 {strings.Country}
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
-               <TextInput placeholderTextColor={colors.gray}
-               editable={false}
+              <TextInput
+                placeholderTextColor={colors.gray}
+                editable={false}
                 value={country}
                 // onChangeText={(country) => {
                 //   setCountry(country);
@@ -410,7 +435,8 @@ const MemberSignUpScreen = ({ navigation }) => {
                 {strings.PhoneNumber}
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
-               <TextInput placeholderTextColor={colors.gray}
+              <TextInput
+                placeholderTextColor={colors.gray}
                 value={phoneNumber}
                 onChangeText={(phoneNumber) => {
                   setPhoneNumber(phoneNumber);
@@ -419,7 +445,8 @@ const MemberSignUpScreen = ({ navigation }) => {
                 style={styles.textInputstyle}
               />
               <Text style={styles.titleText}>{strings.Reffereal}</Text>
-               <TextInput placeholderTextColor={colors.gray}
+              <TextInput
+                placeholderTextColor={colors.gray}
                 value={refferalCode}
                 onChangeText={(refferalCode) => {
                   setRefferalCode(refferalCode);
@@ -428,7 +455,8 @@ const MemberSignUpScreen = ({ navigation }) => {
                 style={styles.textInputstyle}
               />
               <Text style={styles.titleText}>{strings.DiscountCode}</Text>
-               <TextInput placeholderTextColor={colors.gray}
+              <TextInput
+                placeholderTextColor={colors.gray}
                 value={discountCode}
                 onChangeText={(discountCode) => {
                   setdiscountCode(discountCode);
