@@ -110,7 +110,7 @@ const MerchentSignUpAddressScreen = ({ navigation, route }) => {
           </View>
 
           <View style={styles.mainview}>
-            {/* <TextInput placeholderTextColor={colors.gray}
+            <TextInput placeholderTextColor={colors.gray}
                 value={addressLine1}
                 onChangeText={(addressLine1) => {
                   setAddressLine1(addressLine1);
@@ -118,8 +118,8 @@ const MerchentSignUpAddressScreen = ({ navigation, route }) => {
                 }}
                 placeholder={strings.EnterAddress1}
                 style={styles.textInputstyle}
-              /> */}
-          <GooglePlacesAutocomplete
+              />
+          {/* <GooglePlacesAutocomplete
                 styles={{
                   backgroundColor: colors.TEXTINPUTBACKGROUND,
                   borderColor: colors.BLACK,
@@ -144,7 +144,7 @@ const MerchentSignUpAddressScreen = ({ navigation, route }) => {
                     <Text>No results were found</Text>
                   </View>
                 )}
-              />
+              /> */}
             {addressLine1Err ? (
               <Text style={styles.starText}>{strings.EnterAddress1Err}</Text>
             ) : null}

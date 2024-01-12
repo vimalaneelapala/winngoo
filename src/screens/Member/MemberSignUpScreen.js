@@ -94,8 +94,23 @@ const MemberSignUpScreen = ({ navigation }) => {
     ) {
       alert("Please fill form properly!!!");
     } else {
+      const data={
+      "firstName" :firstName,
+      "lastName" :lastName,
+      "gender":gender,
+      "email":email,
+      "password":password,
+      "addressLine1" :addressLine1,
+      "addressLine2" :addressLine2,
+      "addressLine3" :addressLine3,
+      "city":city,
+      "country":country,
+      "postCode" :postCode,
+      "phoneNumber": phoneNumber,
+      "birthMonth":birthMonth
+      }
       isAgrree
-        ? callSignUpApi()
+        ? navigation.navigate("MemberCardScreen",{data:data})
         : alert("Please accept term and condition to procced");
     }
   };
@@ -337,7 +352,7 @@ const MemberSignUpScreen = ({ navigation }) => {
                 {strings.AddressLine1}
                 <Text style={styles.starText}>{" *"}</Text>
               </Text>
-              <GooglePlacesAutocomplete
+              {/* <GooglePlacesAutocomplete
                 styles={{
                   backgroundColor: colors.TEXTINPUTBACKGROUND,
                   borderColor: colors.BLACK,
@@ -362,15 +377,15 @@ const MemberSignUpScreen = ({ navigation }) => {
                     <Text>No results were found</Text>
                   </View>
                 )}
-              />
-              {/* <TextInput placeholderTextColor={colors.gray}
+              /> */}
+              <TextInput placeholderTextColor={colors.gray}
                 value={addressLine1}
                 onChangeText={(addressLine1) => {
                   setAddressLine1(addressLine1);
                 }}
                 placeholder={strings.EnterAddress1}
                 style={styles.textInputstyle}
-              /> */}
+              />
               <Text style={styles.titleText}>{strings.AddressLine2}</Text>
               <TextInput
                 placeholderTextColor={colors.gray}

@@ -18,6 +18,7 @@ import MerchentLoginScreen from '../screens/Merchent/MerchentLoginScreen';
 import MerchentSignUpScreen from '../screens/Merchent/MerchentSignUpScreen';
 import MerchentSignUpAddressScreen from '../screens/Merchent/MerchentSignUpAddressScreen';
 import MerchentSignUpBusinessScreen from '../screens/Merchent/MerchentSignUpBusinessScreen';
+import MemberCardScreen from '../screens/Member/MemberCardScreen';
 
 
 const StackNavigator = () => {
@@ -44,6 +45,11 @@ const StackNavigator = () => {
         options={{headerShown: false}}
         name={'MemberForgotPasswordScreen'}
         component={MemberForgotPasswordScreen}
+      />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name={'MemberCardScreen'}
+        component={MemberCardScreen}
       />
       <Stack.Screen
         options={{headerShown: false}}
