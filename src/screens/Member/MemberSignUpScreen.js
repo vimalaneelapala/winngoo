@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Modal,
+  Linking
 } from "react-native";
 // Library ======================================================================================
 import { Dropdown } from "react-native-element-dropdown";
@@ -76,44 +77,156 @@ const MemberSignUpScreen = ({ navigation }) => {
   const [failureModal, setfailureModal] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(true);
   const [isShowPassword1, setIsShowPassword1] = useState(true);
-  // ==========================================Api Call================
-  const checkValidation = () => {
-    if (
-      firstName === "" ||
-      lastName === "" ||
-      gender === "" ||
-      email === "" ||
-      password === "" ||
-      addressLine1 === "" ||
-      city === "" ||
-      country === "" ||
-      postCode === "" ||
-      phoneNumber === "" ||
-      birthMonth === "" ||
-      phoneNumber.length < 10
-    ) {
-      alert("Please fill form properly!!!");
-    } else {
-      const data={
-      "firstName" :firstName,
-      "lastName" :lastName,
-      "gender":gender,
-      "email":email,
-      "password":password,
-      "addressLine1" :addressLine1,
-      "addressLine2" :addressLine2,
-      "addressLine3" :addressLine3,
-      "city":city,
-      "country":country,
-      "postCode" :postCode,
-      "phoneNumber": phoneNumber,
-      "birthMonth":birthMonth
+
+    // Error states
+    const [errors, setErrors] = useState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      confirmEmail: "",
+      password: "",
+      confirmPassword: "",
+      phoneNumber: "",
+      addressLine1: "",
+      city: "",
+      postCode: "",
+      birthMonth: "",
+      gender: "",
+    });
+  
+    // ==========================================Api Call================
+    const validateForm = () => {
+      let formErrors = {};
+      let isValid = true;
+  
+      if (!firstName) {
+        formErrors.firstName = "This field is required";
+        isValid = false;
       }
-      isAgrree
-        ? navigation.navigate("MemberCardScreen",{data:data})
-        : alert("Please accept term and condition to procced");
-    }
-  };
+      if (!lastName) {
+        formErrors.lastName = "This field is required";
+        isValid = false;
+      }
+      if (!email) {
+        formErrors.email = "This field is required";
+        isValid = false;
+      }
+      if (!confirmEmail) {
+        formErrors.confirmEmail = "This field is required";
+        isValid = false;
+      }
+      else if (email !== confirmEmail) {
+        formErrors.confirmEmail = "Emails do not match";
+        isValid = false;
+      }
+      if (!password) {
+        formErrors.password = "This field is required";
+        isValid = false;
+      } else {
+        // Password validation rules
+        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(password)) {
+          formErrors.password = "Password must be at least 8 characters long, include an uppercase letter, a number, and a special character.";
+          isValid = false;
+        }
+      }
+      if (!confirmPassword) {
+        formErrors.confirmPassword = "This field is required";
+        isValid = false;
+      } else if (password !== confirmPassword) {
+        formErrors.confirmPassword = "Passwords do not match";
+        isValid = false;
+      }
+      if (!phoneNumber || phoneNumber.length !== 11 || !phoneNumber.startsWith('0')) {
+        formErrors.phoneNumber = "Phone number must be 11 digits long and start with '0'";
+        isValid = false;
+      }
+      if (!addressLine1) {
+        formErrors.addressLine1 = "This field is required";
+        isValid = false;
+      }
+      if (!city) {
+        formErrors.city = "This field is required";
+        isValid = false;
+      }
+      if (!postCode) {
+        formErrors.postCode = "This field is required";
+        isValid = false;
+      }
+      if (!birthMonth) {
+        formErrors.birthMonth = "This field is required";
+        isValid = false;
+      }
+      if (!gender) {
+        formErrors.gender = "This field is required";
+        isValid = false;
+      }
+  
+      setErrors(formErrors);
+      return isValid;
+    };
+  
+    const checkValidation = () => {
+      if (validateForm()) {
+        const data = {
+          firstName,
+          lastName,
+          gender,
+          email,
+          password,
+          addressLine1,
+          addressLine2,
+          addressLine3,
+          city,
+          country,
+          postCode,
+          phoneNumber,
+          birthMonth
+        };
+        isAgrree
+          ? navigation.navigate("MemberCardScreen", { data: data })
+          : alert("Please accept term and condition to proceed");
+      }
+    };
+  
+  // ==========================================Api Call================
+  // const checkValidation = () => {
+  //   if (
+  //     firstName === "" ||
+  //     lastName === "" ||
+  //     gender === "" ||
+  //     email === "" ||
+  //     password === "" ||
+  //     addressLine1 === "" ||
+  //     city === "" ||
+  //     country === "" ||
+  //     postCode === "" ||
+  //     phoneNumber === "" ||
+  //     birthMonth === "" ||
+  //     phoneNumber.length < 10
+  //   ) {
+  //     alert("Please fill form properly!!!");
+  //   } else {
+  //     const data={
+  //     "firstName" :firstName,
+  //     "lastName" :lastName,
+  //     "gender":gender,
+  //     "email":email,
+  //     "password":password,
+  //     "addressLine1" :addressLine1,
+  //     "addressLine2" :addressLine2,
+  //     "addressLine3" :addressLine3,
+  //     "city":city,
+  //     "country":country,
+  //     "postCode" :postCode,
+  //     "phoneNumber": phoneNumber,
+  //     "birthMonth":birthMonth
+  //     }
+  //     isAgrree
+  //       ? navigation.navigate("MemberCardScreen",{data:data})
+  //       : alert("Please accept term and condition to procced");
+  //   }
+  // };
 
   const callSignUpApi = async () => {
     setisLoading(true);
@@ -211,6 +324,7 @@ const MemberSignUpScreen = ({ navigation }) => {
                 placeholder={strings.EnterFname}
                 style={styles.textInputstyle}
               />
+              {errors.firstName && <Text style={styles.errorText}>{errors.firstName}</Text>}
               <Text style={styles.titleText}>
                 {strings.LastName}
                 <Text style={styles.starText}>{" *"}</Text>
@@ -224,6 +338,7 @@ const MemberSignUpScreen = ({ navigation }) => {
                 placeholder={strings.EnterLname}
                 style={styles.textInputstyle}
               />
+              {errors.lastName && <Text style={styles.errorText}>{errors.lastName}</Text>}
               <Text style={styles.titleText}>
                 {strings.Gender}
                 <Text style={styles.starText}>{" *"}</Text>
@@ -246,6 +361,8 @@ const MemberSignUpScreen = ({ navigation }) => {
                   setGenderC(item.value);
                 }}
               />
+            {errors.gender && <Text style={styles.errorText}>{errors.gender}</Text>}
+
               <Text style={styles.titleText}>
                 {strings.Email}
                 <Text style={styles.starText}>{" *"}</Text>
@@ -259,6 +376,7 @@ const MemberSignUpScreen = ({ navigation }) => {
                 placeholder={strings.EnterEmail}
                 style={styles.textInputstyle}
               />
+              {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
               <Text style={styles.titleText}>
                 {strings.ConfirmEmail}
                 <Text style={styles.starText}>{" *"}</Text>
@@ -272,6 +390,7 @@ const MemberSignUpScreen = ({ navigation }) => {
                 placeholder={strings.EnterConfirmEmail}
                 style={styles.textInputstyle}
               />
+              {errors.confirmEmail && <Text style={styles.errorText}>{errors.confirmEmail}</Text>}
               <Text style={styles.titleText}>
                 {strings.Password}
                 <Text style={styles.starText}>{" *"}</Text>
@@ -292,11 +411,13 @@ const MemberSignUpScreen = ({ navigation }) => {
                     color: colors.BLACK,
                   }}
                 />
+                
                 <TouchableOpacity
                   onPress={() => {
                     setIsShowPassword(!isShowPassword);
                   }}
                 >
+                  
                   <Image
                     source={
                       isShowPassword ? images.InvisibleIcon : images.EyeIcon
@@ -309,6 +430,7 @@ const MemberSignUpScreen = ({ navigation }) => {
                   />
                 </TouchableOpacity>
               </View>
+              {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
 
               <Text style={styles.titleText}>
                 {strings.ConfirmPassword}
@@ -347,6 +469,7 @@ const MemberSignUpScreen = ({ navigation }) => {
                   />
                 </TouchableOpacity>
               </View>
+              {errors.confirmPassword && <Text style={styles.errorText}>{errors.confirmPassword}</Text>}
 
               <Text style={styles.titleText}>
                 {strings.AddressLine1}
@@ -386,6 +509,7 @@ const MemberSignUpScreen = ({ navigation }) => {
                 placeholder={strings.EnterAddress1}
                 style={styles.textInputstyle}
               />
+              {errors.addressLine1 && <Text style={styles.errorText}>{errors.addressLine1}</Text>}
               <Text style={styles.titleText}>{strings.AddressLine2}</Text>
               <TextInput
                 placeholderTextColor={colors.gray}
@@ -419,6 +543,7 @@ const MemberSignUpScreen = ({ navigation }) => {
                 placeholder={strings.EnterCity}
                 style={styles.textInputstyle}
               />
+              {errors.city && <Text style={styles.errorText}>{errors.city}</Text>}
               <Text style={styles.titleText}>
                 {strings.PostCode}
                 <Text style={styles.starText}>{" *"}</Text>
@@ -430,8 +555,10 @@ const MemberSignUpScreen = ({ navigation }) => {
                   setPostCode(postCode);
                 }}
                 placeholder={strings.EnterPostCode}
+                keyboardType="numeric"
                 style={styles.textInputstyle}
               />
+              {errors.postCode && <Text style={styles.errorText}>{errors.postCode}</Text>}
               <Text style={styles.titleText}>
                 {strings.Country}
                 <Text style={styles.starText}>{" *"}</Text>
@@ -446,6 +573,7 @@ const MemberSignUpScreen = ({ navigation }) => {
                 placeholder={strings.EnterCity}
                 style={styles.textInputstyle}
               />
+              {errors.country && <Text style={styles.errorText}>{errors.country}</Text>}
               <Text style={styles.titleText}>
                 {strings.PhoneNumber}
                 <Text style={styles.starText}>{" *"}</Text>
@@ -457,8 +585,10 @@ const MemberSignUpScreen = ({ navigation }) => {
                   setPhoneNumber(phoneNumber);
                 }}
                 placeholder={strings.EnterPhoneNumber}
+                keyboardType="numeric"
                 style={styles.textInputstyle}
               />
+              {errors.phoneNumber && <Text style={styles.errorText}>{errors.phoneNumber}</Text>}
               <Text style={styles.titleText}>{strings.Reffereal}</Text>
               <TextInput
                 placeholderTextColor={colors.gray}
@@ -501,6 +631,7 @@ const MemberSignUpScreen = ({ navigation }) => {
                   setBirthMonthC(item.value);
                 }}
               />
+              {errors.birthMonth && <Text style={styles.errorText}>{errors.birthMonth}</Text>}
               <View
                 style={{
                   flexDirection: "row",
@@ -527,7 +658,12 @@ const MemberSignUpScreen = ({ navigation }) => {
                 </TouchableOpacity>
                 <Text style={styles.modaltextStyle1}>
                   {"I accept "}
-                  <Text
+                  {/* <Text
+                  onPress = {
+                    ()=> {
+                      Linking.openURL('https://www.winngoo.co.uk/privacy-policy')
+                    }
+                  }
                     style={[
                       styles.modaltextStyle1,
                       { colors: colors.BLUETEXT },
@@ -537,13 +673,37 @@ const MemberSignUpScreen = ({ navigation }) => {
                   </Text>
                   {" and "}
                   <Text
+                  onPress = {
+                    ()=> {
+                      Linking.openURL('https://www.winngoo.co.uk/terms-and-conditions')
+                    }
+                  }
                     style={[
                       styles.modaltextStyle1,
                       { colors: colors.BLUETEXT },
                     ]}
                   >
                     Terms and Conditions
-                  </Text>
+                  </Text> */}
+                   <Text style={styles.modaltextStyle1}>
+        <Text
+          onPress={() => {
+            Linking.openURL('https://www.winngoo.co.uk/privacy-policy').catch(err => console.error('Failed to open URL:', err));
+          }}
+          style={styles.linkText}
+        >
+          Privacy Policy
+        </Text>
+        {" and "}
+        <Text
+          onPress={() => {
+            Linking.openURL('https://www.winngoo.co.uk/terms-and-conditions').catch(err => console.error('Failed to open URL:', err));
+          }}
+          style={styles.linkText}
+        >
+          Terms and Conditions
+        </Text>
+      </Text>
                   <Text> of WinngooappApp.</Text>
                 </Text>
               </View>
@@ -810,6 +970,16 @@ const styles = StyleSheet.create({
 
     elevation: 7,
   },
+  errorText: {
+        color: colors.red,
+        fontSize: responsiveScreenFontSize(1.8),
+        marginBottom: responsiveScreenHeight(1),
+      },
+ linkText: {
+        color: colors.BLUETEXT,
+        textDecorationLine: 'underline',
+      },
 });
 
 export default MemberSignUpScreen;
+

@@ -43,6 +43,15 @@ const ChangePasswordScreen = ({ navigation }) => {
   const [failureModal, setfailureModal] = useState(false);
   // ==========================================Api Call================
   const changePasswordCall = async () => {
+    if (!validatePassword(newPassword)) {
+      alert("New password must be at least 8 characters long and include a special symbol, numeric character, and an uppercase letter.");
+      return;
+    }
+  
+    if (newPassword !== confirmPassword) {
+      alert("New password and confirm password do not match.");
+      return;
+    }
     let token = await AsyncStorage.getItem("token");
     setIsLoading(true);
     var data = {
@@ -75,6 +84,11 @@ const ChangePasswordScreen = ({ navigation }) => {
         setConfirmPassword("");
         console.log(JSON.stringify(err));
       });
+  };
+  
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    return passwordRegex.test(password);
   };
 
   return (

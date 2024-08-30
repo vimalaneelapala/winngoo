@@ -30,6 +30,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
 const AddBankDetailScreen = ({ navigation }) => {
+  console.log('AddBankDetailScreen rendered');
+  console.log('Navigation prop:', navigation);
+
   const [isLoading, setIsLoading] = useState(false);
   const [accNumber, setAccNumber] = useState("");
   const [accName, setAccName] = useState("");
@@ -38,7 +41,55 @@ const AddBankDetailScreen = ({ navigation }) => {
   const [rollNumber, setRollNumber] = useState("");
   const [successModal, setsuccessModal] = useState(false);
   const [failureModal, setfailureModal] = useState(false);
-  // ==========================================Api Call================
+  const [errors, setErrors] = useState({
+    accNumber : "",
+    accName : "",
+    bankName : "",
+    sortCode : "",
+    rollNumber : ""
+  })
+  const validate = () => {
+    let formError = {}
+    let isValid = true
+    if(! accNumber){
+    formError.accNumber  = 'This field is required'
+    isValid = false;
+    }
+    if(! accName) {
+      formError.accName = "This field is requird"
+      isValid = false;
+    }
+    if(! bankName) {
+      formError.bankName ="This field is required"
+      isValid = false;
+    }
+    if(! sortCode) {
+      formError.sortCode = "This field is required"
+      isValid = false;
+    }
+    if(! rollNumber) {
+      formError.rollNumber = "This field is required"
+      isValid = false;
+    }
+    setErrors(formError)
+    return isValid
+  }
+   const checkValidation = () => {
+     if(validate()) {
+       const data = {
+         accNumber,
+         accName,
+         bankName,
+         sortCode,
+         rollNumber
+       }
+       return true
+     }
+     return false
+   }
+
+  
+  // // ==========================================Api Call================
   const addBankDetailApi = async () => {
     let token = await AsyncStorage.getItem("token");
     setIsLoading(true);
@@ -98,6 +149,7 @@ const AddBankDetailScreen = ({ navigation }) => {
             style={styles.textInputstyle}
             keyboardType="number-pad"
           />
+          {errors.accNumber && <Text style={styles.errorText}>{errors.accNumber}</Text>}
            <TextInput placeholderTextColor={colors.gray}
             value={accName}
             onChangeText={(accName) => {
@@ -107,6 +159,7 @@ const AddBankDetailScreen = ({ navigation }) => {
             style={styles.textInputstyle}
             keyboardType="email-address"
           />
+          {errors.accName && <Text style={styles.errorText}>{errors.accName}</Text>}
            <TextInput placeholderTextColor={colors.gray}
             value={bankName}
             onChangeText={(bankName) => {
@@ -115,6 +168,7 @@ const AddBankDetailScreen = ({ navigation }) => {
             placeholder={strings.BankName}
             style={styles.textInputstyle}
           />
+          {errors.bankName && <Text style={styles.errorText}>{errors.bankName}</Text>}
            <TextInput placeholderTextColor={colors.gray}
             value={sortCode}
             onChangeText={(sortCode) => {
@@ -124,6 +178,7 @@ const AddBankDetailScreen = ({ navigation }) => {
             style={styles.textInputstyle}
             keyboardType="number-pad"
           />
+          {errors.sortCode && <Text style={styles.errorText}>{errors.sortCode}</Text>}
            <TextInput placeholderTextColor={colors.gray}
             value={rollNumber}
             onChangeText={(rollNumber) => {
@@ -133,10 +188,13 @@ const AddBankDetailScreen = ({ navigation }) => {
             style={styles.textInputstyle}
             keyboardType="number-pad"
           />
-
+          {errors.rollNumber && <Text style={styles.errorText}>{errors.rollNumber}</Text>}
           <View style={styles.rowView}>
             <ButtonText
-            onPress={()=>{addBankDetailApi()}}
+            onPress={()=>{
+              if(checkValidation())
+              addBankDetailApi()
+            }}
               loginBtn={{
                 width: responsiveScreenWidth(25),
               }}
@@ -167,8 +225,8 @@ const AddBankDetailScreen = ({ navigation }) => {
                 style={styles.modaltextStyle}
               >
                 Your detail udpate successfully.
-              </Text>
-              <TouchableOpacity onPress={() => {
+               </Text>
+               <TouchableOpacity onPress={() => {
                 setsuccessModal(false)
                 navigation.goBack()
               }}
@@ -188,7 +246,9 @@ const AddBankDetailScreen = ({ navigation }) => {
                   fontSize: responsiveScreenFontSize(1.8),
                   fontWeight: "bold",
                 }}>Thank You</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> 
+               
+
             </View>
           </Modal>
           <Modal transparent={true} visible={failureModal} animationType="slide">
@@ -291,6 +351,12 @@ const styles = StyleSheet.create({
     width: "100%",
     alignSelf: "center",
     textAlign: "center"
+  },
+  errorText: {
+    color: colors.red,
+    fontSize: responsiveScreenFontSize(1.8),
+    marginBottom: responsiveScreenHeight(1),
+    marginLeft: responsiveScreenWidth(12),
   },
 });
 

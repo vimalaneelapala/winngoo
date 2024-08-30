@@ -44,36 +44,75 @@ const ProfileEditScreen = ({ navigation, route }) => {
   const [failureModal, setfailureModal] = useState(false);
   // ==========================================Api Call================
   const updateAddressApi = async () => {
+    if (!address1 || !city || !country || !postalCode) {
+      alert("Please fill in all the required fields.");
+      return;
+    }
     let token = await AsyncStorage.getItem("token");
-    setIsLoading(true);
-    var data = new FormData();
-    data.append("address_line_1", address1);
-    data.append("address_line_2", address2);
-    data.append("address_line_3", address3);
-    data.append("city", city);
-    data.append("country", country);
-    data.append("postal_code", postalCode);
+    // setIsLoading(true);
+    // var data = new FormData();
+    // data.append("address_line_1", address1);
+    // data.append("address_line_2", address2);
+    // data.append("address_line_3", address3);
+    // data.append("city", city);
+    // data.append("country", country);
+    // data.append("postal_code", postalCode);
 
+    // var config = {
+    //   method: "put",
+    //   url: BaseURL + EndPoint.ADDRESS,
+    //   headers: {
+    //     "x-access-token": token,
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    //   data: data,
+    // };
+    // await axios(config)
+    //   .then(async (res) => {
+    //     setIsLoading(false);
+    //     setsuccessModal(true)
+    //     console.log(JSON.stringify(res));
+    //     // alert("Your detail udpate successfully.");
+    //   })
+    //   .catch((err) => {
+    //     setIsLoading(false);
+    //     setfailureModal(true)
+    //     console.log("DD log::",JSON.stringify(err));
+    //   });
+
+    // Create data object
+    var data = {
+      address_line_1: address1,
+      address_line_2: address2,
+      address_line_3: address3,
+      city: city,
+      country: country,
+      post_code: postalCode,
+    };
+
+    // API configuration
     var config = {
       method: "put",
       url: BaseURL + EndPoint.ADDRESS,
       headers: {
         "x-access-token": token,
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
-      data: data,
+      data: JSON.stringify(data),
     };
+
+    // API call
     await axios(config)
       .then(async (res) => {
         setIsLoading(false);
-        setsuccessModal(true)
+        setsuccessModal(true);
         console.log(JSON.stringify(res));
-        // alert("Your detail udpate successfully.");
       })
       .catch((err) => {
         setIsLoading(false);
-        setfailureModal(true)
-        console.log("DD log::",JSON.stringify(err));
+        setfailureModal(true);
+        console.log("Error data:", err.response?.data);
+        console.log("Error status:", err.response?.status);
       });
   };
   // ==========================================Render Call================
@@ -121,7 +160,7 @@ const ProfileEditScreen = ({ navigation, route }) => {
             style={styles.textInputstyle}
           />
            <TextInput placeholderTextColor={colors.gray}
-            value={address1}
+            value={address3}
             onChangeText={(address3) => {
               setAddress3(address3);
             }}

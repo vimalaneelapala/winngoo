@@ -9,7 +9,9 @@ import {
   TextInput,
   View,
   Platform,
-  Linking
+  Linking,
+  KeyboardAvoidingView,
+  
 } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
 import axios from "axios";
@@ -80,11 +82,141 @@ const MemberLoginScreen = ({ navigation }) => {
     } catch (e) {
       console.log(e);
     }
-  };
+   };
+  // const loginApiCall = async () => {
+  //   setIsLoading(true);
+  
+  //   var myHeaders = new Headers();
+  //   myHeaders.append("Accept", "application/json");
+  
+  //   var formdata = new FormData();
+  //   formdata.append("email", email);
+  //   formdata.append("password", password);
+  
+  //   var requestOptions = {
+  //     method: "POST",
+  //     headers: myHeaders,
+  //     body: formdata,
+  //     redirect: "follow",
+  //   };
+  
+  //   try {
+  //     const response = await fetch(BaseURL + EndPoint.LOGIN, requestOptions);
+  //     const result = await response.json();
+  
+  //     console.log("Server Response:", result);
+  
+  //     if (result && result.result && result.result.token) {
+  //       storeData(result.result.token);
+  //     } else {
+  //       alert(result.message || "Login failed. Please check your credentials.");
+  //     }
+  //   } catch (error) {
+  //     console.error('Error during login:', error);
+  //     alert("An error occurred. Please try again.");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+  
+
+  // const loginApiCall = async () => {
+  //   setIsLoading(true);
+  
+  //   var myHeaders = new Headers();
+  //   myHeaders.append("Accept", "application/json");
+  
+  //   var formdata = new FormData();
+  //   formdata.append("email", email);
+  //   formdata.append("password", password);
+  
+  //   var requestOptions = {
+  //     method: "POST",
+  //     headers: myHeaders,
+  //     body: formdata,
+  //     redirect: "follow",
+  //   };
+  
+  //   try {
+  //     const response = await fetch(BaseURL + EndPoint.LOGIN, requestOptions);
+  //     const result = await response.json();
+  
+  //     console.log("Server Response:", result);
+  
+  //     if (result.success && result.result && result.result.token) {
+  //       // If login is successful, store the token and navigate
+  //       storeData(result.result.token);
+  //     } else {
+  //       // If login fails, show the server-provided error message or a default message
+  //       alert(result.message || "Login failed. Please check your credentials.");
+  //     }
+  //   } catch (error) {
+  //     console.error('Error during login:', error);
+  //     alert("An error occurred. Please try again.");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+  
+
+  // const loginApiCall = async () => {
+  //   setIsLoading(true);
+
+  //   var myHeaders = new Headers();
+  //   myHeaders.append("Accept", "application/json");
+
+  //   var formdata = new FormData();
+  //   formdata.append("email", email);
+  //   formdata.append("password", password);
+
+  //   var requestOptions = {
+  //     method: "POST",
+  //     headers: myHeaders,
+  //     body: formdata,
+  //     redirect: "follow",
+  //   };
+
+  //   try {
+  //     const response = await fetch(BaseURL + EndPoint.LOGIN, requestOptions);
+  //     const result = await response.json();
+      
+  //     setIsLoading(false);
+  //     console.log("Server Response:", result);
+
+  //     if (result.success && result.result && result.result.token) {
+  //       storeData(result.result.token);
+  //     } else {
+  //       // If the response is unsuccessful or the token is missing
+  //       console.error('Login failed:', result.message || 'Unknown error');
+  //       alert(result.message || "Invalid credentials or account not approved yet");
+  //     }
+  //   } catch (error) {
+  //     setIsLoading(false);
+  //     console.error('Error during login:', error);
+  //     alert("An error occurred. Please try again.");
+  //   }
+  // };
+
+  // const storeData = async (value) => {
+  //   try {
+  //     await AsyncStorage.setItem("isLogin", "true");
+  //     await AsyncStorage.setItem("loginType", "member");
+  //     global.loginTypeTemp = "member";
+  //     await AsyncStorage.setItem("token", value);
+  //     navigation.navigate("DrawerNavigator");
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   return (
     <SafeAreaView style={styles.container}>
       <Spinner visible={isLoading} />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}
+      >
+        <ScrollView contentContainerStyle={styles.scrollView}>
       <View style={styles.container}>
         <Image
           source={images.logoWithName}
@@ -251,9 +383,12 @@ const MemberLoginScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
+      </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -374,6 +509,14 @@ const styles = StyleSheet.create({
     width: "75%",
     alignSelf: "center",
   },
+  scrollView: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    //alignItems: 'center',
+  },
+  commonWidth: {
+    width: responsiveScreenWidth(80),
+  },
 });
 
-export default MemberLoginScreen;
+export default MemberLoginScreen; 
